@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Las Crónicas de Sasha · Vol. 1</title>
+  <meta name="description" content="Web promocional oficial de Las Crónicas de Sasha · Vol. 1 · Mis inicios" />
+  <style>
+    :root {
+      --bg: #07181c;
+      --bg-2: #0b2429;
+      --panel: rgba(7, 24, 28, 0.86);
+      --panel-soft: rgba(10, 32, 37, 0.7);
+      --gold: #d8b56b;
+      --gold-soft: #b79146;
+      --teal: #57c6c1;
+      --text: #f5ecd8;
+      --muted: #c7c0b1;
+      --line: rgba(216, 181, 107, 0.28);
+      --shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+      --max: 1180px;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(87,198,193,.18), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(216,181,107,.18), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(87,198,193,.12), transparent 32%),
+        linear-gradient(180deg, #041013 0%, #081a1f 40%, #051216 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(4, 14, 17, 0.72);
+      border-bottom: 1px solid rgba(216,181,107,.14);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      letter-spacing: .04em;
+    }
+
+    .brand strong {
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+
+    .brand span {
+      font-size: .82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .menu a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: .9rem;
+      color: #efe7d7;
+      border: 1px solid transparent;
+      transition: .25s ease;
+    }
+
+    .menu a:hover {
+      border-color: rgba(216,181,107,.35);
+      background: rgba(255,255,255,.03);
+    }
+
+    .menu .cta-mini {
+      background: linear-gradient(180deg, #2a7e78, #14524f);
+      border-color: rgba(255,255,255,.08);
+      box-shadow: 0 10px 25px rgba(20,82,79,.35);
+    }
+
+    .hero {
+      position: relative;
+      padding: 70px 0 36px;
+    }
+
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(216,181,107,.18);
+      border-radius: calc(var(--radius) + 6px);
+      background:
+        linear-gradient(110deg, rgba(3, 15, 20, 0.92) 12%, rgba(7, 27, 32, 0.68) 48%, rgba(7, 27, 32, 0.25) 72%),
+        url('assets/portada-sasha.png') center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-shell::before,
+    .hero-shell::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: calc(var(--radius) - 2px);
+      pointer-events: none;
+      border: 1px solid rgba(216,181,107,.16);
+    }
+
+    .hero-shell::after {
+      inset: auto 5% 16px 5%;
+      height: 1px;
+      border: 0;
+      background: linear-gradient(90deg, transparent, rgba(216,181,107,.65), transparent);
+      box-shadow: 0 0 18px rgba(216,181,107,.25);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+      padding: 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .85rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 5.7rem);
+      line-height: .94;
+      color: #efd39b;
+      text-shadow: 0 4px 18px rgba(0,0,0,.28);
+    }
+
+    .subhead {
+      margin: 16px 0 22px;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      color: #f5e5c0;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 0 0 28px;
+      color: #ded6c7;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(216,181,107,.28);
+      font-weight: 700;
+      letter-spacing: .03em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,.22);
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #1d6b66, #104743);
+      color: #f2f3ee;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.03);
+      color: #f0e4c6;
+    }
+
+    .hero-card {
+      justify-self: end;
+      width: min(360px, 100%);
+      padding: 20px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(7,24,28,.76), rgba(7,24,28,.42));
+      border: 1px solid rgba(216,181,107,.18);
+      box-shadow: 0 25px 55px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 22px 36px rgba(0,0,0,.38);
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .section {
+      padding: 30px 0 14px;
+    }
+
+    .panel {
+      position: relative;
+      padding: 34px;
+      border: 1px solid rgba(216,181,107,.16);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(6, 21, 24, 0.92), rgba(9, 29, 34, 0.72));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(216,181,107,.08);
+      pointer-events: none;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      color: #efd39b;
+    }
+
+    .section-copy {
+      margin: 0;
+      max-width: 760px;
+      color: #d7d0c3;
+      line-height: 1.9;
+      font-size: 1.04rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .feature {
+      position: relative;
+      padding: 22px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(8,28,33,.94), rgba(8,28,33,.65));
+      border: 1px solid rgba(216,181,107,.14);
+    }
+
+    .glyph {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 1.35rem;
+      color: var(--gold);
+      border: 1px solid rgba(216,181,107,.3);
+      background: radial-gradient(circle at 30% 30%, rgba(216,181,107,.18), transparent 60%);
+      box-shadow: inset 0 0 18px rgba(216,181,107,.08);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      color: #f0dbaf;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .authors {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .author {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(8,28,33,.95), rgba(8,28,33,.6));
+      border: 1px solid rgba(216,181,107,.14);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid rgba(216,181,107,.35);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(216,181,107,.22), rgba(87,198,193,.12) 45%, rgba(8,28,33,1) 100%);
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+
+    .author h3 {
+      margin: 0 0 8px;
+      color: #f0dbaf;
+      font-size: 1.2rem;
+    }
+
+    .author p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .cta-box {
+      text-align: center;
+      padding: 46px 26px;
+    }
+
+    .cta-box p {
+      margin: 12px auto 26px;
+      max-width: 720px;
+      color: #d8d1c3;
+      line-height: 1.85;
+    }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: #a8a292;
+      text-align: center;
+      font-size: .92rem;
+    }
+
+    .tiny {
+      font-size: .84rem;
+      color: #aaa28f;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .features,
+      .authors {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        padding: 34px;
+      }
+
+      .hero-card {
+        justify-self: stretch;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .menu {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-grid,
+      .panel {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
+
+      .author {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .avatar {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">
+        <strong>Las Crónicas de Sasha</strong>
+        <span>Vol. 1 · Mis inicios</span>
+      </a>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#sinopsis">Sinopsis</a>
+        <a href="#universo">Universo</a>
+        <a href="#autores">Autores</a>
+        <a class="cta-mini" href="#comprar">Comprar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="inicio">
+      <div class="hero-shell">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Fantasía épica</div>
+            <h1>LAS CRÓNICAS DE<br>SASHA</h1>
+            <p class="subhead">Vol. 1 · Mis inicios</p>
+            <p class="lead">Sin recuerdos claros. Sin respuestas sencillas. Solo un nombre: Sasha. Un portal, un nuevo mundo y una aventura que cambiará su destino para siempre.</p>
+            <div class="buttons">
+              <a class="btn btn-primary" href="#comprar">Comprar ahora</a>
+              <a class="btn btn-secondary" href="#sinopsis">Leer sinopsis</a>
+            </div>
+            <p class="tiny">Portada destacada · ambientación inmersiva · tono mágico</p>
+          </div>
+
+          <aside class="hero-card">
+            <img src="assets/portada-sasha.png" alt="Portada del libro Las Crónicas de Sasha Vol. 1" />
+            <p class="hero-note">Vol. 1 · Mis inicios</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="sinopsis">
+      <div class="panel">
+        <h2 class="section-title">La historia de Sasha comienza aquí</h2>
+        <p class="section-copy">Sasha no sabe quién es ni de dónde viene. Solo tiene fragmentos de un pasado que no recuerda y un destino que otros parecen querer decidir por ella. En un mundo lleno de secretos antiguos, puertas olvidadas y enemigos que se mueven entre las sombras, su viaje no ha hecho más que empezar.</p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="universo">
+      <div class="panel">
+        <h2 class="section-title">Un mundo lleno de secretos</h2>
+        <p class="section-copy">Magia, misterio y aventura se entrelazan en un viaje donde cada descubrimiento acerca a Sasha a la verdad... o la empuja aún más dentro del enigma.</p>
+
+        <div class="features">
+          <article class="feature">
+            <div class="glyph">✦</div>
+            <h3>Magia antigua</h3>
+            <p>Poderes, portales y fuerzas olvidadas que laten bajo la superficie del mundo.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph">⟡</div>
+            <h3>Misterio</h3>
+            <p>Cada pista abre nuevas preguntas. Cada respuesta parece esconder otra puerta.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph">⚔</div>
+            <h3>Aventura</h3>
+            <p>Un viaje que empuja a Sasha a descubrir quién es y qué papel debe jugar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="autores">
+      <div class="panel">
+        <h2 class="section-title">Conoce a los autores</h2>
+        <p class="section-copy">Una historia escrita para quienes disfrutan de los mundos fantásticos, los secretos antiguos y los personajes que crecen paso a paso frente a lo desconocido.</p>
+
+        <div class="authors">
+          <article class="author">
+            <div class="avatar">CM</div>
+            <div>
+              <h3>Carlos Membrado</h3>
+              <p>Autor y creador del universo narrativo. Especial interés por la fantasía épica, la progresión del personaje y la construcción de mundos.</p>
+            </div>
+          </article>
+          <article class="author">
+            <div class="avatar">MP</div
+            <div>
+              <h3>Montse Palatsi</h3>
+              <p>Coautora del proyecto. Enfoque en el desarrollo narrativo, la sensibilidad del personaje y la riqueza emocional de la historia.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="comprar">
+      <div class="panel cta-box">
+        <h2 class="section-title">Tu aventura te espera</h2>
+        <p>Añade aquí el enlace real de compra. Puede llevar a Amazon, a la web de la editorial o a cualquier tienda externa.</p>
+        <a class="btn btn-primary" href="https://example.com" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    © 2026 · Las Crónicas de Sasha · Web promocional oficial
+  </footer>
+</body>
+</html>

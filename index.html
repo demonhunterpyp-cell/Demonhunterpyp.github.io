@@ -386,7 +386,7 @@
     }
 
     .paper-divider,
-    .explore-divider,
+    .section-divider,
     .panel-divider {
       width: 240px;
       height: 22px;
@@ -397,8 +397,8 @@
 
     .paper-divider::before,
     .paper-divider::after,
-    .explore-divider::before,
-    .explore-divider::after,
+    .section-divider::before,
+    .section-divider::after,
     .panel-divider::before,
     .panel-divider::after {
       content: "";
@@ -409,14 +409,14 @@
     }
 
     .paper-divider::before,
-    .explore-divider::before,
+    .section-divider::before,
     .panel-divider::before {
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(121,82,29,.55), transparent);
     }
 
     .paper-divider::after,
-    .explore-divider::after,
+    .section-divider::after,
     .panel-divider::after {
       left: 50%;
       right: auto;
@@ -494,21 +494,39 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
     }
 
-    .explore {
-      padding: 36px 4px 8px;
-      color: #f5e9cf;
+    .section-block {
+      margin-top: 38px;
+      padding: 34px 28px 30px;
+      border: 1px solid rgba(214,176,106,.24);
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255,188,109,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.94), rgba(20,25,39,.98));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
     }
 
-    .explore h2,
+    .section-block::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(214,176,106,.12);
+      pointer-events: none;
+    }
+
+    .section-block h2,
     .panel h2 {
       margin: 0;
       font-size: clamp(2rem, 3.5vw, 3.2rem);
       color: #f0dbaf;
       text-align: center;
       text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
 
-    .explore-lead,
+    .section-lead,
     .panel-lead {
       max-width: 820px;
       margin: 0 auto;
@@ -516,69 +534,77 @@
       color: #ddd2b7;
       line-height: 1.75;
       font-size: 1.04rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .card-grid {
+    .character-grid {
       margin-top: 18px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
+      position: relative;
+      z-index: 1;
     }
 
-    .card {
-      min-height: 260px;
-      border: 1px solid rgba(214,176,106,.28);
+    .character-card {
+      min-height: 340px;
+      border: 1px solid rgba(214,176,106,.18);
       background:
-        radial-gradient(circle at 50% 18%, rgba(255,188,109,.09), transparent 18%),
-        linear-gradient(180deg, rgba(28,34,53,.94), rgba(20,25,39,.98));
-      box-shadow: var(--shadow);
+        radial-gradient(circle at 50% 18%, rgba(255,188,109,.08), transparent 20%),
+        linear-gradient(180deg, rgba(35,42,64,.96), rgba(22,28,44,.98));
+      padding: 20px 20px 22px;
       position: relative;
       overflow: hidden;
-      padding: 24px 22px 22px;
-      border-radius: 2px;
     }
 
-    .card::before {
+    .character-card::before {
       content: "";
       position: absolute;
       inset: 10px;
-      border: 1px solid rgba(214,176,106,.12);
+      border: 1px solid rgba(214,176,106,.10);
       pointer-events: none;
     }
 
-    .card-badge {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(214,176,106,.26);
-      color: #e5c787;
-      font-size: .78rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      background: rgba(255,255,255,.02);
+    .portrait {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border: 1px solid rgba(214,176,106,.18);
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,210,138,.18), transparent 18%),
+        linear-gradient(180deg, rgba(58,70,102,.95), rgba(28,34,53,.98));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f0dbaf;
+      font-size: 3rem;
+      margin-bottom: 16px;
     }
 
-    .card h3 {
+    .character-card h3 {
       margin: 0 0 10px;
       color: #f0dbaf;
       font-size: 1.5rem;
     }
 
-    .card p {
+    .character-card p {
       margin: 0;
       color: #d4ccb9;
       line-height: 1.72;
       font-size: 1rem;
     }
 
-    .card-link {
+    .character-tag {
       display: inline-flex;
-      align-items: center;
-      margin-top: 18px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,176,106,.24);
       color: #e5c787;
-      font-weight: 700;
-      font-size: .98rem;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      background: rgba(255,255,255,.02);
     }
 
     .panel {
@@ -652,6 +678,12 @@
       font-size: .98rem;
     }
 
+    @media (max-width: 1200px) {
+      .character-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 1050px) {
       .layout { grid-template-columns: 1fr; }
 
@@ -677,7 +709,6 @@
         padding: 36px 28px 48px 42px;
       }
 
-      .card-grid,
       .panel-grid,
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
@@ -692,7 +723,7 @@
       }
 
       .content-shell { padding: 0 14px 30px; }
-      .card-grid,
+      .character-grid,
       .panel-grid,
       .gallery-grid {
         grid-template-columns: 1fr;
@@ -729,7 +760,8 @@
         font-size: 1.14rem;
       }
 
-      .panel {
+      .panel,
+      .section-block {
         padding: 28px 18px;
       }
     }
@@ -814,39 +846,48 @@
           </div>
         </section>
 
-        <section class="explore" id="lore">
-          <h2>Explora la Saga</h2>
-          <div class="explore-divider"></div>
-          <p class="explore-lead">
-            Descubre los pilares del universo de Sasha: su origen, los personajes que marcan su camino y el primer volumen que da comienzo a la aventura.
+        <section class="section-block" id="lore">
+          <h2>Personajes</h2>
+          <div class="section-divider"></div>
+          <p class="section-lead">
+            Cuatro grandes bloques definen el pulso humano y emocional del universo de Sasha: la protagonista, su círculo más cercano, quienes la acompañan y quienes se oponen a su avance.
           </p>
 
-          <div class="card-grid" id="libros">
-            <article class="card">
-              <div class="card-badge">Universo</div>
-              <h3>Orígenes</h3>
+          <div class="character-grid">
+            <article class="character-card">
+              <div class="character-tag">Protagonista</div>
+              <div class="portrait">S</div>
+              <h3>Sasha</h3>
               <p>
-                El inicio de todo. La caída de la magia, los secretos olvidados y el contexto que da forma al mundo donde Sasha deberá abrirse paso.
+                El eje de la historia. Una joven arrojada a un mundo donde nada es tan simple como parece y donde cada decisión la obliga a crecer.
               </p>
-              <a class="card-link" href="#historia">Explorar origen →</a>
             </article>
 
-            <article class="card">
-              <div class="card-badge">Lore / PJ</div>
-              <h3>Personajes</h3>
+            <article class="character-card">
+              <div class="character-tag">Núcleo social</div>
+              <div class="portrait">✦</div>
+              <h3>Party Girls</h3>
               <p>
-                Aliados, amenazas y figuras clave de una historia donde cada encuentro deja huella y cada decisión puede cambiarlo todo.
+                Un grupo con identidad propia, energía y peso dentro del relato. Su presencia aporta contraste, vínculo y tensión en torno al viaje de Sasha.
               </p>
-              <a class="card-link" href="#galeria">Ver personajes →</a>
             </article>
 
-            <article class="card">
-              <div class="card-badge">Libro</div>
-              <h3>Volumen 1</h3>
+            <article class="character-card">
+              <div class="character-tag">Compañeros</div>
+              <div class="portrait">⚔</div>
+              <h3>Aliados</h3>
               <p>
-                Mis inicios es la puerta de entrada a la saga. El punto de partida de una heroína que no fue elegida, sino forjada.
+                Quienes ayudan a Sasha, la protegen o la orientan en momentos clave. No todos luchan del mismo modo, pero todos dejan huella.
               </p>
-              <a class="card-link" href="#tienda">Ir al libro →</a>
+            </article>
+
+            <article class="character-card">
+              <div class="character-tag">Amenaza</div>
+              <div class="portrait">☾</div>
+              <h3>Enemigos</h3>
+              <p>
+                Fuerzas, figuras y presencias que se interponen en su camino. Algunas son visibles. Otras avanzan desde la sombra y esperan su momento.
+              </p>
             </article>
           </div>
         </section>

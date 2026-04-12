@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sasha | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería y ficha de Sasha en Las Crónicas de Sasha" />
   <style>
     * {
       box-sizing: border-box;
@@ -20,15 +19,15 @@
       --muted: #aab3c2;
       --accent: #d6a85f;
       --border: rgba(255,255,255,0.08);
-      --shadow: 0 16px 40px rgba(0,0,0,0.45);
+      --shadow: 0 12px 35px rgba(0,0,0,0.45);
       --radius: 18px;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
       background:
-        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.96)),
-        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
+        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.95)),
+        url("assets/fondo.jpg") center/cover no-repeat fixed;
       background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -40,20 +39,13 @@
     }
 
     .topbar {
-      width: min(1240px, 92%);
+      width: min(1200px, 92%);
       margin: 0 auto;
-      padding: 28px 0 12px;
+      padding: 28px 0 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .topbar-left,
-    .topbar-right {
-      display: flex;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
@@ -61,12 +53,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 11px 16px;
+      padding: 10px 16px;
       background: rgba(255,255,255,0.06);
       border: 1px solid var(--border);
       border-radius: 999px;
       transition: 0.25s ease;
-      color: #fff;
     }
 
     .back-link:hover {
@@ -75,113 +66,182 @@
     }
 
     .hero {
-      width: min(1240px, 92%);
+      width: min(1200px, 92%);
       margin: 0 auto;
-      padding: 18px 0 28px;
+      padding: 24px 0 34px;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      line-height: 1.02;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
       margin-bottom: 14px;
       color: #fff;
     }
 
     .hero p {
-      max-width: 850px;
+      max-width: 760px;
       color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.65;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
-    .page-shell {
-      width: min(1240px, 92%);
-      margin: 0 auto 56px;
+    .gallery-section {
+      width: min(1200px, 92%);
+      margin: 0 auto 60px;
+    }
+
+    .gallery-grid {
       display: grid;
-      gap: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
     }
 
-    .viewer {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .main-image-panel,
-    .info-panel,
-    .thumbs-panel {
-      background: linear-gradient(180deg, rgba(18,24,38,0.96), rgba(13,18,29,0.98));
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       box-shadow: var(--shadow);
     }
 
-    .main-image-panel {
-      padding: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 720px;
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,168,95,0.45);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
     }
 
-    .main-image-wrap {
-      width: 100%;
-      height: 100%;
-      min-height: 660px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0a0f18;
-      border-radius: 18px;
+    .card-image {
+      aspect-ratio: 4 / 5;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
+      background: #0f1420;
     }
 
-    .main-image-wrap img {
+    .card-image img {
       width: 100%;
       height: 100%;
-      max-height: 700px;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
+      transition: transform 0.35s ease;
     }
 
-    .info-panel {
-      padding: 30px 26px;
+    .card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 16px;
+    }
+
+    .card-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .card-content .subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .card-content .mini-text {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.84);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(1100px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: linear-gradient(180deg, #121826, #0d131f);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .modal-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 0;
+      min-height: 560px;
+    }
+
+    .modal-image {
+      background: #0a0f18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    .modal-image img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 16px;
+    }
+
+    .modal-info {
+      padding: 34px 28px 28px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
-    .character-name {
-      font-size: 2.2rem;
+    .modal-info h2 {
+      font-size: 2rem;
       color: #fff;
-      line-height: 1.05;
     }
 
-    .character-role {
+    .modal-role {
       color: var(--accent);
       font-weight: bold;
       font-size: 1rem;
-      letter-spacing: 0.02em;
     }
 
-    .scene-tag {
-      display: inline-flex;
-      align-self: flex-start;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(214,168,95,0.12);
-      border: 1px solid rgba(214,168,95,0.25);
-      color: #f0d29a;
-      font-size: 0.92rem;
-    }
-
-    .character-description,
-    .scene-description {
+    .modal-description {
       color: var(--muted);
       line-height: 1.7;
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
 
     .info-box {
@@ -191,131 +251,75 @@
       padding: 16px;
     }
 
-    .info-box h3 {
-      font-size: 1rem;
+    .info-box h4 {
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
 
     .info-box ul {
       list-style: none;
       display: grid;
-      gap: 9px;
+      gap: 8px;
     }
 
     .info-box li {
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     .info-box strong {
       color: #fff;
     }
 
-    .thumbs-panel {
-      padding: 18px;
+    .modal-controls {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 8px;
     }
 
-    .thumbs-title {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
+    .modal-btn {
+      border: none;
+      background: rgba(255,255,255,0.08);
       color: #fff;
-    }
-
-    .thumbs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-    }
-
-    .thumb-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
+      padding: 12px 16px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
     }
 
-    .thumb-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(214,168,95,0.40);
-      box-shadow: 0 16px 28px rgba(0,0,0,0.35);
+    .modal-btn:hover {
+      background: rgba(255,255,255,0.14);
     }
 
-    .thumb-card.active {
-      border-color: rgba(214,168,95,0.75);
-      box-shadow: 0 0 0 1px rgba(214,168,95,0.25) inset;
-    }
-
-    .thumb-image {
-      aspect-ratio: 4 / 5;
-      background: #0f1420;
-      overflow: hidden;
-    }
-
-    .thumb-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .thumb-content {
-      padding: 12px 12px 14px;
-    }
-
-    .thumb-content h4 {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .thumb-content p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    @media (max-width: 1050px) {
-      .viewer {
+    @media (max-width: 900px) {
+      .modal-content {
         grid-template-columns: 1fr;
       }
 
-      .main-image-panel {
-        min-height: auto;
-      }
-
-      .main-image-wrap {
-        min-height: 460px;
+      .modal-image {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       .hero h1 {
         font-size: 2.2rem;
       }
 
-      .main-image-panel,
-      .info-panel,
-      .thumbs-panel {
-        border-radius: 20px;
-      }
-
-      .main-image-panel {
+      .card-content {
         padding: 14px;
       }
 
-      .info-panel {
-        padding: 22px 18px;
+      .modal-info {
+        padding: 24px 18px 20px;
       }
 
-      .character-name {
-        font-size: 1.8rem;
-      }
-
-      .thumbs-grid {
-        grid-template-columns: 1fr;
+      .modal-info h2 {
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -323,90 +327,73 @@
 <body>
 
   <header class="topbar">
-    <div class="topbar-left">
-      <a href="./index.html" class="back-link">← Volver al inicio</a>
-      <a href="./index.html#lore" class="back-link">Personajes</a>
-    </div>
-    <div class="topbar-right">
-      <a href="./party-girls.html" class="back-link">Siguiente bloque →</a>
-    </div>
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+    <a href="personajes.html" class="back-link">Personajes</a>
   </header>
 
   <section class="hero">
     <h1>Galería de Sasha</h1>
     <p>
-      Esta página reúne distintas imágenes de Sasha y una ficha lateral con su información.
-      Puedes pulsar cualquier miniatura para cambiar la imagen principal y actualizar los datos
-      de la escena mostrada.
+      Una colección visual del personaje principal. Aquí puedes recorrer distintas escenas,
+      atuendos y momentos de Sasha, y abrir cada imagen para ver su ficha descriptiva.
     </p>
   </section>
 
-  <main class="page-shell">
-    <section class="viewer">
-      <article class="main-image-panel">
-        <div class="main-image-wrap">
-          <img id="mainImage" src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
-        </div>
-      </article>
-
-      <aside class="info-panel">
-        <h2 class="character-name" id="characterName">Sasha</h2>
-        <div class="character-role" id="characterRole">Protagonista | Guerrera defensiva / tanque</div>
-        <div class="scene-tag" id="sceneTag">Inicio del viaje</div>
-
-        <p class="character-description" id="characterDescription">
-          Sasha es la protagonista de la saga. Su recorrido combina descubrimiento, combate,
-          crecimiento personal y adaptación a un mundo que no perdona errores.
-        </p>
-
-        <p class="scene-description" id="sceneDescription">
-          Primera etapa visual del personaje, asociada al comienzo de su aventura y al arranque
-          de su progresión dentro de Demon Hunter.
-        </p>
-
-        <div class="info-box">
-          <h3>Ficha del personaje</h3>
-          <ul id="characterData">
-            <li><strong>Clase:</strong> Guerrera defensiva / tanque</li>
-            <li><strong>Arma habitual:</strong> Espada y escudo</li>
-            <li><strong>Rasgos:</strong> Determinación, resistencia, liderazgo</li>
-            <li><strong>Contexto:</strong> Inicio de progresión en Demon Hunter</li>
-          </ul>
-        </div>
-      </aside>
-    </section>
-
-    <section class="thumbs-panel">
-      <h3 class="thumbs-title">Escenas disponibles</h3>
-      <div class="thumbs-grid" id="thumbsGrid"></div>
-    </section>
+  <main class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid"></div>
   </main>
+
+  <div class="modal" id="imageModal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
+
+      <div class="modal-content">
+        <div class="modal-image">
+          <img id="modalImg" src="" alt="" />
+        </div>
+
+        <div class="modal-info">
+          <h2 id="modalTitle">Título</h2>
+          <div class="modal-role" id="modalRole">Rol</div>
+          <p class="modal-description" id="modalDescription"></p>
+
+          <div class="info-box">
+            <h4>Ficha</h4>
+            <ul id="modalData"></ul>
+          </div>
+
+          <div class="modal-controls">
+            <button class="modal-btn" id="prevBtn">← Anterior</button>
+            <button class="modal-btn" id="nextBtn">Siguiente →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     const sashaGallery = [
       {
         image: "assets/galerias/sasha/sasha-01.png",
         title: "Sasha",
-        scene: "Inicio del viaje",
-        thumbText: "Primera aparición destacada del personaje.",
-        role: "Protagonista | Guerrera defensiva / tanque",
-        characterDescription: "Sasha es la protagonista de la saga. Su recorrido combina descubrimiento, combate, crecimiento personal y adaptación a un mundo que no perdona errores.",
-        sceneDescription: "Primera etapa visual del personaje, asociada al comienzo de su aventura y al arranque de su progresión dentro de Demon Hunter.",
+        subtitle: "Inicio del viaje",
+        preview: "Una de las primeras apariciones del personaje dentro del nuevo mundo.",
+        role: "Protagonista | Guerrera / tanque",
+        description: "Sasha es la figura central de la saga. Su recorrido mezcla descubrimiento, combate, evolución personal y adaptación a un mundo ajeno lleno de peligros, magia y criaturas.",
         details: [
           { label: "Clase", value: "Guerrera defensiva / tanque" },
           { label: "Arma habitual", value: "Espada y escudo" },
           { label: "Rasgos", value: "Determinación, resistencia, liderazgo" },
-          { label: "Contexto", value: "Inicio de progresión en Demon Hunter" }
+          { label: "Contexto", value: "Primeras fases de progresión en Demon Hunter" }
         ]
       },
       {
         image: "assets/galerias/sasha/sasha-02.png",
         title: "Sasha",
-        scene: "Exploración",
-        thumbText: "Sasha en una fase de avance y descubrimiento.",
+        subtitle: "Exploración",
+        preview: "Escena centrada en su faceta de descubrimiento y avance por el mundo.",
         role: "Protagonista | Aventurera",
-        characterDescription: "Sasha sigue siendo el eje del relato, pero aquí se la muestra más ligada a la exploración del mundo, a la observación del entorno y a su adaptación progresiva.",
-        sceneDescription: "Escena centrada en la faceta de descubrimiento del personaje, útil para transmitir curiosidad, movimiento y crecimiento narrativo.",
+        description: "En esta fase, Sasha aparece ligada a la exploración del entorno, al aprendizaje de las reglas del nuevo mundo y a los primeros contactos con su entorno narrativo.",
         details: [
           { label: "Etapa", value: "Descubrimiento inicial" },
           { label: "Enfoque", value: "Exploración y adaptación" },
@@ -417,11 +404,10 @@
       {
         image: "assets/galerias/sasha/sasha-03.png",
         title: "Sasha",
-        scene: "Preparada para el combate",
-        thumbText: "Versión más marcada por la acción y la defensa.",
+        subtitle: "Preparada para el combate",
+        preview: "Una versión más orientada a la acción y al papel defensivo del personaje.",
         role: "Protagonista | Combate",
-        characterDescription: "En esta representación, Sasha encarna mejor su papel de personaje resistente, capaz de aguantar la presión y sostener la primera línea del conflicto.",
-        sceneDescription: "Imagen orientada a remarcar su naturaleza de luchadora defensiva, muy útil para reforzar identidad, clase y presencia.",
+        description: "Aquí la imagen refleja mejor la naturaleza de Sasha como personaje resistente, capaz de proteger, aguantar la presión y mantenerse firme frente al peligro.",
         details: [
           { label: "Especialidad", value: "Defensa y primera línea" },
           { label: "Fortaleza", value: "Alta resistencia" },
@@ -432,11 +418,10 @@
       {
         image: "assets/galerias/sasha/sasha-04.png",
         title: "Sasha",
-        scene: "Evolución del personaje",
-        thumbText: "Una imagen que transmite progreso visual y narrativo.",
+        subtitle: "Evolución del personaje",
+        preview: "Imagen representativa de su progreso visual y narrativo.",
         role: "Protagonista | Evolución",
-        characterDescription: "Sasha gana peso dentro del universo narrativo a medida que avanza la historia, y esta escena ayuda a mostrar una presencia más consolidada.",
-        sceneDescription: "Ideal para representar madurez, crecimiento, identidad visual estable y mayor relevancia dentro de la saga.",
+        description: "Esta escena puede utilizarse para mostrar cómo Sasha cambia con el paso de la historia, tanto en presencia visual como en madurez, capacidad y peso dentro del relato.",
         details: [
           { label: "Lectura narrativa", value: "Progreso y consolidación" },
           { label: "Uso en web", value: "Ficha, lore o presentación principal" },
@@ -447,11 +432,10 @@
       {
         image: "assets/galerias/sasha/sasha-05.png",
         title: "Sasha",
-        scene: "Escena destacada",
-        thumbText: "Variante visual para ampliar la colección.",
+        subtitle: "Escena destacada",
+        preview: "Otra imagen clave para ampliar la galería del personaje.",
         role: "Protagonista | Escena especial",
-        characterDescription: "Esta entrada amplía la colección visual del personaje y permite mostrar más registros, atmósferas o momentos relevantes de su recorrido.",
-        sceneDescription: "Escena pensada para enriquecer la galería y dar más profundidad visual a la presentación pública de Sasha.",
+        description: "Esta entrada amplía la colección visual de Sasha y ayuda a mostrar distintas etapas, atmósferas o situaciones relevantes dentro de su recorrido en la saga.",
         details: [
           { label: "Tipo de escena", value: "Destacada" },
           { label: "Uso", value: "Galería y material promocional" },
@@ -461,65 +445,95 @@
       }
     ];
 
-    const mainImage = document.getElementById("mainImage");
-    const characterName = document.getElementById("characterName");
-    const characterRole = document.getElementById("characterRole");
-    const sceneTag = document.getElementById("sceneTag");
-    const characterDescription = document.getElementById("characterDescription");
-    const sceneDescription = document.getElementById("sceneDescription");
-    const characterData = document.getElementById("characterData");
-    const thumbsGrid = document.getElementById("thumbsGrid");
+    const galleryGrid = document.getElementById("galleryGrid");
+    const modal = document.getElementById("imageModal");
+    const closeModal = document.getElementById("closeModal");
 
-    function renderThumbs() {
-      thumbsGrid.innerHTML = "";
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalRole = document.getElementById("modalRole");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalData = document.getElementById("modalData");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+
+    function renderGallery() {
+      galleryGrid.innerHTML = "";
 
       sashaGallery.forEach((item, index) => {
         const card = document.createElement("article");
-        card.className = "thumb-card";
-        if (index === 0) card.classList.add("active");
-
+        card.className = "card";
         card.innerHTML = `
-          <div class="thumb-image">
-            <img src="${item.image}" alt="${item.title} - ${item.scene}">
+          <div class="card-image">
+            <img src="${item.image}" alt="${item.title} - ${item.subtitle}">
           </div>
-          <div class="thumb-content">
-            <h4>${item.scene}</h4>
-            <p>${item.thumbText}</p>
+          <div class="card-content">
+            <h3>${item.title}</h3>
+            <div class="subtitle">${item.subtitle}</div>
+            <p class="mini-text">${item.preview}</p>
           </div>
         `;
 
-        card.addEventListener("click", () => {
-          updateViewer(index);
-
-          document.querySelectorAll(".thumb-card").forEach(el => {
-            el.classList.remove("active");
-          });
-
-          card.classList.add("active");
-        });
-
-        thumbsGrid.appendChild(card);
+        card.addEventListener("click", () => openModal(index));
+        galleryGrid.appendChild(card);
       });
     }
 
-    function updateViewer(index) {
+    function openModal(index) {
+      currentIndex = index;
       const item = sashaGallery[index];
 
-      mainImage.src = item.image;
-      mainImage.alt = `${item.title} - ${item.scene}`;
-      characterName.textContent = item.title;
-      characterRole.textContent = item.role;
-      sceneTag.textContent = item.scene;
-      characterDescription.textContent = item.characterDescription;
-      sceneDescription.textContent = item.sceneDescription;
+      modalImg.src = item.image;
+      modalImg.alt = item.title + " - " + item.subtitle;
+      modalTitle.textContent = item.title + " | " + item.subtitle;
+      modalRole.textContent = item.role;
+      modalDescription.textContent = item.description;
 
-      characterData.innerHTML = item.details
+      modalData.innerHTML = item.details
         .map(detail => `<li><strong>${detail.label}:</strong> ${detail.value}</li>`)
         .join("");
+
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
     }
 
-    renderThumbs();
-    updateViewer(0);
+    function closeModalWindow() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + sashaGallery.length) % sashaGallery.length;
+      openModal(currentIndex);
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % sashaGallery.length;
+      openModal(currentIndex);
+    }
+
+    closeModal.addEventListener("click", closeModalWindow);
+    prevBtn.addEventListener("click", showPrev);
+    nextBtn.addEventListener("click", showNext);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModalWindow();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!modal.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeModalWindow();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+    });
+
+    renderGallery();
   </script>
 
 </body>

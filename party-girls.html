@@ -15,7 +15,6 @@
     :root {
       --bg: #0b0f16;
       --panel: #121826;
-      --panel-2: #1a2233;
       --text: #f3f5f8;
       --muted: #aab3c2;
       --accent: #d6a85f;
@@ -136,6 +135,7 @@
       border-radius: 18px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
     }
 
     .main-image-wrap img {
@@ -143,7 +143,40 @@
       height: 100%;
       max-height: 700px;
       object-fit: contain;
-      display: block;
+      display: none;
+    }
+
+    .main-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 660px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+      background:
+        radial-gradient(circle at center, rgba(214,168,95,0.08), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    .main-placeholder .symbol {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    .main-placeholder h3 {
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .main-placeholder p {
+      max-width: 420px;
+      line-height: 1.7;
     }
 
     .info-panel {
@@ -252,13 +285,39 @@
       aspect-ratio: 4 / 5;
       background: #0f1420;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
     .thumb-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      display: none;
+    }
+
+    .thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 16px;
+      background:
+        radial-gradient(circle at center, rgba(214,168,95,0.07), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    }
+
+    .thumb-placeholder .mini-symbol {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--accent);
     }
 
     .thumb-content {
@@ -277,6 +336,16 @@
       line-height: 1.45;
     }
 
+    .status-ready {
+      color: #9fe2b0;
+      font-weight: 600;
+    }
+
+    .status-pending {
+      color: #f0d29a;
+      font-weight: 600;
+    }
+
     @media (max-width: 1050px) {
       .viewer {
         grid-template-columns: 1fr;
@@ -286,7 +355,8 @@
         min-height: auto;
       }
 
-      .main-image-wrap {
+      .main-image-wrap,
+      .main-placeholder {
         min-height: 460px;
       }
     }
@@ -335,8 +405,8 @@
   <section class="hero">
     <h1>Galería de Party Girls</h1>
     <p>
-      Esta sección reúne imágenes del grupo Party Girls en formato de galería con ficha lateral.
-      La página está preparada para crecer más adelante sin cambiar la estructura.
+      Esta sección queda preparada con diez espacios para imágenes del grupo Party Girls.
+      Aunque todavía no estén subidas, la página ya funcionará y podrás completar cada ficha más adelante.
     </p>
   </section>
 
@@ -344,7 +414,15 @@
     <section class="viewer">
       <article class="main-image-panel">
         <div class="main-image-wrap">
-          <img id="mainImage" src="assets/galerias/party-girls/party-girls-01.png" alt="Party Girls">
+          <img id="mainImage" alt="Party Girls">
+          <div class="main-placeholder" id="mainPlaceholder">
+            <div class="symbol">✦</div>
+            <h3>Imagen pendiente</h3>
+            <p>
+              Este espacio está reservado para una ilustración o escena de Party Girls.
+              Cuando subas la imagen, aparecerá aquí automáticamente al actualizar su ficha.
+            </p>
+          </div>
         </div>
       </article>
 
@@ -359,8 +437,8 @@
         </p>
 
         <p class="scene-description" id="sceneDescription">
-          Esta primera imagen funciona como carta de presentación del conjunto y sirve para mostrar cohesión,
-          estilo visual compartido y personalidad de grupo.
+          Esta ficha sirve como estructura base. Cada escena podrá completarse después con imagen,
+          descripción concreta y datos específicos del grupo o del momento representado.
         </p>
 
         <div class="info-box">
@@ -369,7 +447,7 @@
             <li><strong>Tipo:</strong> Grupo de personajes</li>
             <li><strong>Función:</strong> Presencia social y apoyo narrativo</li>
             <li><strong>Valor visual:</strong> Identidad compartida</li>
-            <li><strong>Uso en web:</strong> Galería, lore y presentación</li>
+            <li><strong>Estado:</strong> Estructura preparada para futuras imágenes</li>
           </ul>
         </div>
       </aside>
@@ -384,88 +462,159 @@
   <script>
     const partyGirlsGallery = [
       {
-        image: "assets/galerias/party-girls/party-girls-01.png",
+        image: null,
         title: "Party Girls",
-        scene: "Presentación del grupo",
-        thumbText: "Imagen principal para introducir al conjunto.",
+        scene: "Escena 01",
+        thumbText: "Espacio reservado para la primera imagen del grupo.",
         role: "Grupo destacado | Núcleo social",
-        characterDescription: "Party Girls es uno de los bloques visuales y narrativos más reconocibles del universo de Sasha. Aporta identidad grupal, presencia y una energía propia dentro de la saga.",
-        sceneDescription: "Esta primera imagen funciona como carta de presentación del conjunto y sirve para mostrar cohesión, estilo visual compartido y personalidad de grupo.",
+        characterDescription: "Party Girls funciona como un bloque con identidad propia dentro de la saga. Esta primera entrada está reservada para su presentación principal.",
+        sceneDescription: "Aquí podrás colocar una imagen de presentación general cuando la tengas lista.",
         details: [
-          { label: "Tipo", value: "Grupo de personajes" },
-          { label: "Función", value: "Presencia social y apoyo narrativo" },
-          { label: "Valor visual", value: "Identidad compartida" },
-          { label: "Uso en web", value: "Galería, lore y presentación" }
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Presentación principal del grupo" },
+          { label: "Función", value: "Introducción visual" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
         ]
       },
       {
-        image: "assets/galerias/party-girls/party-girls-02.png",
+        image: null,
         title: "Party Girls",
-        scene: "Escena conjunta",
-        thumbText: "Composición que refuerza la unidad del grupo.",
+        scene: "Escena 02",
+        thumbText: "Espacio preparado para una escena conjunta.",
         role: "Grupo destacado | Escena coral",
-        characterDescription: "Aquí el grupo gana fuerza como bloque narrativo y visual. La composición conjunta transmite relación, energía y sentido de pertenencia dentro del mundo de Sasha.",
-        sceneDescription: "Imagen muy útil para remarcar que Party Girls no es solo una suma de personajes, sino una presencia colectiva con peso propio.",
+        characterDescription: "Esta ficha está pensada para mostrar una composición conjunta del grupo y reforzar su presencia colectiva.",
+        sceneDescription: "Cuando subas la imagen, esta sección podrá servir para describir la unidad, la energía y el vínculo entre sus integrantes.",
         details: [
-          { label: "Lectura", value: "Unidad y presencia de grupo" },
-          { label: "Tono", value: "Cercanía, energía, personalidad" },
-          { label: "Enfoque", value: "Composición coral" },
-          { label: "Función", value: "Refuerzo de identidad" }
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Composición coral" },
+          { label: "Función", value: "Refuerzo de identidad grupal" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
         ]
       },
       {
-        image: "assets/galerias/party-girls/party-girls-03.png",
+        image: null,
         title: "Party Girls",
-        scene: "Momento destacado",
-        thumbText: "Variante visual útil para ampliar la galería.",
-        role: "Grupo destacado | Escena especial",
-        characterDescription: "Esta versión amplía la visión del grupo y ayuda a mostrar distintos registros, atmósferas o dinámicas internas.",
-        sceneDescription: "Sirve para dar más profundidad a la sección y evitar que la galería dependa de una sola imagen representativa.",
-        details: [
-          { label: "Tipo de escena", value: "Especial" },
-          { label: "Aporta", value: "Variedad visual" },
-          { label: "Uso", value: "Galería pública y ficha" },
-          { label: "Objetivo", value: "Expandir la presentación del grupo" }
-        ]
-      },
-      {
-        image: "assets/galerias/party-girls/party-girls-04.png",
-        title: "Party Girls",
-        scene: "Variante del grupo",
-        thumbText: "Otra lectura visual del bloque Party Girls.",
+        scene: "Escena 03",
+        thumbText: "Reserva para una variante visual del grupo.",
         role: "Grupo destacado | Variante visual",
-        characterDescription: "Con esta imagen el grupo gana matices y puede mostrarse desde otro ángulo, atmósfera o intención narrativa.",
-        sceneDescription: "Perfecta para enriquecer la galería sin romper la identidad general del bloque.",
+        characterDescription: "Esta posición queda lista para una imagen que aporte un nuevo matiz visual o narrativo a Party Girls.",
+        sceneDescription: "Podrás usarla para mostrar una atmósfera distinta, otro encuadre o un momento más específico.",
         details: [
-          { label: "Aporta", value: "Matiz y amplitud visual" },
-          { label: "Valor", value: "Riqueza de presentación" },
-          { label: "Sensación", value: "Variedad sin perder unidad" },
-          { label: "Uso recomendado", value: "Lore, personajes y promoción" }
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Variante de presentación" },
+          { label: "Función", value: "Ampliar la galería" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
         ]
-      }
-
-      /*
-      Añade aquí las siguientes cuando existan:
-
-      ,{
-        image: "assets/galerias/party-girls/party-girls-05.png",
+      },
+      {
+        image: null,
         title: "Party Girls",
-        scene: "Nueva escena",
-        thumbText: "Texto corto para la miniatura.",
-        role: "Grupo destacado | Nueva variante",
-        characterDescription: "Descripción general.",
-        sceneDescription: "Descripción de la escena.",
+        scene: "Escena 04",
+        thumbText: "Espacio disponible para una escena destacada.",
+        role: "Grupo destacado | Escena especial",
+        characterDescription: "Esta ficha está reservada para una imagen que tenga un peso especial dentro de la presentación del grupo.",
+        sceneDescription: "Podrá servir para destacar un momento, pose o composición especialmente representativa.",
         details: [
-          { label: "Campo 1", value: "..." },
-          { label: "Campo 2", value: "..." },
-          { label: "Campo 3", value: "..." },
-          { label: "Campo 4", value: "..." }
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Escena destacada" },
+          { label: "Función", value: "Dar profundidad visual" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 05",
+        thumbText: "Hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Entrada preparada para seguir ampliando la colección visual del grupo.",
+        sceneDescription: "Podrás usarla cuando quieras añadir una quinta imagen sin tocar el diseño de la página.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Ampliación de galería" },
+          { label: "Función", value: "Continuidad visual" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 06",
+        thumbText: "Hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Espacio disponible para incorporar una nueva escena del grupo.",
+        sceneDescription: "La estructura ya está lista para recibir la sexta imagen cuando la subas.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Nueva escena" },
+          { label: "Función", value: "Ampliar contenido" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 07",
+        thumbText: "Hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Otra entrada lista para completar la galería a medida que tengas más material.",
+        sceneDescription: "Se mantendrá visible como espacio reservado hasta que añadas su imagen.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Ampliación de repertorio visual" },
+          { label: "Función", value: "Escala de galería" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 08",
+        thumbText: "Hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Ficha disponible para seguir enriqueciendo el bloque Party Girls.",
+        sceneDescription: "Cuando tengas más escenas, esta posición ya estará preparada.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Nueva variante del grupo" },
+          { label: "Función", value: "Riqueza visual" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 09",
+        thumbText: "Hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Espacio añadido para que la galería pueda crecer sin rehacer la página.",
+        sceneDescription: "Podrás rellenarlo cuando subas nuevas ilustraciones o escenas.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Contenido futuro" },
+          { label: "Función", value: "Escalabilidad" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
+        ]
+      },
+      {
+        image: null,
+        title: "Party Girls",
+        scene: "Escena 10",
+        thumbText: "Último hueco reservado para futura imagen.",
+        role: "Grupo destacado | Desarrollo",
+        characterDescription: "Décima posición lista para completar la galería máxima prevista por ahora.",
+        sceneDescription: "Esta entrada cierra la estructura base y te permite llegar a diez imágenes sin tocar el diseño.",
+        details: [
+          { label: "Estado", value: "Pendiente de imagen" },
+          { label: "Uso previsto", value: "Décima imagen del bloque" },
+          { label: "Función", value: "Cierre de estructura base" },
+          { label: "Disponibilidad", value: "Hueco preparado" }
         ]
       }
-      */
     ];
 
     const mainImage = document.getElementById("mainImage");
+    const mainPlaceholder = document.getElementById("mainPlaceholder");
     const characterName = document.getElementById("characterName");
     const characterRole = document.getElementById("characterRole");
     const sceneTag = document.getElementById("sceneTag");
@@ -482,9 +631,18 @@
         card.className = "thumb-card";
         if (index === 0) card.classList.add("active");
 
+        const imageBlock = item.image
+          ? `<img src="${item.image}" alt="${item.title} - ${item.scene}">`
+          : `
+            <div class="thumb-placeholder">
+              <div class="mini-symbol">✦</div>
+              <div>Imagen pendiente</div>
+            </div>
+          `;
+
         card.innerHTML = `
           <div class="thumb-image">
-            <img src="${item.image}" alt="${item.title} - ${item.scene}">
+            ${imageBlock}
           </div>
           <div class="thumb-content">
             <h4>${item.scene}</h4>
@@ -509,8 +667,17 @@
     function updateViewer(index) {
       const item = partyGirlsGallery[index];
 
-      mainImage.src = item.image;
-      mainImage.alt = `${item.title} - ${item.scene}`;
+      if (item.image) {
+        mainImage.src = item.image;
+        mainImage.alt = `${item.title} - ${item.scene}`;
+        mainImage.style.display = "block";
+        mainPlaceholder.style.display = "none";
+      } else {
+        mainImage.removeAttribute("src");
+        mainImage.style.display = "none";
+        mainPlaceholder.style.display = "flex";
+      }
+
       characterName.textContent = item.title;
       characterRole.textContent = item.role;
       sceneTag.textContent = item.scene;

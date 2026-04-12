@@ -309,32 +309,48 @@
     }
 
     .content-shell {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 0 24px 42px;
+      padding: 0 24px 46px;
       position: relative;
     }
 
     .paper {
-      margin-top: -24px;
+      margin-top: -34px;
       background:
-        radial-gradient(circle at 85% 50%, rgba(255, 218, 147, 0.34), transparent 24%),
-        linear-gradient(180deg, #efdfc7 0%, #e8d5b7 100%);
+        radial-gradient(circle at 88% 22%, rgba(255, 226, 160, 0.26), transparent 20%),
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.14), transparent 16%),
+        linear-gradient(180deg, #f0e0c8 0%, #e8d5b7 52%, #e3cfaf 100%);
       color: var(--paper-text);
-      border: 1px solid rgba(121, 82, 29, .25);
-      box-shadow: 0 22px 42px rgba(0,0,0,.20);
+      border: 1px solid rgba(121, 82, 29, .30);
+      box-shadow:
+        0 28px 56px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.38);
       position: relative;
-      padding: 40px 320px 42px 48px;
-      min-height: 450px;
-      border-radius: 2px;
+      padding: 46px 340px 48px 56px;
+      min-height: 500px;
+      border-radius: 3px;
+      overflow: hidden;
     }
 
     .paper::before {
       content: "";
       position: absolute;
-      inset: 14px;
+      inset: 16px;
       border: 1px solid rgba(121, 82, 29, .16);
       pointer-events: none;
+    }
+
+    .paper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(121,82,29,.06), transparent 16%),
+        radial-gradient(circle at 100% 0%, rgba(121,82,29,.06), transparent 16%),
+        radial-gradient(circle at 0% 100%, rgba(121,82,29,.05), transparent 18%),
+        radial-gradient(circle at 100% 100%, rgba(121,82,29,.05), transparent 18%);
     }
 
     .paper-hook,
@@ -343,22 +359,26 @@
       max-width: 700px;
       margin: 0 auto 18px;
       text-align: center;
-      line-height: 1.65;
+      line-height: 1.72;
       font-size: 1.08rem;
       color: #3b2a1d;
       font-weight: 400;
+      position: relative;
+      z-index: 1;
     }
 
+    .paper-hook,
     .paper-closing {
-      margin-bottom: 0;
+      font-weight: 700;
     }
 
     .paper-divider,
     .explore-divider {
       width: 240px;
       height: 22px;
-      margin: 12px auto 20px;
+      margin: 14px auto 22px;
       position: relative;
+      z-index: 1;
     }
 
     .paper-divider::before,
@@ -391,40 +411,61 @@
     }
 
     .cta-row {
-      margin-top: 30px;
+      margin-top: 32px;
       display: flex;
       justify-content: center;
+      position: relative;
+      z-index: 1;
     }
 
     .cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 28px;
-      min-width: 330px;
+      padding: 16px 30px;
+      min-width: 340px;
       border-radius: 10px;
       color: #4a2f12;
-      font-size: 1.18rem;
+      font-size: 1.16rem;
       font-weight: 700;
       background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
       border: 2px solid #8b6327;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 8px 16px rgba(115,82,31,.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.42),
+        0 10px 18px rgba(115,82,31,.18);
     }
 
     .floating-book {
       position: absolute;
-      right: 26px;
-      top: 42px;
-      width: 250px;
+      right: 18px;
+      top: 56px;
+      width: 270px;
       text-align: center;
+      z-index: 2;
+    }
+
+    .floating-book::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 44px;
+      width: 180px;
+      height: 26px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.30) 0%, rgba(0,0,0,0) 75%);
+      filter: blur(8px);
+      z-index: -1;
     }
 
     .floating-book img {
-      filter: drop-shadow(0 20px 34px rgba(0,0,0,.30));
+      width: 100%;
+      filter: drop-shadow(0 22px 34px rgba(0,0,0,.30));
+      transform: rotate(-1.3deg);
+      transform-origin: center bottom;
     }
 
     .book-cta {
-      margin-top: 14px;
+      margin-top: 16px;
       display: inline-flex;
       padding: 12px 24px;
       border-radius: 8px;
@@ -436,7 +477,7 @@
     }
 
     .explore {
-      padding: 30px 4px 12px;
+      padding: 34px 4px 12px;
       color: #f5e9cf;
     }
 
@@ -491,14 +532,14 @@
       .sidebar-stack { min-height: auto; }
 
       .paper {
-        padding: 34px 30px 38px;
+        padding: 38px 32px 40px;
         min-height: auto;
       }
 
       .floating-book {
         position: static;
-        margin: 30px auto 0;
-        width: 240px;
+        margin: 32px auto 0;
+        width: 250px;
       }
 
       .hero-inner {
@@ -536,6 +577,12 @@
 
       .subtitle {
         width: 100%;
+      }
+
+      .paper-hook,
+      .paper-synopsis,
+      .paper-closing {
+        font-size: 1rem;
       }
     }
   </style>

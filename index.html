@@ -543,8 +543,20 @@
       z-index: 1;
     }
 
+    .character-card-link {
+      display: block;
+      height: 100%;
+      transition: transform .22s ease, box-shadow .22s ease;
+      border-radius: 2px;
+    }
+
+    .character-card-link:hover {
+      transform: translateY(-4px);
+    }
+
     .character-card {
       min-height: 420px;
+      height: 100%;
       border: 1px solid rgba(214,176,106,.18);
       padding: 20px 20px 22px;
       position: relative;
@@ -916,53 +928,61 @@
           </p>
 
           <div class="character-grid">
-            <article class="character-card sasha">
-              <div class="character-tag">Protagonista</div>
-              <div class="portrait">
-                <img src="assets/personajes/Sasha.png" alt="Sasha" />
-              </div>
-              <h3>Sasha</h3>
-              <p>
-                El eje del relato. Una joven que cruza una puerta sin saber que al otro lado la esperan dolor, crecimiento y decisiones que la transformarán.
-              </p>
-              <a class="character-link" href="#galeria">Ver perfil →</a>
-            </article>
+            <a class="character-card-link" href="sasha.html">
+              <article class="character-card sasha">
+                <div class="character-tag">Protagonista</div>
+                <div class="portrait">
+                  <img src="assets/personajes/Sasha.png" alt="Sasha" />
+                </div>
+                <h3>Sasha</h3>
+                <p>
+                  El corazón de la saga. Una joven que atraviesa una puerta sin imaginar que cada paso la acercará a un destino mucho mayor que ella misma.
+                </p>
+                <div class="character-link">Entrar en su galería →</div>
+              </article>
+            </a>
 
-            <article class="character-card party">
-              <div class="character-tag">Núcleo social</div>
-              <div class="portrait">
-                <img src="assets/personajes/party%20girls.png" alt="Party Girls" />
-              </div>
-              <h3>Party Girls</h3>
-              <p>
-                Un grupo con identidad propia dentro del universo de Sasha. Aportan energía, contraste, vínculo y tensión a la historia.
-              </p>
-              <a class="character-link" href="#galeria">Explorar grupo →</a>
-            </article>
+            <a class="character-card-link" href="party-girls.html">
+              <article class="character-card party">
+                <div class="character-tag">Núcleo social</div>
+                <div class="portrait">
+                  <img src="assets/personajes/party%20girls.png" alt="Party Girls" />
+                </div>
+                <h3>Party Girls</h3>
+                <p>
+                  Un grupo con fuerza propia dentro del universo de Sasha. Comparten presencia, energía y una identidad visual que deja huella en la historia.
+                </p>
+                <div class="character-link">Entrar en su galería →</div>
+              </article>
+            </a>
 
-            <article class="character-card allies">
-              <div class="character-tag">Compañeros</div>
-              <div class="portrait">
-                <img src="assets/personajes/aliados.jpeg" alt="Aliados" />
-              </div>
-              <h3>Aliados</h3>
-              <p>
-                Figuras que ayudan, orientan o sostienen a Sasha en momentos clave. No todos luchan igual, pero todos influyen en su destino.
-              </p>
-              <a class="character-link" href="#galeria">Ver aliados →</a>
-            </article>
+            <a class="character-card-link" href="aliados.html">
+              <article class="character-card allies">
+                <div class="character-tag">Compañeros</div>
+                <div class="portrait">
+                  <img src="assets/personajes/aliados.jpeg" alt="Aliados" />
+                </div>
+                <h3>Aliados</h3>
+                <p>
+                  Figuras que acompañan, sostienen y abren camino. En un mundo hostil, no todos ayudan del mismo modo, pero todos pueden cambiar el rumbo.
+                </p>
+                <div class="character-link">Entrar en su galería →</div>
+              </article>
+            </a>
 
-            <article class="character-card enemies">
-              <div class="character-tag">Amenaza</div>
-              <div class="portrait">
-                <img src="assets/personajes/enemigos.png" alt="Enemigos" />
-              </div>
-              <h3>Enemigos</h3>
-              <p>
-                Fuerzas, rostros y presencias que se interponen en el camino. Algunas atacan de frente. Otras esperan desde la sombra.
-              </p>
-              <a class="character-link" href="#galeria">Ver enemigos →</a>
-            </article>
+            <a class="character-card-link" href="enemigos.html">
+              <article class="character-card enemies">
+                <div class="character-tag">Amenaza</div>
+                <div class="portrait">
+                  <img src="assets/personajes/enemigos.png" alt="Enemigos" />
+                </div>
+                <h3>Enemigos</h3>
+                <p>
+                  Monstruos, fuerzas oscuras y presencias que se alzan frente a Sasha. Algunos atacan de frente. Otros esperan el instante perfecto.
+                </p>
+                <div class="character-link">Entrar en su galería →</div>
+              </article>
+            </a>
           </div>
         </section>
 

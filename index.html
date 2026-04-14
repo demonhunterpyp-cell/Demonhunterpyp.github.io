@@ -185,6 +185,119 @@
       transform: scale(1.08);
     }
 
+    .submenu-block {
+      display: grid;
+      gap: 0;
+    }
+
+    .side-link-row {
+      display: grid;
+      grid-template-columns: 1fr 46px;
+      align-items: stretch;
+      border-top: 1px solid rgba(214,176,106,.18);
+      border-bottom: 1px solid rgba(214,176,106,.08);
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    .side-link-row:hover {
+      background: rgba(255,255,255,.04);
+      border-top-color: rgba(214,176,106,.28);
+    }
+
+    .side-link-row.active-row {
+      background: linear-gradient(90deg, rgba(214,176,106,.16), rgba(255,255,255,.03));
+      border-top-color: rgba(214,176,106,.46);
+      border-bottom-color: rgba(214,176,106,.22);
+      box-shadow: inset 3px 0 0 var(--gold);
+    }
+
+    .side-link-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 14px;
+      font-size: 1.08rem;
+      color: #f2e2c3;
+      min-width: 0;
+    }
+
+    .side-link-main .icon {
+      width: 22px;
+      text-align: center;
+      color: var(--gold);
+    }
+
+    .side-link-row.active-row .side-link-main {
+      color: #fff3d6;
+    }
+
+    .submenu-toggle {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #e5c787;
+      font-size: 1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .submenu-toggle:hover {
+      background: rgba(255,255,255,.05);
+    }
+
+    .submenu-toggle .chevron {
+      transition: transform .22s ease;
+      display: inline-block;
+    }
+
+    .submenu-block.closed .submenu-toggle .chevron {
+      transform: rotate(-90deg);
+    }
+
+    .submenu-links {
+      display: grid;
+      gap: 4px;
+      padding: 8px 0 10px 18px;
+      max-height: 500px;
+      opacity: 1;
+      overflow: hidden;
+      transition: max-height .25s ease, opacity .25s ease, padding .25s ease;
+    }
+
+    .submenu-block.closed .submenu-links {
+      max-height: 0;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .side-sublink {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      margin-left: 8px;
+      border-left: 1px solid rgba(214,176,106,.24);
+      color: #d8c6a8;
+      font-size: .96rem;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .side-sublink:hover {
+      background: rgba(255,255,255,.04);
+      color: #fff1d2;
+      transform: translateX(2px);
+    }
+
+    .side-sublink .subicon {
+      width: 16px;
+      text-align: center;
+      color: var(--gold);
+      font-size: .82rem;
+    }
+
     .socials {
       display: flex;
       gap: 14px;
@@ -989,7 +1102,26 @@
             <a class="side-link" href="#libros"><span class="icon">▤</span><span>Libros</span></a>
 
             <div class="menu-group-title">Universo</div>
-            <a class="side-link" href="#lore"><span class="icon">⚔</span><span>Personajes</span></a>
+
+            <div class="submenu-block" id="personajesSubmenu">
+              <div class="side-link-row" id="personajesRow">
+                <a class="side-link-main" href="#lore">
+                  <span class="icon">⚔</span>
+                  <span>Personajes</span>
+                </a>
+                <button class="submenu-toggle" id="submenuToggle" aria-expanded="true" aria-controls="submenuLinks" aria-label="Mostrar u ocultar submenú de personajes">
+                  <span class="chevron">▾</span>
+                </button>
+              </div>
+
+              <div class="submenu-links" id="submenuLinks">
+                <a class="side-sublink" href="sasha.html"><span class="subicon">•</span><span>Sasha</span></a>
+                <a class="side-sublink" href="party-girls.html"><span class="subicon">•</span><span>Party Girls</span></a>
+                <a class="side-sublink" href="aliados.html"><span class="subicon">•</span><span>Aliados</span></a>
+                <a class="side-sublink" href="enemigos.html"><span class="subicon">•</span><span>Enemigos</span></a>
+              </div>
+            </div>
+
             <a class="side-link" href="#universo"><span class="icon">⌘</span><span>Lore</span></a>
             <a class="side-link" href="#galeria"><span class="icon">▧</span><span>Galería</span></a>
 
@@ -1285,10 +1417,18 @@
     const menuToggle = document.getElementById("menuToggle");
     const sidebarContent = document.getElementById("sidebarContent");
     const menuLinks = [...document.querySelectorAll('.side-link[href^="#"]')];
+    const personajesRow = document.getElementById("personajesRow");
+    const submenuToggle = document.getElementById("submenuToggle");
+    const personajesSubmenu = document.getElementById("personajesSubmenu");
 
     menuToggle.addEventListener("click", () => {
       const isOpen = sidebarContent.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    submenuToggle.addEventListener("click", () => {
+      const isClosed = personajesSubmenu.classList.toggle("closed");
+      submenuToggle.setAttribute("aria-expanded", isClosed ? "false" : "true");
     });
 
     const sections = menuLinks
@@ -1303,6 +1443,8 @@
       menuLinks.forEach(link => {
         link.classList.toggle("active", link.getAttribute("href") === id);
       });
+
+      personajesRow.classList.toggle("active-row", id === "#lore");
     }
 
     if (sections.length) {

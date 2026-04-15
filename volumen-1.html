@@ -506,13 +506,6 @@
       background: rgba(255,255,255,.08);
     }
 
-    .related-link.disabled {
-      opacity: .45;
-      pointer-events: none;
-      cursor: default;
-      transform: none;
-    }
-
     .footer-note {
       width: min(1180px, 92%);
       margin: 0 auto;
@@ -587,7 +580,7 @@
     </div>
 
     <div class="topbar-right">
-      <a href="./anexo-entrevista.html" class="nav-btn">Ver anexos →</a>
+      <a href="./tienda.html" class="nav-btn">Ir a tienda →</a>
     </div>
   </header>
 
@@ -643,8 +636,8 @@
           </div>
 
           <div class="actions">
-            <a href="#sinopsis" class="action-btn primary">Leer presentación</a>
-            <a href="#compra" class="action-btn secondary">Compra</a>
+            <a href="./tienda.html" class="action-btn primary">Comprar</a>
+            <a href="#sinopsis" class="action-btn secondary">Leer sinopsis</a>
             <a href="./index.html#libros" class="action-btn secondary">Volver al carrusel</a>
           </div>
         </div>
@@ -750,12 +743,12 @@
       <div class="ornament"></div>
       <h2 class="section-title">Compra</h2>
       <p class="section-lead">
-        Este espacio queda preparado para activar compra directa, marketplace o extracto de lectura cuando quieras.
+        La compra real se canaliza ya a través de la tienda general, para que libros, anexos y futuro merchandising queden reunidos en un solo punto.
       </p>
 
       <div class="actions" style="justify-content:center; margin-top: 22px;">
-        <span class="action-btn primary disabled">Compra directa</span>
-        <span class="action-btn secondary disabled">Amazon</span>
+        <a href="./tienda.html" class="action-btn primary">Abrir tienda</a>
+        <a href="./index.html#libros" class="action-btn secondary">Ver catálogo</a>
         <span class="action-btn secondary disabled">Extracto</span>
       </div>
     </section>
@@ -764,7 +757,7 @@
       <div class="ornament"></div>
       <h2 class="section-title">Seguir explorando</h2>
       <p class="section-lead">
-        Desde aquí puedes volver al índice general o entrar directamente en los primeros anexos ya activos.
+        Desde aquí puedes volver al índice general o entrar directamente en los anexos ya activos.
       </p>
 
       <div class="related-grid">
@@ -773,12 +766,12 @@
             <img id="relatedIndex" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios" />
           </div>
           <div class="related-body">
-            <div class="related-tag">Portada principal</div>
-            <h3>Volver al bloque de libros</h3>
+            <div class="related-tag">Tienda</div>
+            <h3>Ir a la tienda</h3>
             <p>
-              Regresa al carrusel general para cambiar entre saga principal y anexos.
+              Abre el escaparate general de libros, anexos y futuro merchandising de la saga.
             </p>
-            <a class="related-link" href="./index.html#libros">Ir al índice</a>
+            <a class="related-link" href="./tienda.html">Abrir tienda</a>
           </div>
         </article>
 
@@ -828,7 +821,7 @@
   </main>
 
   <div class="footer-note">
-    Ficha base de <strong>volumen-1.html</strong>, integrada con el índice principal y conectada con los anexos ya activos.
+    Ficha base de <strong>volumen-1.html</strong>, integrada con el índice principal, conectada con la tienda y cosida con los anexos activos.
   </div>
 
   <script>
@@ -852,7 +845,7 @@
 
     const coverMap = [
       { id: "mainBookCover", top: "Las Crónicas de Sasha", bottom: "Volumen 1" },
-      { id: "relatedIndex", top: "Las Crónicas de Sasha", bottom: "Volumen 1" },
+      { id: "relatedIndex", top: "Las Crónicas de Sasha", bottom: "Tienda" },
       { id: "relatedEntrevista", top: "Las Crónicas de Sasha", bottom: "Entrevista" },
       { id: "relatedDVNI", top: "Las Crónicas de Sasha", bottom: "DVNI" },
       { id: "relatedCincoDones", top: "Las Crónicas de Sasha", bottom: "Cinco dones" }

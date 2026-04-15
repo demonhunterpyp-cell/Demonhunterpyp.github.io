@@ -1256,6 +1256,42 @@
       text-align: center;
     }
 
+    .store-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: .92rem;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .store-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .store-btn.primary {
+      color: #4a2f12;
+      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border: 1px solid #8b6327;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
+
+    .store-btn.secondary {
+      color: #f2e2c3;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(214,176,106,.24);
+    }
+
     @media (max-width: 1200px) {
       .character-grid {
         grid-template-columns: 1fr 1fr;
@@ -1340,7 +1376,8 @@
         grid-template-columns: 1fr;
       }
 
-      .character-actions {
+      .character-actions,
+      .store-actions {
         grid-template-columns: 1fr;
       }
 
@@ -1417,6 +1454,10 @@
       .book-tile-actions {
         grid-template-columns: 1fr;
       }
+
+      .store-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -1467,7 +1508,7 @@
 
             <div class="menu-group-title">Actualidad</div>
             <a class="side-link" href="#novedades"><span class="icon">✦</span><span>Novedades</span></a>
-            <a class="side-link" href="#tienda"><span class="icon">▣</span><span>Tienda</span></a>
+            <a class="side-link" href="tienda.html"><span class="icon">▣</span><span>Tienda</span></a>
           </nav>
 
           <div class="socials">
@@ -1527,7 +1568,7 @@
 
           <div class="floating-book">
             <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Libro Las Crónicas de Sasha - Volumen 1" />
-            <a class="book-cta" href="volumen-1.html">Ver volumen 1</a>
+            <a class="book-cta" href="tienda.html">Ir a la tienda</a>
           </div>
         </section>
 
@@ -1746,28 +1787,48 @@
           </div>
         </section>
 
-        <section class="panel" id="tienda">
+        <section class="panel" id="tienda-preview">
           <h2>Tienda</h2>
           <div class="panel-divider"></div>
           <p class="panel-lead">
-            Aquí podrás reunir la venta directa de los libros, ediciones especiales y merchandising oficial de la saga.
+            La tienda oficial ya tiene página propia. Desde allí podrás reunir libros, anexos y futuro merchandising del universo de Sasha.
           </p>
 
           <div class="store-grid">
             <article class="store-card">
-              <div class="store-tag">Libro físico</div>
-              <h3>Edición impresa</h3>
-              <p>Espacio para enlazar la compra del volumen en formato físico, con portada, sinopsis y precio.</p>
+              <div class="store-tag">Libros</div>
+              <h3>Saga principal</h3>
+              <p>
+                Acceso directo al volumen principal y a sus futuras incorporaciones dentro del catálogo central.
+              </p>
+              <div class="store-actions">
+                <a class="store-btn primary" href="tienda.html">Abrir tienda</a>
+                <a class="store-btn secondary" href="volumen-1.html">Ver volumen 1</a>
+              </div>
             </article>
+
             <article class="store-card">
-              <div class="store-tag">Digital</div>
-              <h3>Versión electrónica</h3>
-              <p>Zona para ebook, descarga digital o formatos complementarios para lectores que prefieren acceso inmediato.</p>
+              <div class="store-tag">Anexos</div>
+              <h3>Material complementario</h3>
+              <p>
+                La línea de anexos ya está conectada a la tienda para funcionar como bloque editorial propio.
+              </p>
+              <div class="store-actions">
+                <a class="store-btn primary" href="tienda.html">Abrir tienda</a>
+                <a class="store-btn secondary" href="anexo-entrevista.html">Ver anexos</a>
+              </div>
             </article>
+
             <article class="store-card">
               <div class="store-tag">Merchandising</div>
               <h3>Objetos de la saga</h3>
-              <p>Área reservada para láminas, pósters, marcapáginas, camisetas u otros productos del universo de Sasha.</p>
+              <p>
+                El escaparate queda listo para pósters, marcapáginas y futuras piezas físicas del universo.
+              </p>
+              <div class="store-actions">
+                <a class="store-btn primary" href="tienda.html">Abrir tienda</a>
+                <span class="store-btn secondary" style="opacity:.5; pointer-events:none;">Próximamente</span>
+              </div>
             </article>
           </div>
         </section>
@@ -1875,7 +1936,7 @@
             description: "El arranque real de la saga. La primera puerta, el primer gran cambio y la entrada de Sasha en un mundo que no perdona la ingenuidad.",
             cover: "assets/libros/volumenes/libro-sin-fondo.png",
             page: "volumen-1.html",
-            store: "#tienda",
+            store: "tienda.html",
             available: true
           },
           {
@@ -1911,7 +1972,7 @@
             description: "Primer anexo activo dentro de la web. Ya cuenta con su propia ficha y amplía el universo desde otra perspectiva.",
             cover: "assets/libros/anexos/Portada-entrevista.png",
             page: "anexo-entrevista.html",
-            store: "#tienda",
+            store: "tienda.html",
             available: true
           },
           {
@@ -1921,7 +1982,7 @@
             description: "Segundo anexo ya visible y con ficha propia. Una ampliación del mapa narrativo del universo de Sasha.",
             cover: "assets/libros/anexos/Portada-DVNI.png",
             page: "anexo-dvni.html",
-            store: "#tienda",
+            store: "tienda.html",
             available: true
           },
           {
@@ -1931,7 +1992,7 @@
             description: "Tercer anexo ya activo. Amplía el universo con una nueva pieza complementaria dentro de la saga.",
             cover: "assets/libros/anexos/Portada-cinco-dones.png",
             page: "anexo-cinco-dones.html",
-            store: "#tienda",
+            store: "tienda.html",
             available: true
           }
         ]

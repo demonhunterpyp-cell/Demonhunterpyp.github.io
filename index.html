@@ -911,43 +911,115 @@
 
     .books-topline {
       display: flex;
-      align-items: end;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
       margin-bottom: 18px;
     }
 
     .books-tabs {
       display: flex;
-      gap: 10px;
+      gap: 14px;
       flex-wrap: wrap;
+      width: 100%;
+      max-width: 760px;
     }
 
     .books-tab {
       appearance: none;
-      border: 1px solid rgba(214,176,106,.22);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(214,176,106,.28);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       color: #f2e2c3;
-      padding: 11px 16px;
-      border-radius: 999px;
+      padding: 14px 18px;
+      border-radius: 18px;
       cursor: pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: .98rem;
+      font-size: 1rem;
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
     }
 
     .books-tab:hover {
-      background: rgba(255,255,255,.07);
-      transform: translateY(-1px);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      transform: translateY(-2px);
+      border-color: rgba(214,176,106,.4);
     }
 
     .books-tab.active {
       color: #4a2f12;
-      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      background: linear-gradient(180deg, #e5c682 0%, #c28a39 100%);
       border-color: #8b6327;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.38),
+        0 14px 28px rgba(0,0,0,.16);
       font-weight: 700;
+    }
+
+    .tab-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .tab-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(214,176,106,.2);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .books-tab.active .tab-icon {
+      background: rgba(255,255,255,.22);
+      border-color: rgba(75,49,19,.18);
+    }
+
+    .tab-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .tab-text-wrap strong {
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .tab-text-wrap small {
+      font-size: .8rem;
+      opacity: .85;
+    }
+
+    .tab-count {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(214,176,106,.2);
+      font-size: .92rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .books-tab.active .tab-count {
+      background: rgba(255,255,255,.24);
+      border-color: rgba(75,49,19,.18);
     }
 
     .books-current-label {
@@ -955,6 +1027,7 @@
       font-size: .96rem;
       line-height: 1.5;
       text-align: right;
+      padding-top: 4px;
     }
 
     .books-carousel-shell {
@@ -1314,6 +1387,14 @@
         align-items: start;
       }
 
+      .books-tabs {
+        max-width: 100%;
+      }
+
+      .books-tab {
+        min-width: 100%;
+      }
+
       .books-current-label {
         text-align: left;
       }
@@ -1454,14 +1535,33 @@
           <h2>Libros</h2>
           <div class="panel-divider"></div>
           <p class="panel-lead">
-            La saga principal y sus anexos se muestran aquí como escaparate. El volumen 1 y los tres primeros anexos ya tienen ficha propia, y el resto queda preparado para crecer dentro del universo de Sasha.
+            Explora la historia principal o amplía el universo con material complementario. El volumen 1 y los tres primeros anexos ya tienen ficha propia.
           </p>
 
           <div class="books-shell">
             <div class="books-topline">
               <div class="books-tabs" role="tablist" aria-label="Colecciones de libros">
-                <button class="books-tab active" type="button" data-collection="main" aria-selected="true">Saga principal</button>
-                <button class="books-tab" type="button" data-collection="annexes" aria-selected="false">Anexos</button>
+                <button class="books-tab active" type="button" data-collection="main" aria-selected="true">
+                  <span class="tab-main">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-text-wrap">
+                      <strong>Saga principal</strong>
+                      <small>Historia central</small>
+                    </span>
+                  </span>
+                  <span class="tab-count">3</span>
+                </button>
+
+                <button class="books-tab" type="button" data-collection="annexes" aria-selected="false">
+                  <span class="tab-main">
+                    <span class="tab-icon">✦</span>
+                    <span class="tab-text-wrap">
+                      <strong>Anexos y extras</strong>
+                      <small>Material complementario</small>
+                    </span>
+                  </span>
+                  <span class="tab-count">3</span>
+                </button>
               </div>
 
               <div class="books-current-label" id="booksCurrentLabel">

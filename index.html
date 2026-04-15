@@ -1443,36 +1443,503 @@
           </div>
         </section>
 
-        <section class="panel" id="libros">
-          <h2>Libros</h2>
-          <div class="panel-divider"></div>
-          <p class="panel-lead">
-            La saga principal y sus anexos se muestran aquí como escaparate. El volumen 1 ya tiene ficha propia, y el resto queda preparado para crecer sin romper la estructura.
-          </p>
+     <section class="panel" id="libros">
+  <style>
+    #libros .books-shell {
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
 
-          <div class="books-shell">
-            <div class="books-topline">
-              <div class="books-tabs" role="tablist" aria-label="Colecciones de libros">
-                <button class="books-tab active" type="button" data-collection="main" aria-selected="true">Saga principal</button>
-                <button class="books-tab" type="button" data-collection="annexes" aria-selected="false">Anexos</button>
+    #libros .books-topline {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    #libros .books-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #libros .books-tab {
+      appearance: none;
+      border: 1px solid rgba(214,176,106,.22);
+      background: rgba(255,255,255,.04);
+      color: #f2e2c3;
+      padding: 11px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .98rem;
+    }
+
+    #libros .books-tab:hover {
+      background: rgba(255,255,255,.07);
+      transform: translateY(-1px);
+    }
+
+    #libros .books-tab.active {
+      color: #4a2f12;
+      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border-color: #8b6327;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+      font-weight: 700;
+    }
+
+    #libros .books-current-label {
+      color: #e5c787;
+      font-size: .96rem;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    #libros .books-carousel-shell {
+      display: grid;
+      grid-template-columns: 56px 1fr 56px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    #libros .books-arrow {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(214,176,106,.22);
+      background: rgba(255,255,255,.04);
+      color: #f0dbaf;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, opacity .2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    #libros .books-arrow:hover {
+      background: rgba(255,255,255,.08);
+      transform: scale(1.04);
+    }
+
+    #libros .books-arrow:disabled {
+      opacity: .35;
+      cursor: default;
+      transform: none;
+    }
+
+    #libros .books-viewport {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #libros .books-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    #libros .books-track {
+      display: flex;
+      gap: 18px;
+      padding: 4px 0 8px;
+    }
+
+    #libros .book-tile {
+      flex: 0 0 calc((100% - 36px) / 3);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(214,176,106,.18);
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255,188,109,.07), transparent 18%),
+        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
+      box-shadow: 0 14px 28px rgba(0,0,0,.20);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    #libros .book-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 32px rgba(0,0,0,.24);
+      border-color: rgba(214,176,106,.28);
+    }
+
+    #libros .book-tile-cover {
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(214,176,106,.16);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,210,138,.14), transparent 18%),
+        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+    }
+
+    #libros .book-tile-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .3s ease;
+    }
+
+    #libros .book-tile:hover .book-tile-cover img {
+      transform: scale(1.04);
+    }
+
+    #libros .book-tile-body {
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 260px;
+    }
+
+    #libros .book-tile-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #libros .book-tile-kind {
+      color: #c8b492;
+      font-size: .86rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    #libros .book-tile h3 {
+      margin: 0;
+      color: #f0dbaf;
+      font-size: 1.36rem;
+      line-height: 1.18;
+    }
+
+    #libros .book-tile h3 a {
+      color: inherit;
+      transition: color .2s ease;
+    }
+
+    #libros .book-tile h3 a:hover {
+      color: #ffe7b0;
+    }
+
+    #libros .book-tile p {
+      margin: 0;
+      color: #d4ccb9;
+      line-height: 1.7;
+      font-size: .96rem;
+    }
+
+    #libros .book-tile-actions {
+      margin-top: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    #libros .book-tile-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: .92rem;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    #libros .book-tile-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    #libros .book-tile-btn.primary {
+      color: #4a2f12;
+      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border: 1px solid #8b6327;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
+
+    #libros .book-tile-btn.secondary {
+      color: #f2e2c3;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(214,176,106,.24);
+    }
+
+    #libros .book-tile-btn.disabled {
+      opacity: .46;
+      pointer-events: none;
+      cursor: default;
+      transform: none;
+    }
+
+    @media (max-width: 1200px) {
+      #libros .book-tile {
+        flex-basis: calc((100% - 18px) / 2);
+      }
+    }
+
+    @media (max-width: 760px) {
+      #libros .books-topline {
+        align-items: start;
+      }
+
+      #libros .books-current-label {
+        text-align: left;
+      }
+
+      #libros .books-carousel-shell {
+        grid-template-columns: 46px 1fr 46px;
+        gap: 10px;
+      }
+
+      #libros .books-arrow {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+      }
+
+      #libros .book-tile {
+        flex-basis: 100%;
+      }
+
+      #libros .book-tile-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <h2>Libros</h2>
+  <div class="panel-divider"></div>
+  <p class="panel-lead">
+    La saga principal y sus anexos se muestran aquí como escaparate. El volumen 1 ya tiene ficha propia, y los primeros anexos empiezan a abrir sus puertas dentro del universo de Sasha.
+  </p>
+
+  <div class="books-shell">
+    <div class="books-topline">
+      <div class="books-tabs" role="tablist" aria-label="Colecciones de libros">
+        <button class="books-tab active" type="button" data-collection="main" aria-selected="true">Saga principal</button>
+        <button class="books-tab" type="button" data-collection="annexes" aria-selected="false">Anexos</button>
+      </div>
+
+      <div class="books-current-label" id="booksCurrentLabel">
+        Saga principal · 3 títulos
+      </div>
+    </div>
+
+    <div class="books-carousel-shell">
+      <button class="books-arrow" id="booksPrev" type="button" aria-label="Libro anterior">‹</button>
+
+      <div class="books-viewport" id="booksViewport">
+        <div class="books-track" id="booksTrack"></div>
+      </div>
+
+      <button class="books-arrow" id="booksNext" type="button" aria-label="Libro siguiente">›</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function bookPlaceholder(top, bottom) {
+        const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
+        const bottomText = encodeURIComponent(bottom || "Portada");
+        return `data:image/svg+xml;charset=UTF-8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
+          <defs>
+            <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+              <stop offset='0%' stop-color='%23253048'/>
+              <stop offset='100%' stop-color='%23101827'/>
+            </linearGradient>
+          </defs>
+          <rect width='800' height='1200' fill='url(%23g)'/>
+          <rect x='36' y='36' width='728' height='1128' rx='30' fill='none' stroke='rgba(214,176,106,.42)' stroke-width='3'/>
+          <text x='50%' y='36%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='38'>${topText}</text>
+          <text x='50%' y='50%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='58'>${bottomText}</text>
+        </svg>`.replace(/\n/g, "");
+      }
+
+      const bookCollections = {
+        main: {
+          label: "Saga principal",
+          items: [
+            {
+              tag: "Volumen 1",
+              kind: "Saga principal",
+              title: "Mis inicios",
+              description: "El arranque real de la saga. La primera puerta, el primer gran cambio y la entrada de Sasha en un mundo que no perdona la ingenuidad.",
+              cover: "assets/libros/volumenes/libro-sin-fondo.png",
+              page: "volumen-1.html",
+              store: "#tienda",
+              available: true
+            },
+            {
+              tag: "Volumen 2",
+              kind: "Saga principal",
+              title: "Próximamente",
+              description: "Segundo gran bloque de la saga principal. Tarjeta ya preparada para recibir portada, ficha y acceso de compra cuando toque.",
+              cover: "",
+              page: "",
+              store: "",
+              available: false
+            },
+            {
+              tag: "Volumen 3",
+              kind: "Saga principal",
+              title: "Próximamente",
+              description: "Tercer volumen reservado para ampliar el arco principal y escalar el universo narrativo de Sasha.",
+              cover: "",
+              page: "",
+              store: "",
+              available: false
+            }
+          ]
+        },
+
+        annexes: {
+          label: "Anexos",
+          items: [
+            {
+              tag: "Anexo",
+              kind: "Material complementario",
+              title: "Entrevista",
+              description: "Primer anexo activo dentro de la web. Ya cuenta con su propia ficha y amplía el universo desde otra perspectiva.",
+              cover: "assets/libros/anexos/Portada-entrevista.png",
+              page: "anexo-entrevista.html",
+              store: "#tienda",
+              available: true
+            },
+            {
+              tag: "Anexo",
+              kind: "Material complementario",
+              title: "DVNI",
+              description: "Segundo anexo ya visible y con ficha propia. Una ampliación del mapa narrativo del universo de Sasha.",
+              cover: "assets/libros/anexos/Portada-DVNI.png",
+              page: "anexo-dvni.html",
+              store: "#tienda",
+              available: true
+            },
+            {
+              tag: "Anexo",
+              kind: "Material complementario",
+              title: "Cinco dones",
+              description: "Anexo con portada real ya cargada. Queda listo para activarse cuando crees su ficha individual.",
+              cover: "assets/libros/anexos/Portada-cinco-dones.png",
+              page: "",
+              store: "",
+              available: false
+            }
+          ]
+        }
+      };
+
+      const booksTrack = document.getElementById("booksTrack");
+      const booksViewport = document.getElementById("booksViewport");
+      const booksPrev = document.getElementById("booksPrev");
+      const booksNext = document.getElementById("booksNext");
+      const booksCurrentLabel = document.getElementById("booksCurrentLabel");
+      const booksTabs = [...document.querySelectorAll("#libros .books-tab")];
+
+      function renderBooks(collectionKey) {
+        const collection = bookCollections[collectionKey];
+        const items = collection.items;
+
+        booksTrack.innerHTML = items.map((item) => {
+          const coverSrc = item.cover || bookPlaceholder(collection.label, item.tag);
+          const fichaButton = item.available
+            ? `<a class="book-tile-btn primary" href="${item.page}">Ver ficha</a>`
+            : `<span class="book-tile-btn secondary disabled">Próximamente</span>`;
+
+          const storeButton = item.available && item.store
+            ? `<a class="book-tile-btn secondary" href="${item.store}">Tienda</a>`
+            : `<span class="book-tile-btn secondary disabled">Tienda</span>`;
+
+          const titleHtml = item.available
+            ? `<h3><a href="${item.page}">${item.title}</a></h3>`
+            : `<h3>${item.title}</h3>`;
+
+          return `
+            <article class="book-tile">
+              <div class="book-tile-cover">
+                <img src="${coverSrc}" alt="${item.tag} - ${item.title}" />
               </div>
 
-              <div class="books-current-label" id="booksCurrentLabel">
-                Saga principal · 3 títulos
+              <div class="book-tile-body">
+                <div class="book-tile-head">
+                  <span class="book-tag">${item.tag}</span>
+                  <span class="book-tile-kind">${item.kind}</span>
+                </div>
+
+                ${titleHtml}
+                <p>${item.description}</p>
+
+                <div class="book-tile-actions">
+                  ${fichaButton}
+                  ${storeButton}
+                </div>
               </div>
-            </div>
+            </article>
+          `;
+        }).join("");
 
-            <div class="books-carousel-shell">
-              <button class="books-arrow" id="booksPrev" type="button" aria-label="Libro anterior">‹</button>
+        booksCurrentLabel.textContent = `${collection.label} · ${items.length} título${items.length === 1 ? "" : "s"}`;
 
-              <div class="books-viewport" id="booksViewport">
-                <div class="books-track" id="booksTrack"></div>
-              </div>
+        booksTabs.forEach((tab) => {
+          const isActive = tab.dataset.collection === collectionKey;
+          tab.classList.toggle("active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
 
-              <button class="books-arrow" id="booksNext" type="button" aria-label="Libro siguiente">›</button>
-            </div>
-          </div>
-        </section>
+        booksViewport.scrollLeft = 0;
+        requestAnimationFrame(updateBooksArrows);
+      }
+
+      function getBookScrollAmount() {
+        const firstCard = booksTrack.querySelector(".book-tile");
+        if (!firstCard) return booksViewport.clientWidth * 0.9;
+
+        const styles = window.getComputedStyle(booksTrack);
+        const gap = parseFloat(styles.gap || 18);
+        return firstCard.getBoundingClientRect().width + gap;
+      }
+
+      function updateBooksArrows() {
+        const maxScroll = booksViewport.scrollWidth - booksViewport.clientWidth - 4;
+        booksPrev.disabled = booksViewport.scrollLeft <= 4;
+        booksNext.disabled = booksViewport.scrollLeft >= maxScroll;
+      }
+
+      booksTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          renderBooks(tab.dataset.collection);
+        });
+      });
+
+      booksPrev.addEventListener("click", () => {
+        booksViewport.scrollBy({
+          left: -getBookScrollAmount(),
+          behavior: "smooth"
+        });
+      });
+
+      booksNext.addEventListener("click", () => {
+        booksViewport.scrollBy({
+          left: getBookScrollAmount(),
+          behavior: "smooth"
+        });
+      });
+
+      booksViewport.addEventListener("scroll", updateBooksArrows);
+      window.addEventListener("resize", updateBooksArrows);
+
+      renderBooks("main");
+    })();
+  </script>
+</section>
 
         <section class="section-block" id="lore">
           <h2>Personajes</h2>

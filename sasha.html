@@ -4,743 +4,709 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sasha | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería de Sasha con parrilla de imágenes, ficha lateral y carrusel de vídeos." />
   <style>
-    :root{
-      --bg:#0b0f14;
-      --bg-2:#10161d;
-      --panel:#131b24;
-      --panel-2:#182230;
-      --line:rgba(255,255,255,.08);
-      --line-2:rgba(212,177,106,.22);
-      --text:#edf2f7;
-      --muted:#aab4c0;
-      --accent:#d4b16a;
-      --accent-soft:rgba(212,177,106,.14);
-      --shadow:0 24px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius-sm:12px;
-      --max:1240px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    *{box-sizing:border-box}
+    :root {
+      --bg: #0b0f16;
+      --panel: #121826;
+      --panel-2: #1a2233;
+      --text: #f3f5f8;
+      --muted: #aab3c2;
+      --accent: #d6a85f;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 12px 35px rgba(0,0,0,0.45);
+      --radius: 18px;
+    }
 
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(212,177,106,.08), transparent 24%),
-        linear-gradient(180deg, #0b0f14 0%, #0d1218 100%);
+        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.95)),
+        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    a{
-      color:inherit;
-      text-decoration:none;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    img{
-      display:block;
-      max-width:100%;
+    .topbar {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    button{
-      font:inherit;
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 24px 72px;
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: 0.25s ease;
     }
 
-    .top-links{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:20px 0 10px;
-      border-bottom:1px solid var(--line);
+    .back-link:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
     }
 
-    .top-links a{
-      color:var(--muted);
-      font-size:.95rem;
-      padding:8px 0;
-      transition:.2s ease;
+    .disabled-link {
+      opacity: 0.42;
+      cursor: default;
+      pointer-events: none;
     }
 
-    .top-links a:hover{
-      color:var(--text);
+    .hero {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      padding: 24px 0 34px;
     }
 
-    .subnav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 0 8px;
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      color: #fff;
     }
 
-    .subnav a,
-    .subnav span{
-      color:var(--muted);
-      font-size:.95rem;
-      padding:6px 0;
-      transition:.2s ease;
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
-    .subnav a:hover{
-      color:var(--text);
+    .gallery-section {
+      width: min(1200px, 92%);
+      margin: 0 auto 60px;
     }
 
-    .subnav .disabled{
-      opacity:.45;
-      cursor:default;
-      pointer-events:none;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
     }
 
-    .hero{
-      padding:10px 0 18px;
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      box-shadow: var(--shadow);
     }
 
-    .hero h1{
-      margin:0 0 12px;
-      font-size:clamp(2rem, 4vw, 3rem);
-      line-height:1.05;
-      letter-spacing:-.03em;
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,168,95,0.45);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
     }
 
-    .hero p{
-      margin:0;
-      max-width:860px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:1rem;
+    .card-image {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #0f1420;
     }
 
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(12, 1fr);
-      gap:18px;
-      margin-top:22px;
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
     }
 
-    .card{
-      grid-column:span 4;
-      position:relative;
-      min-height:320px;
-      overflow:hidden;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:var(--panel);
-      box-shadow:0 12px 30px rgba(0,0,0,.18);
-      cursor:pointer;
-      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-      isolation:isolate;
+    .card:hover .card-image img {
+      transform: scale(1.05);
     }
 
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:var(--line-2);
-      box-shadow:0 20px 44px rgba(0,0,0,.28);
+    .card-content {
+      padding: 16px;
     }
 
-    .card img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      background:#0f151c;
+    .card-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #fff;
     }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.04) 15%, rgba(0,0,0,.18) 48%, rgba(0,0,0,.82) 100%);
-      z-index:0;
+    .card-content .subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
     }
 
-    .card-copy{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:1;
-      padding:18px 18px 16px;
+    .card-content .mini-text {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
-    .card-copy h3{
-      margin:0 0 7px;
-      font-size:1.08rem;
-      line-height:1.2;
+    .video-carousel-section {
+      width: min(1200px, 92%);
+      margin: 0 auto 80px;
     }
 
-    .card-copy p{
-      margin:0;
-      color:#d7e0ea;
-      font-size:.93rem;
-      line-height:1.5;
+    #videos {
+      scroll-margin-top: 18px;
     }
 
-    .card-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:10px;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(10,14,19,.52);
-      border:1px solid rgba(255,255,255,.11);
-      color:#f2dfb7;
-      font-size:.74rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      backdrop-filter:blur(10px);
+    .video-carousel-header {
+      margin-bottom: 22px;
     }
 
-    .videos{
-      margin-top:56px;
+    .video-carousel-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 10px;
     }
 
-    .videos h2{
-      margin:0 0 10px;
-      font-size:1.6rem;
-      line-height:1.15;
+    .video-carousel-header p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    .videos > p{
-      margin:0 0 18px;
-      color:var(--muted);
-      line-height:1.7;
-      max-width:780px;
+    .video-carousel-shell {
+      display: grid;
+      grid-template-columns: 62px 1fr 62px;
+      align-items: center;
+      gap: 12px;
     }
 
-    .video-carousel{
-      position:relative;
-      min-height:340px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
+    .video-arrow {
+      width: 62px;
+      height: 62px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+      z-index: 20;
     }
 
-    .video-carousel-stage{
-      width:100%;
-      min-height:320px;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      perspective:1200px;
+    .video-arrow:hover {
+      background: rgba(255,255,255,0.14);
+      transform: scale(1.05);
     }
 
-    .video-empty{
-      width:min(760px, 100%);
-      min-height:220px;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      border:1px dashed var(--line-2);
-      border-radius:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-      color:var(--muted);
-      padding:28px;
+    .video-carousel-stage {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      perspective: 1400px;
     }
 
-    .video-card{
-      position:absolute;
-      width:min(520px, 88vw);
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:var(--panel);
-      box-shadow:var(--shadow);
+    .video-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(560px, 78vw);
+      transform-style: preserve-3d;
       transition:
-        transform .45s ease,
-        opacity .45s ease,
-        filter .45s ease,
-        z-index .45s ease;
-      opacity:0;
-      pointer-events:none;
+        transform 0.55s ease,
+        opacity 0.55s ease,
+        filter 0.55s ease;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .video-card video{
-      width:100%;
-      aspect-ratio:16/9;
-      display:block;
-      background:#000;
+    .video-card.is-active,
+    .video-card.is-left,
+    .video-card.is-right,
+    .video-card.is-left-far,
+    .video-card.is-right-far {
+      pointer-events: auto;
     }
 
-    .video-meta{
-      padding:16px 18px 18px;
+    .video-card.is-active {
+      transform: translate(-50%, -50%) translateX(0) scale(1);
+      opacity: 1;
+      z-index: 5;
+      filter: none;
     }
 
-    .video-meta h3{
-      margin:0 0 8px;
-      font-size:1rem;
+    .video-card.is-left {
+      transform: translate(-50%, -50%) translateX(-280px) scale(0.8) rotateY(22deg);
+      opacity: 0.52;
+      z-index: 4;
+      filter: blur(2px) saturate(0.8);
     }
 
-    .video-meta p{
-      margin:0;
-      color:var(--muted);
-      font-size:.93rem;
-      line-height:1.55;
+    .video-card.is-right {
+      transform: translate(-50%, -50%) translateX(280px) scale(0.8) rotateY(-22deg);
+      opacity: 0.52;
+      z-index: 4;
+      filter: blur(2px) saturate(0.8);
     }
 
-    .video-card.is-active{
-      transform:translateX(0) scale(1) rotateY(0);
-      opacity:1;
-      z-index:5;
-      pointer-events:auto;
-      filter:none;
+    .video-card.is-left-far {
+      transform: translate(-50%, -50%) translateX(-470px) scale(0.62) rotateY(28deg);
+      opacity: 0.18;
+      z-index: 3;
+      filter: blur(4px) saturate(0.55);
     }
 
-    .video-card.is-left{
-      transform:translateX(-52%) scale(.88) rotateY(18deg);
-      opacity:.68;
-      z-index:4;
-      pointer-events:auto;
-      filter:brightness(.85);
+    .video-card.is-right-far {
+      transform: translate(-50%, -50%) translateX(470px) scale(0.62) rotateY(-28deg);
+      opacity: 0.18;
+      z-index: 3;
+      filter: blur(4px) saturate(0.55);
     }
 
-    .video-card.is-right{
-      transform:translateX(52%) scale(.88) rotateY(-18deg);
-      opacity:.68;
-      z-index:4;
-      pointer-events:auto;
-      filter:brightness(.85);
+    .video-card.is-hidden {
+      transform: translate(-50%, -50%) scale(0.45);
+      opacity: 0;
+      z-index: 1;
+      filter: blur(6px);
     }
 
-    .video-card.is-left-far{
-      transform:translateX(-92%) scale(.74) rotateY(26deg);
-      opacity:.2;
-      z-index:2;
-      filter:brightness(.6);
+    .video-frame {
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #000;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .video-card.is-right-far{
-      transform:translateX(92%) scale(.74) rotateY(-26deg);
-      opacity:.2;
-      z-index:2;
-      filter:brightness(.6);
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
     }
 
-    .video-card.is-hidden{
-      transform:scale(.6);
-      opacity:0;
-      z-index:1;
-      filter:brightness(.45);
+    .video-meta {
+      text-align: center;
+      padding-top: 12px;
     }
 
-    .video-nav{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      border:1px solid var(--line);
-      background:rgba(12,18,24,.84);
-      color:var(--text);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      z-index:10;
-      transition:.2s ease;
-      backdrop-filter:blur(10px);
+    .video-meta h3 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
     }
 
-    .video-nav:hover{
-      border-color:var(--line-2);
-      background:rgba(18,26,36,.96);
+    .video-meta p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
     }
 
-    .video-nav.prev{
-      left:0;
+    .video-empty {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      color: var(--muted);
+      text-align: center;
+      padding: 30px;
     }
 
-    .video-nav.next{
-      right:0;
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.84);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
     }
 
-    .modal{
-      position:fixed;
-      inset:0;
-      background:rgba(4,8,12,.75);
-      backdrop-filter:blur(10px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      z-index:120;
+    .modal.active {
+      display: flex;
     }
 
-    .modal.active{
-      display:flex;
+    .modal-box {
+      width: min(1100px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: linear-gradient(180deg, #121826, #0d131f);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+      position: relative;
     }
 
-    .modal-window{
-      width:min(1180px, 100%);
-      max-height:90vh;
-      display:grid;
-      grid-template-columns:minmax(0, 1.45fr) minmax(320px, .95fr);
-      background:linear-gradient(180deg, #101720 0%, #121b25 100%);
-      border:1px solid var(--line);
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      position:relative;
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 10;
     }
 
-    .modal-visual{
-      position:relative;
-      min-height:420px;
-      background:#0e141b;
+    .modal-close:hover {
+      background: rgba(255,255,255,0.16);
     }
 
-    .modal-visual img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      background:#0f151c;
+    .modal-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 0;
+      min-height: 560px;
     }
 
-    .close-modal{
-      position:absolute;
-      top:16px;
-      right:16px;
-      width:44px;
-      height:44px;
-      border:none;
-      border-radius:50%;
-      background:rgba(10,15,21,.78);
-      color:var(--text);
-      font-size:1.25rem;
-      cursor:pointer;
-      z-index:4;
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter:blur(8px);
+    .modal-image {
+      background: #0a0f18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-right: 1px solid var(--border);
     }
 
-    .close-modal:hover{
-      background:rgba(16,23,31,.95);
+    .modal-image img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 16px;
     }
 
-    .modal-side{
-      padding:28px 24px 20px;
-      border-left:1px solid var(--line);
-      overflow:auto;
+    .modal-info {
+      padding: 34px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .modal-side h2{
-      margin:0 0 10px;
-      font-size:1.8rem;
-      line-height:1.1;
+    .modal-info h2 {
+      font-size: 2rem;
+      color: #fff;
     }
 
-    .modal-role{
-      margin:0 0 18px;
-      color:var(--accent);
-      font-size:.9rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-weight:700;
+    .modal-role {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1rem;
     }
 
-    .modal-description{
-      margin:0 0 22px;
-      color:#d7e0ea;
-      line-height:1.72;
-      font-size:.97rem;
+    .modal-description {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
     }
 
-    .ficha-title{
-      margin:0 0 12px;
-      font-size:1rem;
-      color:var(--text);
-      letter-spacing:.03em;
+    .info-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
     }
 
-    .modal-data{
-      display:grid;
-      gap:10px;
-      margin:0;
-      padding:0;
-      list-style:none;
+    .info-box h4 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
 
-    .modal-data li{
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.02);
-      padding:12px 14px;
-      color:#d7e0ea;
-      line-height:1.5;
+    .info-box ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
     }
 
-    .modal-data strong{
-      color:var(--accent);
-      font-weight:700;
+    .info-box li {
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .modal-controls{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-top:22px;
-      padding-top:18px;
-      border-top:1px solid var(--line);
+    .info-box strong {
+      color: #fff;
     }
 
-    .modal-controls button{
-      border:none;
-      background:none;
-      color:var(--muted);
-      cursor:pointer;
-      padding:0;
-      font-size:.96rem;
-      transition:.2s ease;
+    .modal-controls {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 8px;
     }
 
-    .modal-controls button:hover{
-      color:var(--text);
+    .modal-btn {
+      border: none;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
     }
 
-    .footer-space{
-      height:8px;
+    .modal-btn:hover {
+      background: rgba(255,255,255,0.14);
     }
 
-    @media (max-width: 1050px){
-      .card{
-        grid-column:span 6;
+    @media (max-width: 1000px) {
+      .video-carousel-stage {
+        height: 430px;
       }
 
-      .modal-window{
-        grid-template-columns:1fr;
+      .video-card.is-left {
+        transform: translate(-50%, -50%) translateX(-210px) scale(0.78) rotateY(16deg);
       }
 
-      .modal-side{
-        border-left:none;
-        border-top:1px solid var(--line);
+      .video-card.is-right {
+        transform: translate(-50%, -50%) translateX(210px) scale(0.78) rotateY(-16deg);
+      }
+
+      .video-card.is-left-far {
+        transform: translate(-50%, -50%) translateX(-340px) scale(0.6) rotateY(20deg);
+      }
+
+      .video-card.is-right-far {
+        transform: translate(-50%, -50%) translateX(340px) scale(0.6) rotateY(-20deg);
       }
     }
 
-    @media (max-width: 760px){
-      .wrap{
-        padding:0 16px 56px;
+    @media (max-width: 900px) {
+      .modal-content {
+        grid-template-columns: 1fr;
       }
 
-      .top-links,
-      .subnav{
-        flex-wrap:wrap;
+      .modal-image {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .video-carousel-shell {
+        grid-template-columns: 50px 1fr 50px;
       }
 
-      .card{
-        grid-column:span 12;
-        min-height:300px;
+      .video-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
       }
 
-      .video-nav.prev{
-        left:4px;
+      .video-carousel-stage {
+        height: 360px;
       }
 
-      .video-nav.next{
-        right:4px;
+      .video-card {
+        width: min(92vw, 520px);
       }
 
-      .video-card.is-left{
-        transform:translateX(-28%) scale(.82) rotateY(16deg);
+      .video-card.is-left {
+        transform: translate(-50%, -50%) translateX(-120px) scale(0.72);
       }
 
-      .video-card.is-right{
-        transform:translateX(28%) scale(.82) rotateY(-16deg);
+      .video-card.is-right {
+        transform: translate(-50%, -50%) translateX(120px) scale(0.72);
       }
 
       .video-card.is-left-far,
-      .video-card.is-right-far{
-        opacity:0;
+      .video-card.is-right-far {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.2rem;
       }
 
-      .modal{
-        padding:10px;
+      .card-content {
+        padding: 14px;
       }
 
-      .modal-window{
-        border-radius:18px;
+      .modal-info {
+        padding: 24px 18px 20px;
       }
 
-      .modal-visual{
-        min-height:290px;
-      }
-
-      .modal-side{
-        padding:22px 18px 18px;
+      .modal-info h2 {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="top-links">
-      <a href="index.html">← Volver al inicio</a>
-      <a href="index.html#personajes">Personajes</a>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="./index.html" class="back-link">← Volver al inicio</a>
+      <a href="./index.html#lore" class="back-link">Personajes</a>
     </div>
-
-    <div class="subnav">
-      <span class="disabled">← Anterior</span>
-      <a href="party-girls.html">Party Girls →</a>
+    <div class="topbar-right">
+      <span class="back-link disabled-link">← Anterior</span>
+      <a href="./party-girls.html" class="back-link">Party Girls →</a>
     </div>
+  </header>
 
-    <section class="hero">
-      <h1>Galería de Sasha</h1>
-      <p>
-        Una colección visual de Sasha. Aquí puedes recorrer distintas escenas,
-        composiciones y momentos del personaje, y abrir cada imagen para ver su ficha descriptiva.
-      </p>
-    </section>
+  <section class="hero">
+    <h1>Galería de Sasha</h1>
+    <p>
+      Una colección visual de Sasha. Aquí puedes recorrer distintas escenas,
+      composiciones y momentos del personaje, y abrir cada imagen para ver su ficha descriptiva.
+    </p>
+  </section>
 
-    <section class="gallery-grid" id="galleryGrid" aria-label="Galería de imágenes de Sasha"></section>
-
-    <section class="videos" id="videos">
-      <h2>Vídeos de Sasha</h2>
-      <p>
-        Escenas en movimiento del personaje. El carrusel ya está preparado y se activará
-        en cuanto subas los vídeos.
-      </p>
-
-      <div class="video-carousel">
-        <button class="video-nav prev" id="videoPrev" aria-label="Vídeo anterior">‹</button>
-        <div class="video-carousel-stage" id="videoCarouselStage"></div>
-        <button class="video-nav next" id="videoNext" aria-label="Vídeo siguiente">›</button>
-      </div>
-    </section>
-
-    <div class="footer-space"></div>
+  <main class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid"></div>
   </main>
 
-  <div class="modal" id="imageModal" aria-hidden="true">
-    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-visual">
-        <button class="close-modal" id="closeModal" aria-label="Cerrar">×</button>
-        <img id="modalImg" src="" alt="" />
+  <section class="video-carousel-section" id="videos">
+    <div class="video-carousel-header">
+      <h2>Vídeos de Sasha</h2>
+      <p>
+        Escenas en movimiento del personaje. El carrusel ya está preparado y se activará en cuanto subas los vídeos.
+      </p>
+    </div>
+
+    <div class="video-carousel-shell">
+      <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
+
+      <div class="video-carousel-stage" id="videoCarouselStage">
+        <div class="video-empty">
+          Aún no hay vídeos cargados para Sasha.
+        </div>
       </div>
 
-      <aside class="modal-side">
-        <h2 id="modalTitle">Título</h2>
-        <p class="modal-role" id="modalRole">Rol</p>
-        <p class="modal-description" id="modalDescription"></p>
+      <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
+    </div>
+  </section>
 
-        <h3 class="ficha-title">Ficha</h3>
-        <ul class="modal-data" id="modalData"></ul>
+  <div class="modal" id="imageModal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
 
-        <div class="modal-controls">
-          <button id="prevBtn">← Anterior</button>
-          <button id="nextBtn">Siguiente →</button>
+      <div class="modal-content">
+        <div class="modal-image">
+          <img id="modalImg" src="" alt="" />
         </div>
-      </aside>
+
+        <div class="modal-info">
+          <h2 id="modalTitle">Título</h2>
+          <div class="modal-role" id="modalRole">Rol</div>
+          <p class="modal-description" id="modalDescription"></p>
+
+          <div class="info-box">
+            <h4>Ficha</h4>
+            <ul id="modalData"></ul>
+          </div>
+
+          <div class="modal-controls">
+            <button class="modal-btn" id="prevBtn">← Anterior</button>
+            <button class="modal-btn" id="nextBtn">Siguiente →</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     const sashaGallery = [
       {
-        image: "images/sasha/sasha-01.jpg",
+        image: "assets/galerias/sasha/sasha-01.png",
         title: "Sasha",
         subtitle: "Retrato principal",
-        role: "Protagonista",
-        description: "Retrato principal de Sasha, útil como punto de entrada visual a la galería y como base de identidad del personaje.",
+        preview: "Imagen base del personaje, útil como entrada visual clara a la galería.",
+        role: "Sasha | Protagonista",
+        description: "Retrato principal de Sasha. Esta imagen sirve como ancla visual del personaje y marca el tono general de su galería.",
         details: [
           { label: "Tipo", value: "Retrato" },
-          { label: "Etapa", value: "Base visual" },
-          { label: "Uso", value: "Imagen protagonista" }
+          { label: "Función", value: "Imagen de referencia" },
+          { label: "Peso visual", value: "Central" },
+          { label: "Uso", value: "Identidad del personaje" }
         ]
       },
       {
-        image: "images/sasha/sasha-02.jpg",
+        image: "assets/galerias/sasha/sasha-02.png",
         title: "Sasha",
         subtitle: "Exploración",
-        role: "Protagonista",
-        description: "Composición pensada para mostrar a Sasha en movimiento, explorando o descubriendo un entorno nuevo.",
+        preview: "Escena vinculada al viaje, al descubrimiento o al movimiento por el mundo.",
+        role: "Sasha | Aventurera",
+        description: "Sasha en un momento de exploración. Esta imagen ayuda a mostrar su relación con el entorno y la dimensión aventurera del personaje.",
         details: [
           { label: "Tipo", value: "Narrativa" },
-          { label: "Etapa", value: "Viaje" },
-          { label: "Uso", value: "Ambientación" }
+          { label: "Enfoque", value: "Viaje / descubrimiento" },
+          { label: "Rasgos", value: "Curiosidad, avance, presencia" },
+          { label: "Función", value: "Abrir mundo y contexto" }
         ]
       },
       {
-        image: "images/sasha/sasha-03.jpg",
+        image: "assets/galerias/sasha/sasha-03.png",
         title: "Sasha",
         subtitle: "Combate",
-        role: "Protagonista",
-        description: "Imagen orientada a reforzar el perfil activo del personaje en situaciones de combate o enfrentamiento.",
+        preview: "Escena de acción donde el personaje transmite energía, decisión y tensión.",
+        role: "Sasha | Combate",
+        description: "Composición orientada a reforzar el perfil activo de Sasha. Aquí el personaje se percibe como fuerza, reacción y determinación.",
         details: [
           { label: "Tipo", value: "Acción" },
-          { label: "Etapa", value: "Combate" },
-          { label: "Uso", value: "Escena dinámica" }
+          { label: "Enfoque", value: "Combate / defensa" },
+          { label: "Rasgos", value: "Fuerza, reacción, firmeza" },
+          { label: "Función", value: "Impacto visual" }
         ]
       },
       {
-        image: "images/sasha/sasha-04.jpg",
+        image: "assets/galerias/sasha/sasha-04.png",
         title: "Sasha",
-        subtitle: "Defensa",
-        role: "Protagonista",
-        description: "Versión enfocada en el lado más sólido y defensivo de Sasha, ideal para escenas con escudo o presencia guardiana.",
+        subtitle: "Presencia defensiva",
+        preview: "Perfil más sólido y protector, ligado a su lado guardián y resistente.",
+        role: "Sasha | Defensora",
+        description: "Imagen centrada en el aspecto más protector de Sasha. Refuerza una lectura del personaje basada en la resistencia, la firmeza y la estabilidad.",
         details: [
           { label: "Tipo", value: "Postura defensiva" },
-          { label: "Etapa", value: "Protección" },
-          { label: "Uso", value: "Refuerzo de carácter" }
+          { label: "Enfoque", value: "Protección" },
+          { label: "Rasgos", value: "Resistencia, calma, contundencia" },
+          { label: "Función", value: "Equilibrio del personaje" }
         ]
       },
       {
-        image: "images/sasha/sasha-05.jpg",
+        image: "assets/galerias/sasha/sasha-05.png",
         title: "Sasha",
         subtitle: "Escena narrativa",
-        role: "Protagonista",
-        description: "Pieza útil para introducir respiración narrativa en la galería, con más peso emocional o de contexto.",
+        preview: "Momento visual pensado para mostrar matiz, atmósfera o desarrollo del personaje.",
+        role: "Sasha | Narrativa",
+        description: "Una escena más narrativa y atmosférica, útil para aportar variedad a la galería y enseñar una faceta menos frontal del personaje.",
         details: [
           { label: "Tipo", value: "Narrativa" },
-          { label: "Etapa", value: "Desarrollo" },
-          { label: "Uso", value: "Contexto" }
-        ]
-      },
-      {
-        image: "images/sasha/sasha-06.jpg",
-        title: "Sasha",
-        subtitle: "Plano medio",
-        role: "Protagonista",
-        description: "Plano medio que permite enfatizar expresión, rostro, peinado, vestuario o detalles concretos del personaje.",
-        details: [
-          { label: "Tipo", value: "Plano medio" },
-          { label: "Etapa", value: "Detalle" },
-          { label: "Uso", value: "Diseño de personaje" }
-        ]
-      },
-      {
-        image: "images/sasha/sasha-07.jpg",
-        title: "Sasha",
-        subtitle: "Escenario",
-        role: "Protagonista",
-        description: "Imagen donde el entorno también cuenta historia y ayuda a situar al personaje en su mundo visual.",
-        details: [
-          { label: "Tipo", value: "Ambientación" },
-          { label: "Etapa", value: "Mundo" },
-          { label: "Uso", value: "Contexto escénico" }
-        ]
-      },
-      {
-        image: "images/sasha/sasha-08.jpg",
-        title: "Sasha",
-        subtitle: "Cierre visual",
-        role: "Protagonista",
-        description: "Pieza de cierre para rematar la galería con una última imagen fuerte y coherente con el tono general.",
-        details: [
-          { label: "Tipo", value: "Cierre" },
-          { label: "Etapa", value: "Final de bloque" },
-          { label: "Uso", value: "Remate visual" }
+          { label: "Enfoque", value: "Desarrollo / atmósfera" },
+          { label: "Rasgos", value: "Matiz, contexto, humanidad" },
+          { label: "Función", value: "Profundizar en el personaje" }
         ]
       }
     ];
@@ -750,11 +716,13 @@
     const galleryGrid = document.getElementById("galleryGrid");
     const modal = document.getElementById("imageModal");
     const closeModal = document.getElementById("closeModal");
+
     const modalImg = document.getElementById("modalImg");
     const modalTitle = document.getElementById("modalTitle");
     const modalRole = document.getElementById("modalRole");
     const modalDescription = document.getElementById("modalDescription");
     const modalData = document.getElementById("modalData");
+
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
@@ -765,23 +733,6 @@
     let currentIndex = 0;
     let currentVideoIndex = 0;
 
-    function placeholderSVG(label){
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23141c25'/>
-            <stop offset='100%' stop-color='%230d131a'/>
-          </linearGradient>
-        </defs>
-        <rect width='1200' height='900' fill='url(%23g)'/>
-        <circle cx='980' cy='150' r='180' fill='rgba(212,177,106,.10)'/>
-        <rect x='70' y='70' width='1060' height='760' rx='28' fill='none' stroke='rgba(212,177,106,.26)' stroke-width='2'/>
-        <text x='50%' y='46%' text-anchor='middle' fill='%23d4b16a' font-family='Segoe UI, Arial, sans-serif' font-size='52'>LAS CRÓNICAS DE SASHA</text>
-        <text x='50%' y='56%' text-anchor='middle' fill='%23edf2f7' font-family='Segoe UI, Arial, sans-serif' font-size='34'>${label}</text>
-      </svg>`.replace(/\n/g, "");
-    }
-
     function renderGallery() {
       galleryGrid.innerHTML = "";
 
@@ -789,18 +740,15 @@
         const card = document.createElement("article");
         card.className = "card";
         card.innerHTML = `
-          <img src="${item.image}" alt="${item.title} - ${item.subtitle}">
-          <div class="card-copy">
-            <div class="card-badge">${item.role}</div>
+          <div class="card-image">
+            <img src="${item.image}" alt="${item.title} - ${item.subtitle}">
+          </div>
+          <div class="card-content">
             <h3>${item.title}</h3>
-            <p>${item.subtitle}</p>
+            <div class="subtitle">${item.subtitle}</div>
+            <p class="mini-text">${item.preview}</p>
           </div>
         `;
-
-        const cardImg = card.querySelector("img");
-        cardImg.addEventListener("error", () => {
-          cardImg.src = placeholderSVG(item.subtitle);
-        });
 
         card.addEventListener("click", () => openModal(index));
         galleryGrid.appendChild(card);
@@ -821,18 +769,12 @@
         .map(detail => `<li><strong>${detail.label}:</strong> ${detail.value}</li>`)
         .join("");
 
-      modalImg.onerror = () => {
-        modalImg.src = placeholderSVG(item.subtitle);
-      };
-
       modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
 
     function closeModalWindow() {
       modal.classList.remove("active");
-      modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }
 
@@ -848,8 +790,10 @@
 
     function getCircularDistance(index, activeIndex, total) {
       let diff = index - activeIndex;
+
       if (diff > total / 2) diff -= total;
       if (diff < -total / 2) diff += total;
+
       return diff;
     }
 
@@ -868,11 +812,14 @@
       sashaVideos.forEach((item, index) => {
         const card = document.createElement("article");
         card.className = "video-card";
+
         card.innerHTML = `
-          <video preload="metadata">
-            <source src="${item.src}" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
+          <div class="video-frame">
+            <video muted loop playsinline preload="auto" controlslist="nodownload">
+              <source src="${item.src}" type="video/mp4">
+              Tu navegador no puede reproducir este vídeo.
+            </video>
+          </div>
           <div class="video-meta">
             <h3>${item.title}</h3>
             <p>${item.caption}</p>
@@ -915,14 +862,17 @@
         }
 
         const video = card.querySelector("video");
-        const meta = card.querySelector(".video-meta p");
 
         video.addEventListener("error", () => {
-          if (meta) meta.textContent = "Este vídeo no se ha podido reproducir.";
+          const meta = card.querySelector(".video-meta p");
+          if (meta) {
+            meta.textContent = "Este vídeo no se ha podido reproducir.";
+          }
         });
 
         if (distance === 0) {
           video.controls = true;
+          video.play().catch(() => {});
         } else {
           video.controls = false;
           video.pause();
@@ -931,36 +881,52 @@
       });
     }
 
+    function showPrevVideo() {
+      currentVideoIndex =
+        (currentVideoIndex - 1 + sashaVideos.length) % sashaVideos.length;
+      updateVideoCarousel();
+    }
+
+    function showNextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % sashaVideos.length;
+      updateVideoCarousel();
+    }
+
     closeModal.addEventListener("click", closeModalWindow);
     prevBtn.addEventListener("click", showPrev);
     nextBtn.addEventListener("click", showNext);
 
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModalWindow();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (modal.classList.contains("active")) {
-        if (e.key === "Escape") closeModalWindow();
-        if (e.key === "ArrowLeft") showPrev();
-        if (e.key === "ArrowRight") showNext();
+      if (e.target === modal) {
+        closeModalWindow();
       }
     });
 
-    videoPrev.addEventListener("click", () => {
-      if (!sashaVideos.length) return;
-      currentVideoIndex = (currentVideoIndex - 1 + sashaVideos.length) % sashaVideos.length;
-      updateVideoCarousel();
+    document.addEventListener("keydown", (e) => {
+      if (!modal.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeModalWindow();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
     });
 
-    videoNext.addEventListener("click", () => {
-      if (!sashaVideos.length) return;
-      currentVideoIndex = (currentVideoIndex + 1) % sashaVideos.length;
-      updateVideoCarousel();
-    });
+    videoPrev.addEventListener("click", showPrevVideo);
+    videoNext.addEventListener("click", showNextVideo);
 
-    renderGallery();
     renderVideoCarousel();
+    renderGallery();
   </script>
+
+  <script>
+    window.addEventListener("load", () => {
+      if (window.location.hash === "#videos") {
+        const target = document.getElementById("videos");
+        if (target) {
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>

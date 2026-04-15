@@ -599,11 +599,7 @@
     <div class="video-carousel-shell">
       <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
 
-      <div class="video-carousel-stage" id="videoCarouselStage">
-        <div class="video-empty">
-          Aún no hay vídeos cargados para Sasha.
-        </div>
-      </div>
+      <div class="video-carousel-stage" id="videoCarouselStage"></div>
 
       <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
     </div>
@@ -711,7 +707,23 @@
       }
     ];
 
-    const sashaVideos = [];
+    const sashaVideos = [
+      {
+        src: "assets/videos/sasha/espejo.mp4",
+        title: "Espejo",
+        caption: "Escena de Sasha vinculada al espejo."
+      },
+      {
+        src: "assets/videos/sasha/gallinas.mp4",
+        title: "Gallinas",
+        caption: "Secuencia de Sasha en la escena de las gallinas."
+      },
+      {
+        src: "assets/videos/sasha/sasha-transformacion.mp4",
+        title: "Transformación",
+        caption: "Escena de transformación de Sasha."
+      }
+    ];
 
     const galleryGrid = document.getElementById("galleryGrid");
     const modal = document.getElementById("imageModal");

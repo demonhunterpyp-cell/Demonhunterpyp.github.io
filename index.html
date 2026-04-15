@@ -1743,25 +1743,209 @@
     </div>
   </div>
 
-  <script>
-    (function () {
-      function bookPlaceholder(top, bottom) {
-        const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
-        const bottomText = encodeURIComponent(bottom || "Portada");
-        return `data:image/svg+xml;charset=UTF-8,
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
-          <defs>
-            <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-              <stop offset='0%' stop-color='%23253048'/>
-              <stop offset='100%' stop-color='%23101827'/>
-            </linearGradient>
-          </defs>
-          <rect width='800' height='1200' fill='url(%23g)'/>
-          <rect x='36' y='36' width='728' height='1128' rx='30' fill='none' stroke='rgba(214,176,106,.42)' stroke-width='3'/>
-          <text x='50%' y='36%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='38'>${topText}</text>
-          <text x='50%' y='50%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='58'>${bottomText}</text>
-        </svg>`.replace(/\n/g, "");
+ <script>
+  (function () {
+    function bookPlaceholder(top, bottom) {
+      const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
+      const bottomText = encodeURIComponent(bottom || "Portada");
+      return `data:image/svg+xml;charset=UTF-8,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+            <stop offset='0%' stop-color='%23253048'/>
+            <stop offset='100%' stop-color='%23101827'/>
+          </linearGradient>
+        </defs>
+        <rect width='800' height='1200' fill='url(%23g)'/>
+        <rect x='36' y='36' width='728' height='1128' rx='30' fill='none' stroke='rgba(214,176,106,.42)' stroke-width='3'/>
+        <text x='50%' y='36%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='38'>${topText}</text>
+        <text x='50%' y='50%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='58'>${bottomText}</text>
+      </svg>`.replace(/\n/g, "");
+    }
+
+    const bookCollections = {
+      main: {
+        label: "Saga principal",
+        items: [
+          {
+            tag: "Volumen 1",
+            kind: "Saga principal",
+            title: "Mis inicios",
+            description: "El arranque real de la saga. La primera puerta, el primer gran cambio y la entrada de Sasha en un mundo que no perdona la ingenuidad.",
+            cover: "assets/libros/volumenes/libro-sin-fondo.png",
+            page: "volumen-1.html",
+            store: "#tienda",
+            available: true
+          },
+          {
+            tag: "Volumen 2",
+            kind: "Saga principal",
+            title: "Próximamente",
+            description: "Segundo gran bloque de la saga principal. Tarjeta ya preparada para recibir portada, ficha y acceso de compra cuando toque.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Volumen 3",
+            kind: "Saga principal",
+            title: "Próximamente",
+            description: "Tercer volumen reservado para ampliar el arco principal y escalar el universo narrativo de Sasha.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          }
+        ]
+      },
+
+      annexes: {
+        label: "Anexos",
+        items: [
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "Entrevista",
+            description: "Primer anexo activo dentro de la web. Ya cuenta con su propia ficha y amplía el universo desde otra perspectiva.",
+            cover: "assets/libros/anexos/Portada-entrevista.png",
+            page: "anexo-entrevista.html",
+            store: "#tienda",
+            available: true
+          },
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "DVNI",
+            description: "Segundo anexo ya visible y con ficha propia. Una ampliación del mapa narrativo del universo de Sasha.",
+            cover: "assets/libros/anexos/Portada-DVNI.png",
+            page: "anexo-dvni.html",
+            store: "#tienda",
+            available: true
+          },
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "Cinco dones",
+            description: "Tercer anexo ya activo. Amplía el universo con una nueva pieza complementaria dentro de la saga.",
+            cover: "assets/libros/anexos/Portada-cinco-dones.png",
+            page: "anexo-cinco-dones.html",
+            store: "#tienda",
+            available: true
+          }
+        ]
       }
+    };
+
+    const booksTrack = document.getElementById("booksTrack");
+    const booksViewport = document.getElementById("booksViewport");
+    const booksPrev = document.getElementById("booksPrev");
+    const booksNext = document.getElementById("booksNext");
+    const booksCurrentLabel = document.getElementById("booksCurrentLabel");
+    const booksTabs = [...document.querySelectorAll("#libros .books-tab")];
+
+    function renderBooks(collectionKey) {
+      const collection = bookCollections[collectionKey];
+      const items = collection.items;
+
+      booksTrack.innerHTML = items.map((item) => {
+        const coverSrc = item.cover || bookPlaceholder(collection.label, item.tag);
+        const fichaButton = item.available
+          ? `<a class="book-tile-btn primary" href="${item.page}">Ver ficha</a>`
+          : `<span class="book-tile-btn secondary disabled">Próximamente</span>`;
+
+        const storeButton = item.available && item.store
+          ? `<a class="book-tile-btn secondary" href="${item.store}">Tienda</a>`
+          : `<span class="book-tile-btn secondary disabled">Tienda</span>`;
+
+        const titleHtml = item.available
+          ? `<h3><a href="${item.page}">${item.title}</a></h3>`
+          : `<h3>${item.title}</h3>`;
+
+        return `
+          <article class="book-tile">
+            <div class="book-tile-cover">
+              <img src="${coverSrc}" alt="${item.tag} - ${item.title}" />
+            </div>
+
+            <div class="book-tile-body">
+              <div class="book-tile-head">
+                <span class="book-tag">${item.tag}</span>
+                <span class="book-tile-kind">${item.kind}</span>
+              </div>
+
+              ${titleHtml}
+              <p>${item.description}</p>
+
+              <div class="book-tile-actions">
+                ${fichaButton}
+                ${storeButton}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      booksCurrentLabel.textContent = `${collection.label} · ${items.length} título${items.length === 1 ? "" : "s"}`;
+
+      booksTabs.forEach((tab) => {
+        const isActive = tab.dataset.collection === collectionKey;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      booksTrack.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          const alt = img.alt || "Portada";
+          img.src = bookPlaceholder(collection.label, alt);
+        });
+      });
+
+      booksViewport.scrollLeft = 0;
+      requestAnimationFrame(updateBooksArrows);
+    }
+
+    function getBookScrollAmount() {
+      const firstCard = booksTrack.querySelector(".book-tile");
+      if (!firstCard) return booksViewport.clientWidth * 0.9;
+
+      const styles = window.getComputedStyle(booksTrack);
+      const gap = parseFloat(styles.gap || 18);
+      return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    function updateBooksArrows() {
+      const maxScroll = booksViewport.scrollWidth - booksViewport.clientWidth - 4;
+      booksPrev.disabled = booksViewport.scrollLeft <= 4;
+      booksNext.disabled = booksViewport.scrollLeft >= maxScroll;
+    }
+
+    booksTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        renderBooks(tab.dataset.collection);
+      });
+    });
+
+    booksPrev.addEventListener("click", () => {
+      booksViewport.scrollBy({
+        left: -getBookScrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
+    booksNext.addEventListener("click", () => {
+      booksViewport.scrollBy({
+        left: getBookScrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
+    booksViewport.addEventListener("scroll", updateBooksArrows);
+    window.addEventListener("resize", updateBooksArrows);
+
+    renderBooks("main");
+  })();
+</script>
 
       const bookCollections = {
         main: {
@@ -1944,9 +2128,9 @@
         <section class="section-block" id="lore">
           <h2>Personajes</h2>
           <div class="section-divider"></div>
-          <p class="section-lead">
-            Cuatro grandes bloques definen el pulso humano, mágico y emocional del universo de Sasha: la protagonista, su círculo cercano, quienes la acompañan y quienes se alzan frente a su avance.
-          </p>
+          <p class="panel-lead">
+  La saga principal y sus anexos se muestran aquí como escaparate. El volumen 1 y los tres primeros anexos ya tienen ficha propia, y el resto queda preparado para crecer dentro del universo de Sasha.
+</p>
 
           <div class="character-grid">
             <article class="character-card sasha">

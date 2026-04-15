@@ -84,6 +84,12 @@
       background: rgba(255,255,255,0.08);
     }
 
+    .nav-btn.disabled {
+      opacity: .45;
+      pointer-events: none;
+      cursor: default;
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -473,6 +479,13 @@
       background: rgba(255,255,255,.08);
     }
 
+    .related-link.disabled {
+      opacity: .45;
+      pointer-events: none;
+      cursor: default;
+      transform: none;
+    }
+
     .footer-note {
       width: min(1180px, 92%);
       margin: 0 auto;
@@ -540,7 +553,7 @@
     </div>
 
     <div class="topbar-right">
-      <a href="./volumen-2.html" class="nav-btn">Siguiente volumen →</a>
+      <span class="nav-btn disabled">Siguiente volumen →</span>
     </div>
   </header>
 
@@ -559,9 +572,9 @@
     <section class="panel">
       <div class="book-layout">
         <div class="book-cover-box">
-          <img id="mainBookCover" src="assets/libros/volumen-1.png" alt="Portada del Volumen 1: Mis inicios" />
+          <img id="mainBookCover" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Portada del Volumen 1: Mis inicios" />
           <div class="book-side-note">
-            Portada principal del libro. Puedes sustituir esta imagen por la definitiva cuando quieras.
+            Portada actual del volumen 1. Ya está enlazada a la ruta real del proyecto.
           </div>
         </div>
 
@@ -695,51 +708,51 @@
 
     <section class="panel">
       <div class="ornament"></div>
-      <h2 class="section-title">Continuar explorando</h2>
+      <h2 class="section-title">Explorar más</h2>
       <p class="section-lead">
-        Desde aquí el lector puede seguir por la saga principal o volver al escaparate general.
+        El volumen 1 ya está activo. Los anexos quedan visibles y preparados para recibir su ficha individual más adelante.
       </p>
 
       <div class="related-grid">
         <article class="related-card">
           <div class="related-cover">
-            <img id="relatedVol2" src="assets/libros/volumen-2.png" alt="Volumen 2" />
+            <img id="relatedAnnex1" src="assets/libros/anexos/Portada-DVNI.png" alt="Anexo DVNI" />
           </div>
           <div class="related-body">
-            <div class="related-tag">Siguiente tomo</div>
-            <h3>Volumen 2</h3>
+            <div class="related-tag">Anexo</div>
+            <h3>DVNI</h3>
             <p>
-              Espacio preparado para enlazar el segundo gran bloque narrativo de la saga principal.
+              Anexo con portada real ya cargada. Puedes convertirlo en página propia cuando quieras.
             </p>
-            <a class="related-link" href="./volumen-2.html">Ver ficha</a>
+            <span class="related-link disabled">Próximamente</span>
           </div>
         </article>
 
         <article class="related-card">
           <div class="related-cover">
-            <img id="relatedVol3" src="assets/libros/volumen-3.png" alt="Volumen 3" />
+            <img id="relatedAnnex2" src="assets/libros/anexos/Portada-cinco-dones.png" alt="Anexo Cinco dones" />
           </div>
           <div class="related-body">
-            <div class="related-tag">Saga principal</div>
-            <h3>Volumen 3</h3>
+            <div class="related-tag">Anexo</div>
+            <h3>Cinco dones</h3>
             <p>
-              Tercer volumen reservado para ampliar el arco principal con más escala y profundidad.
+              Segundo anexo disponible visualmente. La portada ya está en su carpeta correcta.
             </p>
-            <a class="related-link" href="./volumen-3.html">Ver ficha</a>
+            <span class="related-link disabled">Próximamente</span>
           </div>
         </article>
 
         <article class="related-card">
           <div class="related-cover">
-            <img id="relatedAnnex" src="assets/libros/anexo-1.png" alt="Anexo 1" />
+            <img id="relatedAnnex3" src="assets/libros/anexos/Portada-entrevista.png" alt="Anexo Entrevista" />
           </div>
           <div class="related-body">
-            <div class="related-tag">Material complementario</div>
-            <h3>Anexo 1</h3>
+            <div class="related-tag">Anexo</div>
+            <h3>Entrevista</h3>
             <p>
-              Primer acceso a la parte editorial expandida del universo, ideal para contenido paralelo.
+              Tercer anexo preparado para entrar en la web con su ficha dedicada cuando decidas abrirlo.
             </p>
-            <a class="related-link" href="./anexo-1.html">Ver ficha</a>
+            <span class="related-link disabled">Próximamente</span>
           </div>
         </article>
       </div>
@@ -747,8 +760,7 @@
   </main>
 
   <div class="footer-note">
-    Página base para <strong>volumen-1.html</strong>. Cuando tengas el texto definitivo, basta con sustituir portada,
-    sinopsis y enlaces de compra.
+    Página ya adaptada a la estructura real del proyecto. Solo tendrás que sustituir textos y enlaces de compra cuando llegue el momento.
   </div>
 
   <script>
@@ -772,9 +784,9 @@
 
     const coverMap = [
       { id: "mainBookCover", top: "Las Crónicas de Sasha", bottom: "Volumen 1" },
-      { id: "relatedVol2", top: "Las Crónicas de Sasha", bottom: "Volumen 2" },
-      { id: "relatedVol3", top: "Las Crónicas de Sasha", bottom: "Volumen 3" },
-      { id: "relatedAnnex", top: "Las Crónicas de Sasha", bottom: "Anexo 1" }
+      { id: "relatedAnnex1", top: "Las Crónicas de Sasha", bottom: "DVNI" },
+      { id: "relatedAnnex2", top: "Las Crónicas de Sasha", bottom: "Cinco dones" },
+      { id: "relatedAnnex3", top: "Las Crónicas de Sasha", bottom: "Entrevista" }
     ];
 
     coverMap.forEach((item) => {

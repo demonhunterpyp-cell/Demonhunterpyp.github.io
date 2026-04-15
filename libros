@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libros | Las Crónicas de Sasha</title>
+  <meta name="description" content="Página de libros de Las Crónicas de Sasha. Volumen actual, próximos tomos y zona preparada para compra directa." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0b0f16;
+      --panel: #121826;
+      --panel-2: #1a2233;
+      --text: #f3f5f8;
+      --muted: #aab3c2;
+      --accent: #d6a85f;
+      --accent-soft: rgba(214,168,95,0.12);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 12px 35px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --radius-lg: 24px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.96)),
+        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .topbar {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.03;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .hero p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+      font-size: 0.96rem;
+    }
+
+    .cta.primary {
+      background: var(--accent-soft);
+      border-color: rgba(214,168,95,0.35);
+      color: #fff;
+    }
+
+    .cta.primary:hover {
+      background: rgba(214,168,95,0.22);
+      transform: translateY(-1px);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .cta.secondary:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .section {
+      width: min(1200px, 92%);
+      margin: 0 auto 60px;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .featured-book {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 28px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .book-cover {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #0f1420;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.38);
+      aspect-ratio: 2 / 3;
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .book-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      font-weight: bold;
+    }
+
+    .book-copy h3 {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.08;
+      color: #fff;
+    }
+
+    .book-subtitle {
+      color: var(--accent);
+      font-size: 1.02rem;
+      line-height: 1.5;
+    }
+
+    .book-description {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 1rem;
+    }
+
+    .book-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .meta-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .meta-card strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .book-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      transition: 0.25s ease;
+      min-width: 170px;
+    }
+
+    .buy-btn:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-1px);
+    }
+
+    .buy-btn.primary {
+      background: rgba(214,168,95,0.18);
+      border-color: rgba(214,168,95,0.35);
+    }
+
+    .buy-btn.primary:hover {
+      background: rgba(214,168,95,0.26);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .info-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .info-card-image {
+      aspect-ratio: 16 / 10;
+      background: #0f1420;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info-card-content {
+      padding: 18px;
+    }
+
+    .info-card-content h3 {
+      color: #fff;
+      font-size: 1.16rem;
+      margin-bottom: 8px;
+    }
+
+    .info-card-content .label {
+      color: var(--accent);
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .info-card-content p {
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 0.95rem;
+    }
+
+    .buy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .buy-card {
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+      box-shadow: var(--shadow);
+    }
+
+    .buy-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .buy-card p {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 0.96rem;
+      margin-bottom: 18px;
+    }
+
+    .buy-card .mini-note {
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .buy-card a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
+
+    .buy-card a:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .faq {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      padding: 18px 20px;
+    }
+
+    .faq-item h3 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1.04rem;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .footer {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      padding: 10px 0 46px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1000px) {
+      .featured-book {
+        grid-template-columns: 1fr;
+      }
+
+      .book-cover {
+        max-width: 360px;
+      }
+
+      .book-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3,
+      .buy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding-top: 22px;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .featured-book {
+        padding: 18px;
+      }
+
+      .book-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .book-actions,
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .buy-btn,
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="./index.html" class="back-link">← Volver al inicio</a>
+      <a href="./index.html#libros" class="back-link">Saga</a>
+    </div>
+
+    <div class="topbar-right">
+      <a href="./historia.html" class="back-link">Historia</a>
+      <a href="./tienda.html" class="back-link">Tienda →</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Libros de Las Crónicas de Sasha</h1>
+    <p>
+      Página dedicada a la saga. Aquí puedes presentar el volumen actual, reservar espacio para futuros tomos
+      y dejar preparada la compra directa cuando quieras activarla.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#volumen-actual" class="cta primary">Ver volumen actual</a>
+      <a href="#proximos-tomos" class="cta secondary">Explorar próximos tomos</a>
+    </div>
+  </section>
+
+  <section class="section" id="volumen-actual">
+    <div class="section-header">
+      <h2>Volumen actual</h2>
+      <p>
+        Este bloque está pensado para que el primer libro tenga todo el protagonismo: portada grande, sinopsis,
+        datos básicos y botones de compra.
+      </p>
+    </div>
+
+    <div class="featured-book">
+      <div class="book-cover">
+        <img
+          id="mainBookCover"
+          src="assets/libros/libro-1-portada.png"
+          alt="Portada del libro 1 de Las Crónicas de Sasha"
+        />
+      </div>
+
+      <div class="book-copy">
+        <div class="eyebrow">Libro 1</div>
+        <h3>Las Crónicas de Sasha. Volumen uno: Mis inicios</h3>
+        <div class="book-subtitle">
+          El comienzo de la saga, la entrada al mundo y la primera gran puerta narrativa del universo de Sasha.
+        </div>
+
+        <p class="book-description">
+          Aquí puedes colocar la presentación principal del libro. Este espacio funciona muy bien para una sinopsis
+          atractiva, una frase gancho o una breve introducción al viaje de Sasha, al mundo de Demon Hunter y al tono
+          general de la serie.
+        </p>
+
+        <div class="book-meta">
+          <div class="meta-card">
+            <strong>Estado</strong>
+            <span>Publicado</span>
+          </div>
+          <div class="meta-card">
+            <strong>Formato</strong>
+            <span>Tapa blanda / digital</span>
+          </div>
+          <div class="meta-card">
+            <strong>Páginas</strong>
+            <span>400 aprox.</span>
+          </div>
+          <div class="meta-card">
+            <strong>Universo</strong>
+            <span>Fantasía, aventura, Demon Hunter</span>
+          </div>
+        </div>
+
+        <div class="book-actions">
+          <a href="#" class="buy-btn primary">Compra directa</a>
+          <a href="#" class="buy-btn">Amazon</a>
+          <a href="#" class="buy-btn">Leer muestra</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proximos-tomos">
+    <div class="section-header">
+      <h2>Próximos tomos</h2>
+      <p>
+        Zona ideal para anunciar próximos volúmenes aunque todavía no tengas todo cerrado. Queda elegante, ordenada
+        y lista para crecer sin tener que rediseñar nada después.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <article class="info-card">
+        <div class="info-card-image">
+          <img src="assets/libros/libro-2-portada.png" alt="Libro 2 de la saga" class="future-cover" data-fallback="Libro 2" />
+        </div>
+        <div class="info-card-content">
+          <h3>Volumen dos</h3>
+          <div class="label">Próximamente</div>
+          <p>
+            Espacio para la portada del segundo tomo, un subtítulo tentativo o una breve línea que abra el apetito.
+          </p>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <div class="info-card-image">
+          <img src="assets/libros/libro-3-portada.png" alt="Libro 3 de la saga" class="future-cover" data-fallback="Libro 3" />
+        </div>
+        <div class="info-card-content">
+          <h3>Volumen tres</h3>
+          <div class="label">En desarrollo</div>
+          <p>
+            Puedes usar esta tarjeta para ir enseñando la continuidad de la saga y transmitir que el mundo sigue creciendo.
+          </p>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <div class="info-card-image">
+          <img src="assets/libros/edicion-especial.png" alt="Edición especial de la saga" class="future-cover" data-fallback="Edición especial" />
+        </div>
+        <div class="info-card-content">
+          <h3>Edición especial</h3>
+          <div class="label">Reserva de espacio</div>
+          <p>
+            Aquí podría ir una futura edición ilustrada, una caja coleccionista o cualquier formato premium.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="comprar">
+    <div class="section-header">
+      <h2>Opciones de compra</h2>
+      <p>
+        Este bloque deja preparadas varias vías. Así puedes activar una, dos o las tres según te convenga más adelante.
+      </p>
+    </div>
+
+    <div class="buy-grid">
+      <article class="buy-card">
+        <h3>Compra directa</h3>
+        <div class="mini-note">La opción más controlada</div>
+        <p>
+          Ideal si quieres vender desde tu propia web, centralizar pedidos o enlazar a una pasarela externa.
+        </p>
+        <a href="#">Activar más adelante</a>
+      </article>
+
+      <article class="buy-card">
+        <h3>Marketplace</h3>
+        <div class="mini-note">Más visibilidad</div>
+        <p>
+          Útil para enlazar a Amazon u otras plataformas donde el lector ya está acostumbrado a comprar.
+        </p>
+        <a href="#">Añadir enlace</a>
+      </article>
+
+      <article class="buy-card">
+        <h3>Merchandising</h3>
+        <div class="mini-note">Expansión del universo</div>
+        <p>
+          Tazas, camisetas, ilustraciones o piezas del mundo de Sasha. Queda muy bien enlazarlo desde aquí.
+        </p>
+        <a href="#">Preparar tienda</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-header">
+      <h2>Preguntas frecuentes</h2>
+      <p>
+        Una zona muy útil para resolver dudas rápidas sin cargar demasiado la página.
+      </p>
+    </div>
+
+    <div class="faq">
+      <article class="faq-item">
+        <h3>¿El libro está disponible en papel y digital?</h3>
+        <p>
+          Aquí puedes indicar los formatos reales cuando los tengas definidos. De momento queda preparado para ambos.
+        </p>
+      </article>
+
+      <article class="faq-item">
+        <h3>¿Habrá más volúmenes?</h3>
+        <p>
+          Sí. Esta página ya deja reservada la estructura para que la saga pueda crecer sin tocar la base visual.
+        </p>
+      </article>
+
+      <article class="faq-item">
+        <h3>¿Se podrá comprar merchandising?</h3>
+        <p>
+          Sí, esta arquitectura ya deja un carril abierto para integrar tienda o enlaces externos cuando quieras.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Página preparada como base para <strong>libros.html</strong>. Solo tendrás que ajustar portadas, textos y enlaces de compra
+    cuando tengas el contenido definitivo.
+  </footer>
+
+  <script>
+    function svgPlaceholder(label) {
+      const text = encodeURIComponent(label);
+      return `data:image/svg+xml;charset=UTF-8,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+            <stop offset='0%' stop-color='%23151d28'/>
+            <stop offset='100%' stop-color='%230c1118'/>
+          </linearGradient>
+        </defs>
+        <rect width='800' height='1200' fill='url(%23g)'/>
+        <rect x='34' y='34' width='732' height='1132' rx='28' fill='none' stroke='rgba(214,168,95,.38)' stroke-width='3'/>
+        <text x='50%' y='38%' text-anchor='middle' fill='%23d6a85f' font-family='Arial, Helvetica, sans-serif' font-size='34'>LAS CRÓNICAS DE SASHA</text>
+        <text x='50%' y='50%' text-anchor='middle' fill='%23f3f5f8' font-family='Arial, Helvetica, sans-serif' font-size='56'>${text}</text>
+      </svg>`.replace(/\n/g, "");
+    }
+
+    const mainCover = document.getElementById("mainBookCover");
+    if (mainCover) {
+      mainCover.addEventListener("error", () => {
+        mainCover.src = svgPlaceholder("Libro 1");
+      });
+    }
+
+    document.querySelectorAll(".future-cover").forEach((img) => {
+      img.addEventListener("error", () => {
+        img.src = svgPlaceholder(img.dataset.fallback || "Próximamente");
+      });
+    });
+  </script>
+
+</body>
+</html>

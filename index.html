@@ -765,7 +765,8 @@
     .character-tag,
     .book-tag,
     .lore-tag,
-    .store-tag {
+    .store-tag,
+    .news-tag {
       display: inline-flex;
       padding: 6px 10px;
       margin-bottom: 14px;
@@ -812,7 +813,9 @@
     .character-card h3,
     .mini-card h3,
     .lore-card h3,
-    .store-card h3 {
+    .store-card h3,
+    .news-card h3,
+    .news-feature h3 {
       margin: 0 0 10px;
       color: #f0dbaf;
       font-size: 1.42rem;
@@ -831,7 +834,9 @@
     .character-card p,
     .mini-card p,
     .lore-card p,
-    .store-card p {
+    .store-card p,
+    .news-card p,
+    .news-feature p {
       margin: 0;
       color: #d4ccb9;
       line-height: 1.72;
@@ -848,7 +853,9 @@
       z-index: 1;
     }
 
-    .character-btn {
+    .character-btn,
+    .store-btn,
+    .news-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -860,18 +867,24 @@
       transition: transform .2s ease, background .2s ease;
     }
 
-    .character-btn:hover {
+    .character-btn:hover,
+    .store-btn:hover,
+    .news-btn:hover {
       transform: translateY(-2px);
     }
 
-    .character-btn.primary {
+    .character-btn.primary,
+    .store-btn.primary,
+    .news-btn.primary {
       color: #4a2f12;
       background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
       border: 1px solid #8b6327;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
     }
 
-    .character-btn.secondary {
+    .character-btn.secondary,
+    .store-btn.secondary,
+    .news-btn.secondary {
       color: #f2e2c3;
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(214,176,106,.24);
@@ -880,7 +893,8 @@
     .panel-grid,
     .lore-grid,
     .store-grid,
-    .gallery-grid-preview {
+    .gallery-grid-preview,
+    .news-grid {
       margin-top: 18px;
       display: grid;
       gap: 18px;
@@ -1256,6 +1270,40 @@
       text-align: center;
     }
 
+    .news-layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .news-feature,
+    .news-card,
+    .store-card {
+      border: 1px solid rgba(214,176,106,.16);
+      background: rgba(255,255,255,.02);
+    }
+
+    .news-feature {
+      padding: 24px 22px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .news-card {
+      padding: 20px 18px;
+      min-height: 101px;
+    }
+
+    .news-actions,
     .store-actions {
       margin-top: 18px;
       display: flex;
@@ -1263,33 +1311,11 @@
       flex-wrap: wrap;
     }
 
-    .store-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: .92rem;
-      font-weight: 700;
-      transition: transform .2s ease, background .2s ease;
-    }
-
-    .store-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .store-btn.primary {
-      color: #4a2f12;
-      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border: 1px solid #8b6327;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
-    }
-
-    .store-btn.secondary {
-      color: #f2e2c3;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(214,176,106,.24);
+    .store-card {
+      min-height: 220px;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
     }
 
     @media (max-width: 1200px) {
@@ -1352,6 +1378,10 @@
       .hero-inner {
         padding: 36px 28px 48px 42px;
       }
+
+      .news-layout {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -1376,8 +1406,7 @@
         grid-template-columns: 1fr;
       }
 
-      .character-actions,
-      .store-actions {
+      .character-actions {
         grid-template-columns: 1fr;
       }
 
@@ -1455,7 +1484,13 @@
         grid-template-columns: 1fr;
       }
 
-      .store-btn {
+      .news-actions,
+      .store-actions {
+        flex-direction: column;
+      }
+
+      .store-btn,
+      .news-btn {
         width: 100%;
       }
     }
@@ -1568,7 +1603,7 @@
 
           <div class="floating-book">
             <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Libro Las Crónicas de Sasha - Volumen 1" />
-            <a class="book-cta" href="tienda.html#producto-volumen-1">Ir a la tienda</a>
+            <a class="book-cta" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
           </div>
         </section>
 
@@ -1768,66 +1803,88 @@
           <h2>Novedades</h2>
           <div class="panel-divider"></div>
           <p class="panel-lead">
-            Próximamente aquí podrás mostrar lanzamientos, avances de nuevos volúmenes, noticias de la saga y anuncios destacados.
+            Este bloque queda listo para anuncios reales, pero ya con una presencia más editorial y menos provisional.
           </p>
 
-          <div class="panel-grid">
-            <article class="mini-card">
-              <h3>Nuevo contenido</h3>
-              <p>Espacio para anunciar capítulos, ediciones especiales o próximos libros del universo de Sasha.</p>
+          <div class="news-layout">
+            <article class="news-feature">
+              <div>
+                <div class="news-tag">Zona destacada</div>
+                <h3>Espacio reservado para el próximo gran anuncio</h3>
+                <p>
+                  Aquí puede vivir el lanzamiento de un nuevo volumen, la salida de un anexo, una portada inédita o una noticia fuerte de la saga. La estructura ya está preparada para que el día que haya novedad, no parezca un parche sino una campana de torre.
+                </p>
+              </div>
+
+              <div class="news-actions">
+                <a class="news-btn primary" href="tienda.html">Ir a la tienda</a>
+                <a class="news-btn secondary" href="#libros">Ver catálogo actual</a>
+              </div>
             </article>
-            <article class="mini-card">
-              <h3>Actualizaciones</h3>
-              <p>Zona para publicar fechas, eventos, firmas, cambios en la tienda o noticias relevantes de la saga.</p>
-            </article>
-            <article class="mini-card">
-              <h3>Comunidad</h3>
-              <p>Perfecto para añadir comunicaciones a lectores, adelantos visuales o mensajes importantes del autor.</p>
-            </article>
+
+            <div class="news-grid">
+              <article class="news-card">
+                <div class="news-tag">Próximamente</div>
+                <h3>Nuevos volúmenes</h3>
+                <p>Hueco preparado para anunciar la siguiente entrega de la saga principal.</p>
+              </article>
+
+              <article class="news-card">
+                <div class="news-tag">Próximamente</div>
+                <h3>Nuevos anexos</h3>
+                <p>Espacio pensado para ampliar la línea complementaria sin romper la armonía de la home.</p>
+              </article>
+
+              <article class="news-card">
+                <div class="news-tag">Próximamente</div>
+                <h3>Eventos o comunidad</h3>
+                <p>Zona lista para fechas, firmas, material promocional o avisos para lectores.</p>
+              </article>
+            </div>
           </div>
         </section>
 
-        <section class="panel" id="tienda-preview">
-          <h2>Tienda</h2>
+        <section class="panel" id="tienda-resumen">
+          <h2>Acceso a tienda</h2>
           <div class="panel-divider"></div>
           <p class="panel-lead">
-            La tienda oficial ya tiene página propia. Desde allí podrás reunir libros, anexos y futuro merchandising del universo de Sasha.
+            En lugar de duplicar la tienda dentro de la portada, este bloque actúa como distribuidor claro hacia sus tres rutas principales.
           </p>
 
           <div class="store-grid">
             <article class="store-card">
-              <div class="store-tag">Libros</div>
-              <h3>Saga principal</h3>
+              <div class="store-tag">Saga principal</div>
+              <h3>Volumen 1</h3>
               <p>
-                Acceso directo al volumen principal y a sus futuras incorporaciones dentro del catálogo central.
+                Entrada directa al producto principal ya visible en la tienda. Ideal como puerta rápida para quien llega con intención de compra.
               </p>
               <div class="store-actions">
-                <a class="store-btn primary" href="tienda.html#producto-volumen-1">Abrir tienda</a>
-                <a class="store-btn secondary" href="volumen-1.html">Ver volumen 1</a>
+                <a class="store-btn primary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+                <a class="store-btn secondary" href="volumen-1.html">Ver ficha</a>
               </div>
             </article>
 
             <article class="store-card">
-              <div class="store-tag">Anexos</div>
-              <h3>Material complementario</h3>
+              <div class="store-tag">Material complementario</div>
+              <h3>Anexos</h3>
               <p>
-                La línea de anexos ya está conectada a la tienda para funcionar como bloque editorial propio.
+                Acceso directo al bloque de anexos ya activos, para quien quiere ampliar el universo sin pasar por rodeos.
               </p>
               <div class="store-actions">
-                <a class="store-btn primary" href="tienda.html#producto-entrevista">Abrir tienda</a>
-                <a class="store-btn secondary" href="anexo-entrevista.html">Ver anexos</a>
+                <a class="store-btn primary" href="tienda.html#producto-entrevista">Ver anexos en tienda</a>
+                <a class="store-btn secondary" href="anexo-entrevista.html">Ver primer anexo</a>
               </div>
             </article>
 
             <article class="store-card">
-              <div class="store-tag">Merchandising</div>
+              <div class="store-tag">Futuro merchandising</div>
               <h3>Objetos de la saga</h3>
               <p>
-                El escaparate queda listo para pósters, marcapáginas y futuras piezas físicas del universo.
+                El escaparate queda listo para pósters, marcapáginas y futuras piezas físicas, sin recargar la portada con catálogo repetido.
               </p>
               <div class="store-actions">
-                <a class="store-btn primary" href="tienda.html#producto-poster-sasha">Abrir tienda</a>
-                <span class="store-btn secondary" style="opacity:.5; pointer-events:none;">Próximamente</span>
+                <a class="store-btn primary" href="tienda.html#producto-poster-sasha">Ver merchandising</a>
+                <a class="store-btn secondary" href="tienda.html">Tienda completa</a>
               </div>
             </article>
           </div>
@@ -2022,7 +2079,7 @@
           : `<span class="book-tile-btn secondary disabled">Próximamente</span>`;
 
         const storeButton = item.available && item.store
-          ? `<a class="book-tile-btn secondary" href="${item.store}">Tienda</a>`
+          ? `<a class="book-tile-btn secondary" href="${item.store}">Ver en tienda</a>`
           : `<span class="book-tile-btn secondary disabled">Tienda</span>`;
 
         const titleHtml = item.available

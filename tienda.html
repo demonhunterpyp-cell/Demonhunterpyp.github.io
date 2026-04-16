@@ -874,6 +874,44 @@
       padding-top: 18px;
     }
 
+    .related-links {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(214,176,106,.18);
+      background: rgba(255,255,255,.03);
+      color: #f2e2c3;
+      transition: .22s ease;
+    }
+
+    .related-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(214,176,106,.28);
+    }
+
+    .related-link strong {
+      color: #f0dbaf;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .related-link span {
+      color: var(--text-soft);
+      font-size: .92rem;
+    }
+
     .footer-note {
       width: min(1180px, 92%);
       margin: 0 auto;
@@ -966,8 +1004,8 @@
     </div>
 
     <div class="topbar-right">
-      <a href="./volumen-1.html" class="nav-btn">Volumen 1</a>
-      <a href="./anexo-entrevista.html" class="nav-btn">Anexos</a>
+      <a href="./volumen-1.html" class="nav-btn">Volumen principal</a>
+      <a href="./anexo-entrevista.html" class="nav-btn">Primer anexo</a>
       <a href="./tienda.html" class="nav-btn">Tienda general</a>
     </div>
   </header>
@@ -977,7 +1015,7 @@
       <div class="eyebrow">Tienda oficial</div>
       <h1>Tienda de Las Crónicas de Sasha</h1>
       <p class="hero-subtitle">
-        Aquí conviven la saga principal, los anexos y el futuro merchandising. El volumen 1 actúa como puerta central y los anexos se presentan como bloque unido que expande el universo.
+        Aquí conviven la saga principal, los anexos y el futuro merchandising. El volumen 1 ocupa el centro, los anexos forman un bloque propio y todo el catálogo queda orientado con la misma brújula que usan las fichas.
       </p>
     </div>
   </section>
@@ -1409,10 +1447,44 @@
         </article>
       </div>
     </section>
+
+    <section class="panel">
+      <div class="ornament"></div>
+      <h2 class="section-title">Brújula del catálogo</h2>
+      <p class="section-lead">
+        Desde la tienda puedes mantener siempre la orientación general del sistema: volumen principal, primera expansión complementaria y regreso al bloque central de la web.
+      </p>
+
+      <div class="related-links">
+        <a class="related-link" href="./volumen-1.html">
+          <div>
+            <strong>Volumen principal</strong>
+            <span>Abrir la ficha de la obra troncal de la saga.</span>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a class="related-link" href="./anexo-entrevista.html">
+          <div>
+            <strong>Primer anexo</strong>
+            <span>Entrar en la primera expansión complementaria del universo.</span>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a class="related-link" href="./index.html#libros">
+          <div>
+            <strong>Inicio del catálogo</strong>
+            <span>Volver al bloque de libros de la portada principal.</span>
+          </div>
+          <div>→</div>
+        </a>
+      </div>
+    </section>
   </main>
 
   <div class="footer-note">
-    Página de <strong>tienda.html</strong> ajustada para que la saga principal mande, los anexos formen una familia visual y el merchandising espere su turno sin meter ruido.
+    Página de <strong>tienda.html</strong> con brújula final unificada para que portada, fichas y tienda hablen el mismo idioma.
   </div>
 
   <script>

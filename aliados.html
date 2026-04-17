@@ -15,9 +15,6 @@
       --gold-soft:rgba(216,177,96,.25);
       --text:#f7eedc;
       --text-soft:#ddd2b7;
-      --muted:#cbb891;
-      --panel:rgba(20,25,39,.95);
-      --panel-2:rgba(35,44,65,.97);
       --shadow:0 22px 50px rgba(0,0,0,.33);
       --maxw:1180px;
     }
@@ -36,8 +33,6 @@
 
     a{color:inherit;text-decoration:none}
     img, video{display:block;max-width:100%}
-
-    .shell{width:min(var(--maxw), 92%); margin:0 auto}
 
     .topbar{
       width:min(var(--maxw), 92%);
@@ -358,20 +353,6 @@
       background:#0a0e16;
     }
 
-    .empty-state{
-      width:100%;
-      min-height:240px;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color:#d4ccb9;
-      line-height:1.8;
-      padding:24px;
-      border-radius:18px;
-      border:1px dashed rgba(216,177,96,.18);
-      background:rgba(255,255,255,.02);
-    }
-
     .lightbox{
       position:fixed;
       inset:0;
@@ -482,7 +463,7 @@
     }
 
     @media (max-width: 760px){
-      .shell, .page, .topbar, .footer{width:min(var(--maxw), 94%)}
+      .topbar, .page, .footer{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
       .gallery-grid{grid-template-columns:1fr}
       .video-carousel{grid-template-columns:1fr}
@@ -508,7 +489,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img id="heroAlliesImage" alt="Aliados" />
+        <img src="assets/galerias/aliados/asterisco.png" alt="Aliados" />
       </div>
 
       <div>
@@ -527,7 +508,32 @@
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">Rostros, escenas y presencias que acompañan a Sasha en su camino.</p>
 
-      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="gallery-grid" id="galleryGrid">
+        <article class="gallery-card" data-src="assets/galerias/aliados/asterisco.png" data-title="Asterisco" data-role="Aliado" data-text="Una de las presencias aliadas dentro del universo de Sasha.">
+          <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco">
+          <div class="caption"><h3>Asterisco</h3><p>Aliado</p></div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/aliados/garreth.png" data-title="Garreth" data-role="Aliado" data-text="Figura aliada dentro del recorrido de Sasha.">
+          <img src="assets/galerias/aliados/garreth.png" alt="Garreth">
+          <div class="caption"><h3>Garreth</h3><p>Aliado</p></div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/aliados/mapaches.png" data-title="Mapaches" data-role="Aliados" data-text="Grupo aliado con identidad propia dentro del universo de Sasha.">
+          <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches">
+          <div class="caption"><h3>Mapaches</h3><p>Aliados</p></div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/aliados/mar-tabanne-tabanne.png" data-title="Mar-Tabanne-Tabanne" data-role="Aliada" data-text="Otra figura aliada que amplía el bloque de compañeros.">
+          <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar-Tabanne-Tabanne">
+          <div class="caption"><h3>Mar-Tabanne-Tabanne</h3><p>Aliada</p></div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/aliados/senora-de-inverse.png" data-title="Señora de Inverse" data-role="Aliada" data-text="Presencia central y poderosa dentro del universo expandido de la saga.">
+          <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse">
+          <div class="caption"><h3>Señora de Inverse</h3><p>Aliada</p></div>
+        </article>
+      </div>
     </section>
 
     <section class="panel" id="videos">
@@ -541,8 +547,8 @@
 
           <div class="video-stage">
             <div class="video-head">
-              <h3 id="videoTitle">Vídeos de Aliados</h3>
-              <p id="videoDesc">Escenas en movimiento del bloque de aliados.</p>
+              <h3 id="videoTitle"></h3>
+              <p id="videoDesc"></p>
             </div>
             <div class="video-box" id="videoBox"></div>
           </div>
@@ -575,159 +581,7 @@
   </div>
 
   <script>
-    function svgPlaceholder(top, bottom){
-      const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
-      const bottomText = encodeURIComponent(bottom || 'Aliados');
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23253048'/>
-            <stop offset='100%' stop-color='%23101827'/>
-          </linearGradient>
-        </defs>
-        <rect width='1200' height='800' fill='url(%23g)'/>
-        <rect x='30' y='30' width='1140' height='740' rx='30' fill='none' stroke='rgba(216,177,96,.42)' stroke-width='3'/>
-        <text x='50%' y='38%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='44'>${topText}</text>
-        <text x='50%' y='54%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='62'>${bottomText}</text>
-      </svg>`.replace(/\n/g, '');
-    }
-
-    async function exists(path){
-      try{
-        const res = await fetch(path, { method:'HEAD' });
-        return res.ok;
-      }catch(e){
-        return false;
-      }
-    }
-
-    async function firstExisting(paths){
-      for(const path of paths){
-        if(await exists(path)) return path;
-      }
-      return null;
-    }
-
-    /*
-      ==========================
-      CONFIGURA AQUÍ TUS ARCHIVOS
-      ==========================
-      Si tus nombres reales no coinciden, cambia SOLO estas rutas.
-    */
-
-    const alliesImagesConfig = [
-      {
-        paths: [
-          'assets/personajes/aliados/01.jpg',
-          'assets/personajes/aliados/01.png',
-          'assets/personajes/aliados/1.jpg',
-          'assets/personajes/aliados/1.png',
-          'assets/personajes/aliados.jpg',
-          'assets/personajes/aliados.png',
-          'assets/aliados/01.jpg',
-          'assets/aliados/1.jpg'
-        ],
-        title: 'Aliados',
-        role: 'Compañeros',
-        text: 'La ayuda adopta muchas formas. A veces es amable, otras severa y otras insufrible, pero nadie puede seguir adelante solo.'
-      },
-      {
-        paths: [
-          'assets/personajes/aliados/02.jpg',
-          'assets/personajes/aliados/02.png',
-          'assets/personajes/aliados/2.jpg',
-          'assets/personajes/aliados/2.png',
-          'assets/aliados/02.jpg',
-          'assets/aliados/2.jpg'
-        ],
-        title: 'Aliados',
-        role: 'Compañeros',
-        text: 'Escena adicional del bloque de aliados dentro del universo de Sasha.'
-      },
-      {
-        paths: [
-          'assets/personajes/aliados/03.jpg',
-          'assets/personajes/aliados/03.png',
-          'assets/personajes/aliados/3.jpg',
-          'assets/personajes/aliados/3.png',
-          'assets/aliados/03.jpg',
-          'assets/aliados/3.jpg'
-        ],
-        title: 'Aliados',
-        role: 'Compañeros',
-        text: 'Otra imagen preparada para ampliar la galería del bloque.'
-      },
-      {
-        paths: [
-          'assets/personajes/aliados/04.jpg',
-          'assets/personajes/aliados/04.png',
-          'assets/personajes/aliados/4.jpg',
-          'assets/personajes/aliados/4.png',
-          'assets/aliados/04.jpg',
-          'assets/aliados/4.jpg'
-        ],
-        title: 'Aliados',
-        role: 'Compañeros',
-        text: 'Instantánea visual del grupo de aliados.'
-      },
-      {
-        paths: [
-          'assets/personajes/aliados/05.jpg',
-          'assets/personajes/aliados/05.png',
-          'assets/personajes/aliados/5.jpg',
-          'assets/personajes/aliados/5.png',
-          'assets/aliados/05.jpg',
-          'assets/aliados/5.jpg'
-        ],
-        title: 'Aliados',
-        role: 'Compañeros',
-        text: 'Imagen extra para seguir haciendo crecer la galería de aliados.'
-      }
-    ];
-
-    const alliesVideosConfig = [
-      {
-        paths: [
-          'assets/personajes/aliados/videos/video-1.mp4',
-          'assets/personajes/aliados/videos/01.mp4',
-          'assets/personajes/aliados/videos/1.mp4',
-          'assets/aliados/videos/video-1.mp4',
-          'assets/aliados/videos/01.mp4',
-          'assets/aliados/videos/1.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/aliados/01.jpg',
-          'assets/personajes/aliados/01.png',
-          'assets/personajes/aliados/1.jpg',
-          'assets/personajes/aliados/1.png'
-        ],
-        title: 'Vídeo 1',
-        desc: 'Primera escena en movimiento del bloque de aliados.'
-      },
-      {
-        paths: [
-          'assets/personajes/aliados/videos/video-2.mp4',
-          'assets/personajes/aliados/videos/02.mp4',
-          'assets/personajes/aliados/videos/2.mp4',
-          'assets/aliados/videos/video-2.mp4',
-          'assets/aliados/videos/02.mp4',
-          'assets/aliados/videos/2.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/aliados/02.jpg',
-          'assets/personajes/aliados/02.png',
-          'assets/personajes/aliados/2.jpg',
-          'assets/personajes/aliados/2.png'
-        ],
-        title: 'Vídeo 2',
-        desc: 'Segunda escena en movimiento del bloque de aliados.'
-      }
-    ];
-
-    const galleryGrid = document.getElementById('galleryGrid');
-    const heroAlliesImage = document.getElementById('heroAlliesImage');
-
+    const galleryCards = document.querySelectorAll('.gallery-card');
     const lightbox = document.getElementById('lightbox');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -735,149 +589,78 @@
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxText = document.getElementById('lightboxText');
 
+    galleryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImage.src = card.dataset.src;
+        lightboxRole.textContent = card.dataset.role;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxText.textContent = card.dataset.text;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+      }
+    });
+
+    const videos = [
+      {
+        src: 'assets/videos/aliados/Mapaches-presentación.mp4',
+        title: 'Mapaches presentación',
+        desc: 'Vídeo de presentación de los mapaches.'
+      },
+      {
+        src: 'assets/videos/aliados/Senora-de-Inverse-transformacion.mp4',
+        title: 'Señora de Inverse transformación',
+        desc: 'Vídeo de transformación de la Señora de Inverse.'
+      }
+    ];
+
+    let currentVideoIndex = 0;
+
     const prevVideo = document.getElementById('prevVideo');
     const nextVideo = document.getElementById('nextVideo');
     const videoTitle = document.getElementById('videoTitle');
     const videoDesc = document.getElementById('videoDesc');
     const videoBox = document.getElementById('videoBox');
 
-    let resolvedGallery = [];
-    let resolvedVideos = [];
-    let currentVideoIndex = 0;
-
-    async function buildGallery(){
-      resolvedGallery = [];
-
-      for(const item of alliesImagesConfig){
-        const found = await firstExisting(item.paths);
-        if(found){
-          resolvedGallery.push({
-            src: found,
-            title: item.title,
-            role: item.role,
-            text: item.text
-          });
-        }
-      }
-
-      if(!resolvedGallery.length){
-        resolvedGallery.push({
-          src: svgPlaceholder('Las Crónicas de Sasha', 'Aliados'),
-          title: 'Aliados',
-          role: 'Compañeros',
-          text: 'Añade aquí las rutas reales de tus imágenes de aliados si todavía no coinciden con las del bloque de configuración.'
-        });
-      }
-
-      heroAlliesImage.src = resolvedGallery[0].src;
-      heroAlliesImage.onerror = () => {
-        heroAlliesImage.src = svgPlaceholder('Las Crónicas de Sasha', 'Aliados');
-      };
-
-      galleryGrid.innerHTML = '';
-
-      resolvedGallery.forEach((item, index) => {
-        const card = document.createElement('article');
-        card.className = 'gallery-card';
-        card.innerHTML = `
-          <img src="${item.src}" alt="${item.title} ${index + 1}">
-          <div class="caption">
-            <h3>${item.title}</h3>
-            <p>${item.role}</p>
-          </div>
-        `;
-        card.addEventListener('click', () => openLightbox(item));
-        galleryGrid.appendChild(card);
-      });
-    }
-
-    function openLightbox(item){
-      lightboxImage.src = item.src;
-      lightboxImage.onerror = () => {
-        lightboxImage.src = svgPlaceholder('Las Crónicas de Sasha', item.title);
-      };
-      lightboxRole.textContent = item.role;
-      lightboxTitle.textContent = item.title;
-      lightboxText.textContent = item.text;
-      lightbox.classList.add('open');
-    }
-
-    function closeLightbox(){
-      lightbox.classList.remove('open');
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if(e.target === lightbox) closeLightbox();
-    });
-
-    async function buildVideos(){
-      resolvedVideos = [];
-
-      for(const item of alliesVideosConfig){
-        const videoSrc = await firstExisting(item.paths);
-        if(videoSrc){
-          const posterSrc = await firstExisting(item.posterPaths || []);
-          resolvedVideos.push({
-            src: videoSrc,
-            poster: posterSrc || '',
-            title: item.title,
-            desc: item.desc
-          });
-        }
-      }
-
-      renderVideo();
-    }
-
-    function renderVideo(){
-      if(!resolvedVideos.length){
-        prevVideo.disabled = true;
-        nextVideo.disabled = true;
-        videoTitle.textContent = 'Vídeos de Aliados';
-        videoDesc.textContent = 'Escenas en movimiento del bloque de aliados.';
-        videoBox.innerHTML = `
-          <div class="empty-state">
-            <div>
-              <strong>Aún no hay vídeos cargados para Aliados.</strong><br>
-              Revisa únicamente el bloque de configuración del final del HTML y sustituye las rutas por los nombres reales de tus archivos.
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      prevVideo.disabled = currentVideoIndex === 0;
-      nextVideo.disabled = currentVideoIndex === resolvedVideos.length - 1;
-
-      const current = resolvedVideos[currentVideoIndex];
+    function renderVideo() {
+      const current = videos[currentVideoIndex];
       videoTitle.textContent = current.title;
       videoDesc.textContent = current.desc;
 
       videoBox.innerHTML = `
-        <video controls preload="metadata" ${current.poster ? `poster="${current.poster}"` : ''}>
+        <video controls preload="metadata">
           <source src="${current.src}" type="video/mp4">
           Tu navegador no puede reproducir este vídeo.
         </video>
       `;
+
+      prevVideo.disabled = currentVideoIndex === 0;
+      nextVideo.disabled = currentVideoIndex === videos.length - 1;
     }
 
     prevVideo.addEventListener('click', () => {
-      if(currentVideoIndex > 0){
+      if (currentVideoIndex > 0) {
         currentVideoIndex--;
         renderVideo();
       }
     });
 
     nextVideo.addEventListener('click', () => {
-      if(currentVideoIndex < resolvedVideos.length - 1){
+      if (currentVideoIndex < videos.length - 1) {
         currentVideoIndex++;
         renderVideo();
       }
     });
 
-    buildGallery();
-    buildVideos();
+    renderVideo();
   </script>
 </body>
 </html>

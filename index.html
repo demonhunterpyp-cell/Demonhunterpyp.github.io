@@ -333,9 +333,7 @@
       box-shadow:0 22px 36px rgba(0,0,0,.28);
     }
 
-    section{
-      scroll-margin-top:92px;
-    }
+    section{scroll-margin-top:92px}
 
     .panel{
       margin:30px auto 0;
@@ -672,13 +670,6 @@
       font-size:1.15rem;
     }
 
-    .news-mini p{
-      margin:0;
-      color:#d4ccb9;
-      line-height:1.72;
-      font-size:.95rem;
-    }
-
     .gallery-link{
       border:1px solid rgba(216,177,96,.16);
       border-radius:20px;
@@ -712,8 +703,6 @@
       line-height:1.7;
       font-size:.95rem;
     }
-
-    .hidden{display:none!important}
 
     @media (max-width: 1080px){
       .hero-inner{grid-template-columns:1fr; gap:28px; min-height:auto; padding-top:90px}
@@ -808,7 +797,7 @@
 
         <div class="hero-actions">
           <a class="btn primary" href="#libros">Explora el catálogo de la saga</a>
-          <a class="btn secondary" href="tienda.html">Comprar Volumen 1</a>
+          <a class="btn secondary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
         </div>
       </div>
 
@@ -862,7 +851,7 @@
 
             <article class="card">
               <div class="card-media">
-                <a href="#"><img id="bookVol2" src="assets/libros/volumenes/volumen-2.png" alt="Las Crónicas de Sasha Volumen 2" /></a>
+                <img id="bookVol2" src="assets/libros/volumenes/volumen-2.png" alt="Las Crónicas de Sasha Volumen 2" />
               </div>
               <div class="card-body">
                 <div class="eyebrow">Las Crónicas de Sasha Volumen 2</div>
@@ -876,7 +865,7 @@
 
             <article class="card">
               <div class="card-media">
-                <a href="#"><img id="bookVol3" src="assets/libros/volumenes/volumen-3.png" alt="Las Crónicas de Sasha Volumen 3" /></a>
+                <img id="bookVol3" src="assets/libros/volumenes/volumen-3.png" alt="Las Crónicas de Sasha Volumen 3" />
               </div>
               <div class="card-body">
                 <div class="eyebrow">Las Crónicas de Sasha Volumen 3</div>
@@ -953,7 +942,7 @@
       <div class="characters-grid">
         <article class="card">
           <div class="card-media">
-            <a href="sasha.html"><img id="charSasha" src="assets/personajes/sasha.jpg" alt="Sasha" /></a>
+            <a href="sasha.html"><img id="charSasha" alt="Sasha" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Protagonista</div>
@@ -968,7 +957,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="party-girls.html"><img id="charParty" src="assets/personajes/party-girls.jpg" alt="Party Girls" /></a>
+            <a href="party-girls.html"><img id="charParty" alt="Party Girls" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Núcleo social</div>
@@ -983,7 +972,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="aliados.html"><img id="charAllies" src="assets/personajes/aliados.jpg" alt="Aliados" /></a>
+            <a href="aliados.html"><img id="charAllies" alt="Aliados" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Compañeros</div>
@@ -998,7 +987,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="enemigos.html"><img id="charEnemies" src="assets/personajes/enemigos.jpg" alt="Enemigos" /></a>
+            <a href="enemigos.html"><img id="charEnemies" alt="Enemigos" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Amenaza</div>
@@ -1192,25 +1181,84 @@
       </svg>`.replace(/\n/g, '');
     }
 
-    [
-      ['heroBook', 'Las Crónicas de Sasha', 'Volumen 1'],
-      ['bookVol1', 'Las Crónicas de Sasha', 'Volumen 1'],
-      ['bookVol2', 'Las Crónicas de Sasha', 'Volumen 2'],
-      ['bookVol3', 'Las Crónicas de Sasha', 'Volumen 3'],
-      ['annexInterview', 'Las Crónicas de Sasha', 'Entrevista'],
-      ['annexDVNI', 'Las Crónicas de Sasha', 'DVNI'],
-      ['annexFiveGifts', 'Las Crónicas de Sasha', 'Cinco dones'],
-      ['charSasha', 'Las Crónicas de Sasha', 'Sasha'],
-      ['charParty', 'Las Crónicas de Sasha', 'Party Girls'],
-      ['charAllies', 'Las Crónicas de Sasha', 'Aliados'],
-      ['charEnemies', 'Las Crónicas de Sasha', 'Enemigos']
-    ].forEach(item => {
-      const el = document.getElementById(item[0]);
-      if (!el) return;
-      el.addEventListener('error', () => {
-        el.src = makePlaceholder(item[1], item[2]);
-      });
+    const fixedImages = [
+      { id: 'heroBook', src: 'assets/libros/volumenes/libro-sin-fondo.png', top: 'Las Crónicas de Sasha', bottom: 'Volumen 1' },
+      { id: 'bookVol1', src: 'assets/libros/volumenes/libro-sin-fondo.png', top: 'Las Crónicas de Sasha', bottom: 'Volumen 1' },
+      { id: 'bookVol2', src: 'assets/libros/volumenes/volumen-2.png', top: 'Las Crónicas de Sasha', bottom: 'Volumen 2' },
+      { id: 'bookVol3', src: 'assets/libros/volumenes/volumen-3.png', top: 'Las Crónicas de Sasha', bottom: 'Volumen 3' },
+      { id: 'annexInterview', src: 'assets/libros/anexos/Portada-entrevista.png', top: 'Las Crónicas de Sasha', bottom: 'Entrevista' },
+      { id: 'annexDVNI', src: 'assets/libros/anexos/Portada-DVNI.png', top: 'Las Crónicas de Sasha', bottom: 'DVNI' },
+      { id: 'annexFiveGifts', src: 'assets/libros/anexos/Portada-cinco-dones.png', top: 'Las Crónicas de Sasha', bottom: 'Cinco dones' }
+    ];
+
+    fixedImages.forEach(item => {
+      const img = document.getElementById(item.id);
+      if (!img) return;
+      img.src = item.src;
+      img.onerror = () => {
+        img.src = makePlaceholder(item.top, item.bottom);
+      };
     });
+
+    const characterImages = {
+      charSasha: [
+        'assets/personajes/sasha.jpg',
+        'assets/personajes/sasha.png',
+        'assets/personajes/sasha.webp',
+        'assets/personajes/sasha/01.jpg',
+        'assets/personajes/sasha/01.png',
+        'assets/personajes/sasha/1.jpg',
+        'assets/personajes/sasha/1.png',
+        'assets/sasha/01.jpg',
+        'assets/sasha/1.jpg'
+      ],
+      charParty: [
+        'assets/personajes/party-girls.jpg',
+        'assets/personajes/party-girls.png',
+        'assets/personajes/party-girls.webp',
+        'assets/personajes/party-girls/01.jpg',
+        'assets/personajes/party-girls/1.jpg'
+      ],
+      charAllies: [
+        'assets/personajes/aliados.jpg',
+        'assets/personajes/aliados.png',
+        'assets/personajes/aliados.webp',
+        'assets/personajes/aliados/01.jpg',
+        'assets/personajes/aliados/1.jpg'
+      ],
+      charEnemies: [
+        'assets/personajes/enemigos.jpg',
+        'assets/personajes/enemigos.png',
+        'assets/personajes/enemigos.webp',
+        'assets/personajes/enemigos/01.jpg',
+        'assets/personajes/enemigos/1.jpg'
+      ]
+    };
+
+    async function firstExisting(paths){
+      for (const path of paths){
+        try{
+          const res = await fetch(path, { method: 'HEAD' });
+          if (res.ok) return path;
+        } catch(e){}
+      }
+      return null;
+    }
+
+    async function resolveCharacterImage(imgId, title){
+      const img = document.getElementById(imgId);
+      if (!img) return;
+      const found = await firstExisting(characterImages[imgId] || []);
+      img.src = found || makePlaceholder('Las Crónicas de Sasha', title);
+      img.onerror = () => {
+        img.src = makePlaceholder('Las Crónicas de Sasha', title);
+      };
+    }
+
+    resolveCharacterImage('charSasha', 'Sasha');
+    resolveCharacterImage('charParty', 'Party Girls');
+    resolveCharacterImage('charAllies', 'Aliados');
+    resolveCharacterImage('charEnemies', 'Enemigos');
   </script>
 </body>
 </html>

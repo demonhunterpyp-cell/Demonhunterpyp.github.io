@@ -502,7 +502,7 @@
   </section>
 
   <main class="page">
-    <section class="panel">
+    <section class="panel" id="galeria">
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">Rostros, escenas y presencias que acompañan a Sasha en su camino.</p>
@@ -593,6 +593,10 @@
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxText = document.getElementById('lightboxText');
 
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+    }
+
     galleryCards.forEach(card => {
       card.addEventListener('click', () => {
         lightboxImage.src = card.dataset.src;
@@ -603,13 +607,17 @@
       });
     });
 
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('open');
-    });
+    lightboxClose.addEventListener('click', closeLightbox);
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
-        lightbox.classList.remove('open');
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
       }
     });
 

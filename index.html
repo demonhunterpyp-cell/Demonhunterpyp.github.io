@@ -176,52 +176,101 @@
     .hero{
       position:relative;
       overflow:hidden;
-      min-height:100vh;
       border-bottom:1px solid rgba(216,177,96,.18);
+      margin-bottom:24px;
+    }
+
+    .hero-banner{
+      position:relative;
+      min-height:clamp(360px, 62vh, 620px);
       background:
-        linear-gradient(90deg, rgba(8,12,20,.84) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
+        linear-gradient(180deg, rgba(8,12,20,.42) 0%, rgba(8,12,20,.52) 55%, rgba(8,12,20,.74) 100%),
+        linear-gradient(90deg, rgba(8,12,20,.72) 0%, rgba(8,12,20,.32) 52%, rgba(8,12,20,.18) 100%),
         url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
     }
 
-    .hero::after{
+    .hero-banner::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 75% 18%, rgba(216,177,96,.15), transparent 18%),
-        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.25));
+        radial-gradient(circle at 78% 16%, rgba(216,177,96,.16), transparent 18%),
+        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.18));
       pointer-events:none;
     }
 
-    .hero-inner{
+    .hero-banner-inner{
       position:relative;
       z-index:2;
-      min-height:100vh;
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:42px;
-      align-items:center;
-      padding:86px 0 48px;
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:108px 0 118px;
+    }
+
+    .hero-title-block{
+      max-width:780px;
     }
 
     .hero-copy h1{
       margin:0 0 12px;
       color:#f0c86f;
-      font-size:clamp(2.5rem, 6vw, 5.2rem);
-      line-height:.96;
+      font-size:clamp(3rem, 8vw, 6.2rem);
+      line-height:.92;
       letter-spacing:.01em;
-      text-shadow:0 3px 18px rgba(0,0,0,.28);
+      text-shadow:0 4px 22px rgba(0,0,0,.28);
     }
 
     .subtitle{
-      margin:0 0 18px;
-      font-size:clamp(1.12rem, 2vw, 1.45rem);
+      margin:0;
+      font-size:clamp(1.1rem, 2vw, 1.55rem);
       color:#f5e6c7;
+      text-shadow:0 2px 10px rgba(0,0,0,.22);
+    }
+
+    .scroll-cue{
+      position:absolute;
+      left:50%;
+      bottom:22px;
+      transform:translateX(-50%);
+      z-index:2;
+      display:inline-flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      color:#f3e6cb;
+      font-size:.92rem;
+      letter-spacing:.04em;
+      opacity:.92;
+    }
+
+    .scroll-cue .arrow{
+      width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.32);
+      background:rgba(10,14,24,.36);
+      font-size:1rem;
+    }
+
+    .hero-feature-wrap{
+      position:relative;
+      z-index:3;
+      width:min(var(--maxw), 92%);
+      margin:-64px auto 0;
+      padding-bottom:18px;
+    }
+
+    .hero-feature{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:34px;
+      align-items:center;
     }
 
     .hero-paper{
       position:relative;
-      max-width:820px;
       background:
         radial-gradient(circle at 88% 16%, rgba(255,255,255,.12), transparent 16%),
         linear-gradient(180deg, rgba(239,225,201,.98), rgba(228,210,178,.98));
@@ -274,6 +323,8 @@
       gap:12px;
       flex-wrap:wrap;
       margin-top:24px;
+      position:relative;
+      z-index:1;
     }
 
     .btn{
@@ -304,31 +355,31 @@
     }
 
     .hero-book{
-      justify-self:end;
-      width:min(360px, 100%);
-      position:relative;
+      justify-self:center;
+      width:min(320px, 100%);
+      text-align:center;
     }
 
     .hero-book a{
-      display:block;
-      border-radius:26px;
-      padding:16px;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
-      border:1px solid rgba(216,177,96,.20);
-      box-shadow:var(--shadow);
+      display:inline-block;
       transition:.25s ease;
     }
 
-    .hero-book a:hover{transform:translateY(-6px)}
+    .hero-book a:hover{
+      transform:translateY(-6px) scale(1.01);
+    }
 
     .hero-book img{
-      aspect-ratio:2/3;
       width:100%;
-      object-fit:cover;
-      border-radius:16px;
-      box-shadow:0 22px 36px rgba(0,0,0,.28);
+      object-fit:contain;
+      filter:drop-shadow(0 28px 34px rgba(0,0,0,.34));
+    }
+
+    .hero-book-note{
+      margin-top:12px;
+      color:var(--text-soft);
+      font-size:.94rem;
+      line-height:1.7;
     }
 
     section{scroll-margin-top:92px}
@@ -678,8 +729,14 @@
     }
 
     @media (max-width: 1080px){
-      .hero-inner{grid-template-columns:1fr; gap:28px; min-height:auto; padding-top:90px}
-      .hero-book{justify-self:start; max-width:320px}
+      .hero-banner-inner{padding:102px 0 110px}
+      .hero-feature{
+        grid-template-columns:1fr;
+        gap:22px;
+      }
+      .hero-book{
+        max-width:260px;
+      }
       .books-grid,
       .characters-grid,
       .shop-grid{grid-template-columns:repeat(2, 1fr)}
@@ -690,7 +747,18 @@
     @media (max-width: 760px){
       .shell{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
-      .hero-paper{padding:24px 18px}
+      .hero-banner{
+        min-height:420px;
+      }
+      .hero-banner-inner{
+        padding:94px 0 108px;
+      }
+      .hero-paper{
+        padding:24px 18px;
+      }
+      .hero-feature-wrap{
+        margin:-44px auto 0;
+      }
       .books-grid,
       .characters-grid,
       .shop-grid{grid-template-columns:1fr}
@@ -753,28 +821,40 @@
   </aside>
 
   <header class="hero" id="inicio">
-    <div class="shell hero-inner">
-      <div class="hero-copy">
-        <h1>Las Crónicas de Sasha</h1>
-        <p class="subtitle">Descubre el universo de Sasha</p>
+    <div class="hero-banner">
+      <div class="hero-banner-inner">
+        <div class="hero-title-block hero-copy">
+          <h1>Las Crónicas de Sasha</h1>
+          <p class="subtitle">Descubre el universo de Sasha</p>
+        </div>
+      </div>
 
-        <div class="hero-paper" id="historia">
+      <a class="scroll-cue" href="#libros" aria-label="Bajar hacia el contenido">
+        <span>Explorar la saga</span>
+        <span class="arrow">↓</span>
+      </a>
+    </div>
+
+    <div class="hero-feature-wrap" id="historia">
+      <div class="hero-feature">
+        <div class="hero-paper">
           <p class="paper-hook">El mundo olvidó la magia. La magia no olvidó al mundo.</p>
           <p class="paper-synopsis">Durante siglos, la humanidad persiguió y erradicó aquello que no comprendía. Ahora, lo que fue olvidado comienza a reclamar su lugar.</p>
           <p class="paper-synopsis">Lo que empieza como una decisión sin importancia abre para Sasha una puerta que ya no se cierra. En un entorno que al principio parece un simple juego, descubrirá que el dolor se siente como real, que cada paso cuenta y que nada se regala.</p>
           <p class="paper-closing">Porque no todas las heroínas nacen señaladas. Algunas se construyen golpe a golpe.</p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#libros">Explora el catálogo de la saga</a>
+            <a class="btn secondary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+          </div>
         </div>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#libros">Explora el catálogo de la saga</a>
-          <a class="btn secondary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+        <div class="hero-book">
+          <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
+            <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
+          </a>
+          <p class="hero-book-note">La puerta de entrada al viaje de Sasha comienza aquí.</p>
         </div>
-      </div>
-
-      <div class="hero-book">
-        <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
-          <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
-        </a>
       </div>
     </div>
   </header>

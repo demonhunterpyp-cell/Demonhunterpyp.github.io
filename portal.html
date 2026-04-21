@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal | DemonHunter</title>
+  <meta name="description" content="Portal de acceso al universo DemonHunter: novela, lore expandido y sistema de juego." />
+  <style>
+    :root{
+      --bg:#08111f;
+      --bg-2:#101b2e;
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --line:rgba(240, 200, 111, .36);
+      --text:#f7eedc;
+      --text-soft:#e6d8b7;
+      --shadow:0 20px 45px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family:Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,177,96,.10), transparent 18%),
+        radial-gradient(circle at 80% 15%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      color:var(--text);
+      overflow:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .portal{
+      position:relative;
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      isolation:isolate;
+      background:#091120;
+    }
+
+    .portal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 55%, rgba(255,220,150,.06), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08));
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .panel{
+      position:absolute;
+      inset:0;
+      display:block;
+      overflow:hidden;
+      transition:
+        transform .35s ease,
+        filter .35s ease,
+        opacity .35s ease;
+      cursor:pointer;
+      will-change:transform, filter;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center center;
+      transform:scale(1.03);
+      transition:
+        transform .6s ease,
+        filter .35s ease,
+        opacity .35s ease;
+    }
+
+    .panel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.0;
+      transition:opacity .35s ease;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,226,159,.20), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+      mix-blend-mode:screen;
+    }
+
+    .panel:hover,
+    .panel:focus-visible{
+      filter:brightness(1.08) saturate(1.08);
+      z-index:5;
+      outline:none;
+      animation:latido 1.05s ease-in-out infinite;
+    }
+
+    .panel:hover::before,
+    .panel:focus-visible::before{
+      transform:scale(1.06);
+      filter:brightness(1.08);
+    }
+
+    .panel:hover::after,
+    .panel:focus-visible::after{
+      opacity:1;
+    }
+
+    @keyframes latido{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.015)}
+      100%{transform:scale(1)}
+    }
+
+    .panel-top{
+      clip-path:polygon(0 0, 100% 0, 50% 58%);
+      z-index:2;
+    }
+
+    .panel-top::before{
+      background-image:
+        linear-gradient(180deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.40) 60%, rgba(7,11,19,.66) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.28) 0%, rgba(7,11,19,.10) 50%, rgba(7,11,19,.22) 100%),
+        url("assets/fondo-sasha-panorama.png");
+    }
+
+    .panel-left{
+      clip-path:polygon(0 0, 50% 58%, 50% 100%, 0 100%);
+      z-index:3;
+    }
+
+    .panel-left::before{
+      background-image:
+        linear-gradient(180deg, rgba(20,11,7,.22) 0%, rgba(20,11,7,.44) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.30) 0%, rgba(7,11,19,.08) 100%),
+        url("assets/fondo-sasha-panorama.png");
+      background-position:left center;
+    }
+
+    .panel-right{
+      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
+      z-index:3;
+    }
+
+    .panel-right::before{
+      background-image:
+        linear-gradient(180deg, rgba(10,14,32,.22) 0%, rgba(10,14,32,.48) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.08) 0%, rgba(7,11,19,.30) 100%),
+        url("assets/fondo-sasha-panorama.png");
+      background-position:right center;
+    }
+
+    .panel-content{
+      position:absolute;
+      z-index:6;
+      max-width:420px;
+      padding:24px 28px;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.16);
+      background:rgba(7,11,19,.24);
+      backdrop-filter:blur(4px);
+      box-shadow:var(--shadow);
+      transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s ease;
+    }
+
+    .panel:hover .panel-content,
+    .panel:focus-visible .panel-content{
+      background:rgba(7,11,19,.34);
+      border-color:rgba(216,177,96,.30);
+      transform:translateY(-4px);
+    }
+
+    .panel-top .panel-content{
+      top:7vh;
+      left:50%;
+      transform:translateX(-50%);
+      text-align:center;
+      width:min(720px, 88vw);
+      max-width:720px;
+    }
+
+    .panel-top:hover .panel-content,
+    .panel-top:focus-visible .panel-content{
+      transform:translateX(-50%) translateY(-4px);
+    }
+
+    .panel-left .panel-content{
+      left:4.5vw;
+      bottom:9vh;
+      width:min(410px, 36vw);
+      text-align:left;
+    }
+
+    .panel-right .panel-content{
+      right:4.5vw;
+      bottom:9vh;
+      width:min(410px, 36vw);
+      text-align:right;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin:0 0 12px;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      background:rgba(255,255,255,.04);
+      color:var(--gold);
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .panel h1,
+    .panel h2{
+      margin:0 0 12px;
+      color:#f0c86f;
+      line-height:.95;
+      font-weight:700;
+      text-shadow:0 3px 16px rgba(0,0,0,.26);
+    }
+
+    .panel-top h1{
+      font-size:clamp(2.8rem, 6vw, 5rem);
+    }
+
+    .panel-left h2,
+    .panel-right h2{
+      font-size:clamp(2rem, 3.6vw, 3.2rem);
+    }
+
+    .panel p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.7;
+      font-size:1rem;
+    }
+
+    .panel small{
+      display:block;
+      margin-top:14px;
+      color:#f3e6cb;
+      font-size:.95rem;
+      opacity:.92;
+    }
+
+    .portal-lines{
+      position:absolute;
+      inset:0;
+      z-index:4;
+      pointer-events:none;
+    }
+
+    .portal-lines svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .portal-center{
+      position:absolute;
+      left:50%;
+      top:58%;
+      transform:translate(-50%, -50%);
+      z-index:7;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:radial-gradient(circle, #f0c86f 0%, #c28a39 60%, rgba(194,138,57,0) 100%);
+      box-shadow:0 0 18px rgba(240,200,111,.55);
+      pointer-events:none;
+    }
+
+    .portal-title{
+      position:absolute;
+      left:50%;
+      top:16px;
+      transform:translateX(-50%);
+      z-index:8;
+      text-align:center;
+      padding:8px 18px;
+      border-radius:999px;
+      background:rgba(7,11,19,.40);
+      border:1px solid rgba(216,177,96,.18);
+      color:#f4e7cb;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.82rem;
+      backdrop-filter:blur(4px);
+    }
+
+    @media (max-width: 980px){
+      body{overflow:auto}
+      .portal{
+        min-height:100vh;
+        height:auto;
+        display:grid;
+        grid-template-columns:1fr;
+      }
+
+      .portal-lines,
+      .portal-center{
+        display:none;
+      }
+
+      .portal-title{
+        top:12px;
+      }
+
+      .panel{
+        position:relative;
+        inset:auto;
+        min-height:33.333vh;
+        clip-path:none !important;
+        animation:none !important;
+      }
+
+      .panel::before{
+        transform:scale(1);
+      }
+
+      .panel-top .panel-content,
+      .panel-left .panel-content,
+      .panel-right .panel-content{
+        position:relative;
+        top:auto;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        transform:none;
+        width:min(92vw, 760px);
+        max-width:none;
+        margin:0 auto;
+        text-align:left;
+      }
+
+      .panel-top:hover .panel-content,
+      .panel-top:focus-visible .panel-content,
+      .panel-left:hover .panel-content,
+      .panel-left:focus-visible .panel-content,
+      .panel-right:hover .panel-content,
+      .panel-right:focus-visible .panel-content{
+        transform:translateY(-4px);
+      }
+
+      .panel-inner-mobile{
+        min-height:33.333vh;
+        display:flex;
+        align-items:center;
+        padding:72px 0 32px;
+      }
+
+      .panel-top h1,
+      .panel-left h2,
+      .panel-right h2{
+        font-size:clamp(2.2rem, 7vw, 3.4rem);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="portal">
+
+    <div class="portal-title">Portal de acceso</div>
+    <div class="portal-center"></div>
+
+    <div class="portal-lines" aria-hidden="true">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="0" y1="0" x2="50" y2="58" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+        <line x1="100" y1="0" x2="50" y2="58" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+        <line x1="50" y1="58" x2="50" y2="100" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+      </svg>
+    </div>
+
+    <!-- ZONA SUPERIOR -->
+    <a class="panel panel-top" href="https://www.worldanvil.com/" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
+          <span class="eyebrow">DemonHunter</span>
+          <h1>Descubre el mundo</h1>
+          <p>Explora el lore expandido, los artículos, las facciones, los lugares y la historia viva del universo.</p>
+          <small>Entrar en World Anvil</small>
+        </div>
+      </div>
+    </a>
+
+    <!-- ZONA IZQUIERDA -->
+    <a class="panel panel-left" href="index.html" aria-label="Ir a Las Crónicas de Sasha">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
+          <span class="eyebrow">Novela</span>
+          <h2>Las Crónicas<br>de Sasha</h2>
+          <p>La puerta narrativa al universo. Libro, personajes, presentación de la saga y contenido principal de la novela.</p>
+          <small>Entrar en la web de la saga</small>
+        </div>
+      </div>
+    </a>
+
+    <!-- ZONA DERECHA -->
+    <a class="panel panel-right" href="pay-and-play.html" aria-label="Ir a Pay and Play System">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
+          <span class="eyebrow">Sistema de juego</span>
+          <h2>Pay &amp; Play<br>System</h2>
+          <p>Normas, reglas, hechizos, fichas, enemigos, campañas y toda la estructura jugable del sistema.</p>
+          <small>Entrar en el sistema</small>
+        </div>
+      </div>
+    </a>
+
+  </main>
+
+</body>
+</html>

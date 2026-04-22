@@ -32,7 +32,61 @@
     }
 
     a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
+    img,video{display:block;max-width:100%}
+
+    .interworld-bar{
+      position:relative;
+      z-index:40;
+      background:rgba(9,13,24,.86);
+      border-bottom:1px solid rgba(216,177,96,.16);
+      backdrop-filter:blur(10px);
+    }
+
+    .interworld-inner{
+      width:min(1180px, 92%);
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+
+    .interworld-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .interworld-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      font-size:.95rem;
+      line-height:1;
+      text-decoration:none;
+      transition:.22s ease;
+    }
+
+    .interworld-link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(216,177,96,.32);
+      color:#fff2d2;
+    }
+
+    .interworld-link.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
 
     .topbar{
       width:min(var(--maxw), 92%);
@@ -280,6 +334,40 @@
       line-height:1.7;
     }
 
+    .placeholder-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:22px;
+      position:relative;
+      z-index:1;
+    }
+
+    .placeholder-card{
+      border:1px solid rgba(216,177,96,.16);
+      border-radius:22px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+      padding:20px 18px;
+      text-align:center;
+    }
+
+    .placeholder-card h3{
+      margin:0 0 8px;
+      color:#f0dbaf;
+      font-size:1.2rem;
+    }
+
+    .placeholder-card p{
+      margin:0;
+      color:#d4ccb9;
+      font-size:.96rem;
+      line-height:1.8;
+    }
+
     .lightbox{
       position:fixed;
       inset:0;
@@ -391,100 +479,41 @@
 
     @media (max-width: 760px){
       .topbar, .page, .footer{width:min(var(--maxw), 94%)}
-      .panel{padding:24px 16px}
+
+      .interworld-inner{
+        align-items:flex-start;
+      }
+
+      .interworld-group{
+        width:100%;
+      }
+
+      .interworld-link{
+        flex:1 1 calc(50% - 10px);
+        text-align:center;
+      }
+
       .gallery-grid{grid-template-columns:1fr}
     }
-  
-.interworld-bar{
-  position:relative;
-  z-index:40;
-  background:rgba(9,13,24,.86);
-  border-bottom:1px solid rgba(216,177,96,.16);
-  backdrop-filter:blur(10px);
-}
-
-.interworld-inner{
-  width:min(1180px, 92%);
-  margin:0 auto;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 0;
-}
-
-.interworld-group{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.interworld-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:9px 14px;
-  border-radius:999px;
-  border:1px solid rgba(216,177,96,.18);
-  background:rgba(255,255,255,.04);
-  color:#f2e2c3;
-  font-size:.95rem;
-  line-height:1;
-  text-decoration:none;
-  transition:.22s ease;
-}
-
-.interworld-link:hover{
-  transform:translateY(-1px);
-  background:rgba(255,255,255,.07);
-  border-color:rgba(216,177,96,.32);
-  color:#fff2d2;
-}
-
-.interworld-link.primary{
-  color:#4a2f12;
-  background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-  border-color:#8b6327;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
-}
-
-@media (max-width: 760px){
-  .interworld-inner{
-    align-items:flex-start;
-  }
-
-  .interworld-group{
-    width:100%;
-  }
-
-  .interworld-link{
-    flex:1 1 calc(50% - 10px);
-    text-align:center;
-  }
-}
-
-</style>
+  </style>
 </head>
 <body>
 
-
-<div class="interworld-bar">
-  <div class="interworld-inner">
-    <div class="interworld-group">
-      <a class="interworld-link primary" href="../index.html">Portal principal</a>
-      <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-      <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-    </div>
-    <div class="interworld-group">
-      <a class="interworld-link" href="sasha.html">Sasha</a>
-      <a class="interworld-link" href="party-girls.html">Party Girls</a>
-      <a class="interworld-link" href="aliados.html">Aliados</a>
-      <a class="interworld-link" href="enemigos.html">Enemigos</a>
+  <div class="interworld-bar">
+    <div class="interworld-inner">
+      <div class="interworld-group">
+        <a class="interworld-link primary" href="../index.html">Portal principal</a>
+        <a class="interworld-link" href="index.html">Inicio Crónicas</a>
+        <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
+      </div>
+      <div class="interworld-group">
+        <a class="interworld-link" href="sasha.html">Sasha</a>
+        <a class="interworld-link" href="party-girls.html">Party Girls</a>
+        <a class="interworld-link" href="aliados.html">Aliados</a>
+        <a class="interworld-link" href="enemigos.html">Enemigos</a>
+      </div>
     </div>
   </div>
-</div>
-
 
   <header class="topbar">
     <div class="topbar-left">
@@ -500,49 +529,62 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls" />
+        <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls" />
       </div>
 
       <div>
-        <div class="eyebrow">Galería de grupo</div>
+        <div class="eyebrow">Núcleo social</div>
         <h1>Party Girls</h1>
         <p class="hero-copy">
-          Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza. Aquí se reúnen sus imágenes en una sola página.
+          Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza. Aquí se reúnen las integrantes que sostienen una parte esencial del corazón del viaje de Sasha.
         </p>
       </div>
     </div>
   </section>
 
   <main class="page">
-    <section class="panel">
+    <section class="panel" id="galeria">
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
-      <p class="section-lead">Una selección visual del grupo, sus escenas y su energía compartida dentro del universo de Sasha.</p>
+      <p class="section-lead">Compañeras, referentes y presencias clave dentro del círculo más cercano de Sasha.</p>
 
       <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-src="assets/galerias/party-girls/party-girls.jpeg" data-title="Party Girls" data-role="Grupo" data-text="Imagen principal del bloque Party Girls.">
-          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls grupo">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/party-girls.png" data-title="Party Girls" data-role="Grupo" data-text="Imagen principal del bloque de Party Girls.">
+          <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls grupo">
           <div class="caption"><h3>Party Girls</h3><p>Grupo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/party-girls/azalea.png" data-title="Azalea" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/azalea.png" data-title="Azalea" data-role="Party Girl" data-text="Integrante del núcleo social que acompaña a Sasha en su recorrido.">
           <img src="assets/galerias/party-girls/azalea.png" alt="Azalea">
-          <div class="caption"><h3>Azalea</h3><p>Party Girls</p></div>
+          <div class="caption"><h3>Azalea</h3><p>Party Girl</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/party-girls/elorzal.png" data-title="Elorzal" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/elorzal.png" data-title="Elorzal" data-role="Party Girl" data-text="Figura del bloque de Party Girls con presencia propia dentro del grupo.">
           <img src="assets/galerias/party-girls/elorzal.png" alt="Elorzal">
-          <div class="caption"><h3>Elorzal</h3><p>Party Girls</p></div>
+          <div class="caption"><h3>Elorzal</h3><p>Party Girl</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/party-girls/ilyanna.png" data-title="Ilyanna" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/ilyanna.png" data-title="Ilyanna" data-role="Party Girl" data-text="Integrante del grupo cercano que forma parte del apoyo constante alrededor de Sasha.">
           <img src="assets/galerias/party-girls/ilyanna.png" alt="Ilyanna">
-          <div class="caption"><h3>Ilyanna</h3><p>Party Girls</p></div>
+          <div class="caption"><h3>Ilyanna</h3><p>Party Girl</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/party-girls/monet.png" data-title="Monet" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/monet.png" data-title="Monet" data-role="Party Girl" data-text="Otra de las figuras clave dentro del grupo de Party Girls.">
           <img src="assets/galerias/party-girls/monet.png" alt="Monet">
-          <div class="caption"><h3>Monet</h3><p>Party Girls</p></div>
+          <div class="caption"><h3>Monet</h3><p>Party Girl</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="videos">
+      <div class="ornament"></div>
+      <h2 class="section-title">Vídeos</h2>
+      <p class="section-lead">Este bloque queda preparado para futuras escenas en movimiento del grupo.</p>
+
+      <div class="placeholder-grid">
+        <article class="placeholder-card">
+          <h3>Próximamente</h3>
+          <p>Aquí podremos añadir vídeos de Party Girls cuando subas ese material a la carpeta correspondiente.</p>
         </article>
       </div>
     </section>
@@ -561,7 +603,7 @@
       </div>
 
       <aside class="lightbox-info">
-        <div class="tag" id="lightboxRole">Party</div>
+        <div class="tag" id="lightboxRole">Party Girls</div>
         <h3 id="lightboxTitle">Party Girls</h3>
         <h4>Ficha</h4>
         <p id="lightboxText"></p>

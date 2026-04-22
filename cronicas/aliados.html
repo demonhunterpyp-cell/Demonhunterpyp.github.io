@@ -15,6 +15,7 @@
       --gold-soft:rgba(216,177,96,.25);
       --text:#f7eedc;
       --text-soft:#ddd2b7;
+      --muted:#cbb891;
       --shadow:0 22px 50px rgba(0,0,0,.33);
       --maxw:1180px;
     }
@@ -32,7 +33,8 @@
     }
 
     a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
+    img,video{display:block;max-width:100%}
+    button{font:inherit}
 
     .shell{
       width:min(var(--maxw), 92%);
@@ -42,7 +44,7 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:20;
+      z-index:30;
       backdrop-filter:blur(8px);
       background:rgba(10,14,24,.82);
       border-bottom:1px solid rgba(216,177,96,.15);
@@ -72,6 +74,12 @@
       border-radius:999px;
       border:1px solid rgba(216,177,96,.16);
       background:rgba(255,255,255,.03);
+      transition:.2s ease;
+    }
+
+    .breadcrumbs a:hover{
+      background:rgba(255,255,255,.06);
+      color:#f6ebd5;
     }
 
     .hero{
@@ -124,7 +132,7 @@
       color:var(--text-soft);
       line-height:1.8;
       font-size:1rem;
-      max-width:860px;
+      max-width:900px;
     }
 
     .section{
@@ -165,6 +173,8 @@
         radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
         linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
       box-shadow:0 14px 28px rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column;
     }
 
     .card-media{
@@ -172,6 +182,7 @@
       overflow:hidden;
       border-bottom:1px solid rgba(216,177,96,.14);
       cursor:pointer;
+      position:relative;
     }
 
     .card-media img{
@@ -202,6 +213,51 @@
       line-height:1.7;
     }
 
+    .video-wrap{
+      margin-top:22px;
+      position:relative;
+    }
+
+    .video-track{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .video-card{
+      border:1px solid rgba(216,177,96,.16);
+      border-radius:22px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+    }
+
+    .video-card video{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      background:#0d1422;
+    }
+
+    .video-card-body{
+      padding:14px 16px 18px;
+    }
+
+    .video-card h3{
+      margin:0 0 6px;
+      color:#f0dbaf;
+      font-size:1.15rem;
+    }
+
+    .video-card p{
+      margin:0;
+      color:var(--text-soft);
+      font-size:.95rem;
+      line-height:1.7;
+    }
+
     .lightbox{
       position:fixed;
       inset:0;
@@ -218,7 +274,7 @@
     }
 
     .lightbox-inner{
-      width:min(1100px, 100%);
+      width:min(1180px, 100%);
       max-height:90vh;
       border:1px solid rgba(216,177,96,.18);
       border-radius:24px;
@@ -253,10 +309,18 @@
       cursor:pointer;
     }
 
+    .lightbox-body{
+      display:grid;
+      grid-template-columns:minmax(0, 1.3fr) minmax(280px, .7fr);
+      min-height:420px;
+    }
+
     .lightbox-media{
-      max-height:calc(90vh - 62px);
-      overflow:auto;
       background:#0d1422;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:auto;
     }
 
     .lightbox-media img{
@@ -265,9 +329,56 @@
       object-fit:contain;
     }
 
+    .lightbox-side{
+      padding:22px 20px;
+      border-left:1px solid rgba(216,177,96,.14);
+      background:linear-gradient(180deg, rgba(30,38,59,.98), rgba(20,26,40,.98));
+    }
+
+    .lightbox-role{
+      color:#e5c787;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.8rem;
+      margin-bottom:10px;
+    }
+
+    .lightbox-side h3{
+      margin:0 0 10px;
+      color:#f0dbaf;
+      font-size:1.5rem;
+      line-height:1.15;
+    }
+
+    .lightbox-side h4{
+      margin:18px 0 8px;
+      color:#f0dbaf;
+      font-size:1rem;
+    }
+
+    .lightbox-side p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.8;
+      font-size:.96rem;
+    }
+
     @media (max-width: 980px){
       .grid{
         grid-template-columns:repeat(2, 1fr);
+      }
+
+      .video-track{
+        grid-template-columns:1fr;
+      }
+
+      .lightbox-body{
+        grid-template-columns:1fr;
+      }
+
+      .lightbox-side{
+        border-left:none;
+        border-top:1px solid rgba(216,177,96,.14);
       }
     }
 
@@ -309,20 +420,20 @@
         </div>
         <div class="hero-body">
           <div class="eyebrow">Galería de apoyo</div>
-          <h1>Aliados</h1>
-          <p class="lead">La ayuda adopta muchas formas. A veces llega con sabiduría, otras con fuerza, otras con humor o con rareza, pero cada uno de estos aliados deja huella en el camino de Sasha.</p>
+          <h1>Galería de Aliados</h1>
+          <p class="lead">Mentores, apoyos, rarezas útiles y presencias decisivas. La parrilla sigue siendo la protagonista y cada imagen puede abrirse con su ficha lateral. Debajo, el bloque de vídeos reúne las escenas disponibles de los aliados.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>Imágenes</h2>
-      <p>Personajes, apoyos y presencias que enriquecen el universo de la saga y acompañan el recorrido de Sasha desde distintos ángulos.</p>
+      <p>Rostros, figuras y presencias que ayudan a Sasha desde lugares muy distintos del mundo de Demon Hunter.</p>
 
       <div class="grid">
         <article class="card">
-          <div class="card-media" data-title="Aliados" data-img="assets/galerias/aliados/aliados.jpeg">
-            <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados grupo" />
+          <div class="card-media" data-title="Aliados" data-role="Grupo" data-ficha="Conjunto visual de personajes y apoyos que orbitan alrededor de Sasha. Representan la diversidad de formas en que la ayuda puede aparecer en la saga." data-img="assets/galerias/aliados/aliados.jpeg">
+            <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" />
           </div>
           <div class="card-body">
             <h3>Aliados</h3>
@@ -331,7 +442,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" data-title="Asterisco" data-img="assets/galerias/aliados/asterisco.png">
+          <div class="card-media" data-title="Asterisco" data-role="Aliado" data-ficha="Presencia singular dentro del universo de Sasha. Su figura aporta identidad propia al conjunto de aliados y añade color al recorrido visual de la saga." data-img="assets/galerias/aliados/asterisco.png">
             <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco" />
           </div>
           <div class="card-body">
@@ -341,7 +452,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" data-title="Garreth" data-img="assets/galerias/aliados/garreth.png">
+          <div class="card-media" data-title="Garreth" data-role="Aliado" data-ficha="Figura de apoyo dentro del entorno de la historia. Su presencia refuerza la idea de que Sasha no avanza sola y que cada aliado deja una marca distinta en su trayecto." data-img="assets/galerias/aliados/garreth.png">
             <img src="assets/galerias/aliados/garreth.png" alt="Garreth" />
           </div>
           <div class="card-body">
@@ -351,7 +462,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" data-title="Mapaches" data-img="assets/galerias/aliados/mapaches.png">
+          <div class="card-media" data-title="Mapaches" data-role="Aliados" data-ficha="Grupo con personalidad propia dentro del universo de la saga. Aportan tono, rareza y una identidad visual que amplía el mundo más allá del eje principal." data-img="assets/galerias/aliados/mapaches.png">
             <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches" />
           </div>
           <div class="card-body">
@@ -361,7 +472,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" data-title="Mar Tabanne Tabanne" data-img="assets/galerias/aliados/mar-tabanne-tabanne.png">
+          <div class="card-media" data-title="Mar Tabanne Tabanne" data-role="Aliado" data-ficha="Presencia reconocible dentro de la red de apoyos y personajes secundarios. Su imagen añade profundidad al mosaico de figuras que rodean a Sasha." data-img="assets/galerias/aliados/mar-tabanne-tabanne.png">
             <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar Tabanne Tabanne" />
           </div>
           <div class="card-body">
@@ -371,7 +482,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" data-title="Señora de Inverse" data-img="assets/galerias/aliados/senora-de-inverse.png">
+          <div class="card-media" data-title="Señora de Inverse" data-role="Aliada" data-ficha="Una de las figuras más potentes y memorables del universo ampliado. Su presencia visual y simbólica eleva el tono épico del conjunto de aliados." data-img="assets/galerias/aliados/senora-de-inverse.png">
             <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse" />
           </div>
           <div class="card-body">
@@ -381,16 +492,55 @@
         </article>
       </div>
     </section>
+
+    <section class="section" id="videos">
+      <h2>Vídeos de Aliados</h2>
+      <p>Escenas en movimiento del grupo de aliados, reunidas en un bloque visual único.</p>
+
+      <div class="video-wrap">
+        <div class="video-track">
+          <article class="video-card">
+            <video controls preload="metadata">
+              <source src="assets/videos/aliados/Mapaches-presentación.mp4" type="video/mp4" />
+            </video>
+            <div class="video-card-body">
+              <h3>Mapaches</h3>
+              <p>Presentación visual del grupo de mapaches dentro del universo de la saga.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <video controls preload="metadata">
+              <source src="assets/videos/aliados/Senora-de-Inverse-transformacion.mp4" type="video/mp4" />
+            </video>
+            <div class="video-card-body">
+              <h3>Señora de Inverse</h3>
+              <p>Transformación y presencia visual de una de las figuras más poderosas entre los aliados.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div class="lightbox" id="lightbox">
     <div class="lightbox-inner">
       <div class="lightbox-top">
-        <div class="lightbox-title" id="lightboxTitle">Imagen</div>
+        <div class="lightbox-title" id="lightboxTitle">Galería de Aliados</div>
         <button class="lightbox-close" id="lightboxClose">×</button>
       </div>
-      <div class="lightbox-media">
-        <img id="lightboxImg" src="" alt="" />
+
+      <div class="lightbox-body">
+        <div class="lightbox-media">
+          <img id="lightboxImg" src="" alt="" />
+        </div>
+
+        <div class="lightbox-side">
+          <div class="lightbox-role" id="lightboxRole">Aliado</div>
+          <h3 id="lightboxName">Nombre</h3>
+          <h4>Ficha</h4>
+          <p id="lightboxDesc">Descripción</p>
+        </div>
       </div>
     </div>
   </div>
@@ -399,28 +549,45 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxRole = document.getElementById('lightboxRole');
+    const lightboxName = document.getElementById('lightboxName');
+    const lightboxDesc = document.getElementById('lightboxDesc');
     const lightboxClose = document.getElementById('lightboxClose');
 
     document.querySelectorAll('.card-media').forEach(item => {
       item.addEventListener('click', () => {
         const img = item.dataset.img;
-        const title = item.dataset.title || 'Imagen';
+        const title = item.dataset.title || 'Aliados';
+        const role = item.dataset.role || 'Aliado';
+        const ficha = item.dataset.ficha || 'Sin descripción disponible.';
+
         lightboxImg.src = img;
         lightboxImg.alt = title;
-        lightboxTitle.textContent = title;
+        lightboxTitle.textContent = 'Galería de Aliados';
+        lightboxRole.textContent = role;
+        lightboxName.textContent = title;
+        lightboxDesc.textContent = ficha;
         lightbox.classList.add('open');
       });
     });
 
-    lightboxClose.addEventListener('click', () => {
+    function closeLightbox(){
       lightbox.classList.remove('open');
       lightboxImg.src = '';
-    });
+      lightboxImg.alt = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
-        lightbox.classList.remove('open');
-        lightboxImg.src = '';
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
       }
     });
   </script>

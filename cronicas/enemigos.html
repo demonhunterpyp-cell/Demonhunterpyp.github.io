@@ -34,6 +34,60 @@
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
+    .interworld-bar{
+      position:relative;
+      z-index:40;
+      background:rgba(9,13,24,.86);
+      border-bottom:1px solid rgba(216,177,96,.16);
+      backdrop-filter:blur(10px);
+    }
+
+    .interworld-inner{
+      width:min(1180px, 92%);
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+
+    .interworld-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .interworld-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      font-size:.95rem;
+      line-height:1;
+      text-decoration:none;
+      transition:.22s ease;
+    }
+
+    .interworld-link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(216,177,96,.32);
+      color:#fff2d2;
+    }
+
+    .interworld-link.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
     .topbar{
       width:min(var(--maxw), 92%);
       margin:0 auto;
@@ -382,60 +436,6 @@
       line-height:1.7;
     }
 
-    .interworld-bar{
-      position:relative;
-      z-index:40;
-      background:rgba(9,13,24,.86);
-      border-bottom:1px solid rgba(216,177,96,.16);
-      backdrop-filter:blur(10px);
-    }
-
-    .interworld-inner{
-      width:min(1180px, 92%);
-      margin:0 auto;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 0;
-    }
-
-    .interworld-group{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .interworld-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:9px 14px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.18);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      font-size:.95rem;
-      line-height:1;
-      text-decoration:none;
-      transition:.22s ease;
-    }
-
-    .interworld-link:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
-      border-color:rgba(216,177,96,.32);
-      color:#fff2d2;
-    }
-
-    .interworld-link.primary{
-      color:#4a2f12;
-      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border-color:#8b6327;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
-    }
-
     @media (max-width: 980px){
       .hero-inner{grid-template-columns:1fr}
       .hero-card{max-width:320px}
@@ -515,11 +515,6 @@
       <p class="section-lead">Criaturas, amenazas y presencias hostiles que ponen a prueba el avance de Sasha.</p>
 
       <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-src="assets/galerias/enemigos/enemigos.jpeg" data-title="Enemigos" data-role="Grupo" data-text="Imagen principal del bloque de enemigos.">
-          <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos grupo">
-          <div class="caption"><h3>Enemigos</h3><p>Grupo</p></div>
-        </article>
-
         <article class="gallery-card" data-src="assets/galerias/enemigos/Akalys.png" data-title="Akalys" data-role="Enemigo" data-text="Presencia hostil dentro del universo de Sasha.">
           <img src="assets/galerias/enemigos/Akalys.png" alt="Akalys">
           <div class="caption"><h3>Akalys</h3><p>Enemigo</p></div>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enemigos | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería de enemigos." />
+  <title>Aliados | Las Crónicas de Sasha</title>
+  <meta name="description" content="Galería de aliados de Las Crónicas de Sasha." />
   <style>
     :root{
       --bg-1:#0f1728;
@@ -34,212 +34,130 @@
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
-    .topbar{
+    .shell{
       width:min(var(--maxw), 92%);
       margin:0 auto;
-      padding:22px 0 10px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(8px);
+      background:rgba(10,14,24,.82);
+      border-bottom:1px solid rgba(216,177,96,.15);
+    }
+
+    .topbar-inner{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
       display:flex;
+      flex-wrap:wrap;
+      gap:12px;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      padding:14px 0;
     }
 
-    .topbar-left,.topbar-right{
+    .breadcrumbs{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      gap:10px;
+      color:var(--text-soft);
+      font-size:.96rem;
     }
 
-    .nav-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
+    .breadcrumbs a{
+      padding:8px 12px;
       border-radius:999px;
-      border:1px solid var(--gold-soft);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      transition:.2s ease;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .nav-btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      border-top:1px solid rgba(216,177,96,.16);
-      border-bottom:1px solid rgba(216,177,96,.20);
-      background:
-        linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
-        url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
-        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:1;
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:56px 0 52px;
-      display:grid;
-      grid-template-columns:320px 1fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .hero-card{
-      border-radius:24px;
-      padding:14px;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
-      border:1px solid rgba(216,177,96,.20);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card img{
-      width:100%;
-      aspect-ratio:2/3;
-      object-fit:cover;
-      border-radius:16px;
-      box-shadow:0 22px 36px rgba(0,0,0,.28);
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      padding:7px 12px;
-      margin-bottom:16px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.24);
-      color:#e5c787;
-      font-size:.82rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
+      border:1px solid rgba(216,177,96,.16);
       background:rgba(255,255,255,.03);
     }
 
-    h1{
-      margin:0 0 10px;
-      color:#f0c86f;
-      font-size:clamp(2.2rem, 4.8vw, 4rem);
-      line-height:.98;
+    .hero{
+      padding:28px 0 10px;
     }
 
-    .hero-copy{
-      max-width:780px;
+    .hero-card{
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:28px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+      box-shadow:var(--shadow);
+    }
+
+    .hero-media{
+      aspect-ratio:16/7;
+      overflow:hidden;
+      border-bottom:1px solid rgba(216,177,96,.14);
+    }
+
+    .hero-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .hero-body{
+      padding:24px 22px 26px;
+    }
+
+    .eyebrow{
+      color:#e5c787;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.82rem;
+      margin-bottom:10px;
+    }
+
+    h1{
+      margin:0 0 12px;
+      color:#f0dbaf;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.02;
+    }
+
+    .lead{
+      margin:0;
       color:var(--text-soft);
       line-height:1.8;
       font-size:1rem;
+      max-width:860px;
     }
 
-    .page{
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:28px 0 44px;
-    }
-
-    .panel{
-      margin-top:28px;
-      padding:30px 26px;
+    .section{
+      margin:28px 0 40px;
+      padding:28px 22px;
       border:1px solid rgba(216,177,96,.18);
       border-radius:26px;
       background:
         radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
         linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
       box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
     }
 
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:12px;
-      border:1px solid rgba(216,177,96,.10);
-      border-radius:18px;
-      pointer-events:none;
-    }
-
-    .ornament{
-      width:240px;
-      height:20px;
-      margin:0 auto 18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .ornament::before,
-    .ornament::after{
-      content:"";
-      position:absolute;
-      top:50%;
-      left:0;
-      right:0;
-    }
-
-    .ornament::before{
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
-    }
-
-    .ornament::after{
-      width:14px;
-      height:14px;
-      left:50%;
-      right:auto;
-      transform:translate(-50%, -50%);
-      border-radius:50%;
-      border:1px solid rgba(216,177,96,.45);
-      background:rgba(20,25,39,.92);
-    }
-
-    .section-title{
-      position:relative;
-      z-index:1;
-      margin:0;
-      text-align:center;
+    .section h2{
+      margin:0 0 8px;
       color:#f0dbaf;
-      font-size:clamp(1.9rem, 3vw, 3rem);
-      line-height:1.06;
-      text-transform:uppercase;
+      font-size:clamp(1.5rem, 2.5vw, 2.2rem);
     }
 
-    .section-lead{
-      position:relative;
-      z-index:1;
-      max-width:880px;
-      margin:14px auto 0;
-      text-align:center;
+    .section p{
+      margin:0;
       color:var(--text-soft);
-      font-size:1.02rem;
       line-height:1.8;
     }
 
-    .gallery-grid{
+    .grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:18px;
       margin-top:22px;
-      position:relative;
-      z-index:1;
     }
 
-    .gallery-card{
+    .card{
       border:1px solid rgba(216,177,96,.16);
       border-radius:22px;
       overflow:hidden;
@@ -247,284 +165,262 @@
         radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
         linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
       box-shadow:0 14px 28px rgba(0,0,0,.18);
-      cursor:pointer;
-      transition:.22s ease;
     }
 
-    .gallery-card:hover{transform:translateY(-4px)}
-
-    .gallery-card img{
-      width:100%;
+    .card-media{
       aspect-ratio:16/11;
-      object-fit:cover;
+      overflow:hidden;
       border-bottom:1px solid rgba(216,177,96,.14);
+      cursor:pointer;
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
       transition:transform .28s ease;
     }
 
-    .gallery-card:hover img{transform:scale(1.04)}
-
-    .gallery-card .caption{
-      padding:14px 16px 16px;
+    .card:hover .card-media img{
+      transform:scale(1.04);
     }
 
-    .gallery-card h3{
+    .card-body{
+      padding:16px 16px 18px;
+    }
+
+    .card h3{
       margin:0 0 6px;
       color:#f0dbaf;
-      font-size:1.12rem;
+      font-size:1.2rem;
     }
 
-    .gallery-card p{
+    .card p{
       margin:0;
-      color:#d4ccb9;
-      font-size:.94rem;
+      color:var(--text-soft);
+      font-size:.95rem;
       line-height:1.7;
     }
 
     .lightbox{
       position:fixed;
       inset:0;
-      z-index:2000;
-      background:rgba(0,0,0,.72);
+      background:rgba(0,0,0,.82);
       display:none;
       align-items:center;
       justify-content:center;
       padding:24px;
+      z-index:100;
     }
 
-    .lightbox.open{display:flex}
+    .lightbox.open{
+      display:flex;
+    }
 
-    .lightbox-card{
-      width:min(1100px, 96vw);
+    .lightbox-inner{
+      width:min(1100px, 100%);
       max-height:90vh;
-      overflow:auto;
-      border-radius:26px;
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:24px;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.10), transparent 18%),
-        linear-gradient(180deg, rgba(35,44,65,.98), rgba(18,24,38,.99));
-      border:1px solid rgba(216,177,96,.20);
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.98), rgba(18,24,38,.99));
       box-shadow:var(--shadow);
-      padding:20px;
-      display:grid;
-      grid-template-columns:1fr 340px;
-      gap:20px;
-      position:relative;
+    }
+
+    .lightbox-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(216,177,96,.14);
+    }
+
+    .lightbox-title{
+      color:#f0dbaf;
+      font-size:1.05rem;
+      font-weight:700;
     }
 
     .lightbox-close{
-      position:absolute;
-      top:12px;
-      right:12px;
-      width:42px;
-      height:42px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.05);
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(255,255,255,.04);
       color:#f2e2c3;
-      font-size:1.2rem;
+      border-radius:999px;
+      padding:8px 12px;
       cursor:pointer;
+    }
+
+    .lightbox-media{
+      max-height:calc(90vh - 62px);
+      overflow:auto;
+      background:#0d1422;
     }
 
     .lightbox-media img{
       width:100%;
-      border-radius:18px;
-      object-fit:cover;
-    }
-
-    .lightbox-info{
-      border:1px solid rgba(216,177,96,.14);
-      border-radius:20px;
-      background:rgba(255,255,255,.03);
-      padding:18px;
-      align-self:start;
-    }
-
-    .lightbox-info .tag{
-      display:inline-flex;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.04);
-      color:#e5c787;
-      font-size:.8rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-
-    .lightbox-info h3{
-      margin:0 0 10px;
-      color:#f0dbaf;
-      font-size:1.45rem;
-    }
-
-    .lightbox-info h4{
-      margin:18px 0 8px;
-      color:#e5c787;
-      font-size:.92rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .lightbox-info p{
-      margin:0;
-      color:#d4ccb9;
-      line-height:1.8;
-      font-size:.96rem;
-    }
-
-    .footer{
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:0 0 36px;
-      text-align:center;
-      color:#d7c5a7;
-      font-size:.95rem;
-      line-height:1.7;
+      height:auto;
+      object-fit:contain;
     }
 
     @media (max-width: 980px){
-      .hero-inner{grid-template-columns:1fr}
-      .hero-card{max-width:320px}
-      .gallery-grid{grid-template-columns:repeat(2, 1fr)}
-      .lightbox-card{grid-template-columns:1fr}
+      .grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
     }
 
-    @media (max-width: 760px){
-      .topbar, .page, .footer{width:min(var(--maxw), 94%)}
-      .panel{padding:24px 16px}
-      .gallery-grid{grid-template-columns:1fr}
+    @media (max-width: 680px){
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+      }
+
+      .breadcrumbs{
+        width:100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-left">
-      <a class="nav-btn" href="index.html">← Volver al inicio</a>
-      <a class="nav-btn" href="index.html#personajes">Personajes</a>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="breadcrumbs">
+        <a href="index.html">← Volver al inicio</a>
+        <a href="index.html#personajes">Personajes</a>
+      </div>
+      <div class="breadcrumbs">
+        <a href="party-girls.html">← Party Girls</a>
+        <a href="enemigos.html">Enemigos →</a>
+      </div>
     </div>
-    <div class="topbar-right">
-      <a class="nav-btn" href="aliados.html">← Aliados</a>
-      <a class="nav-btn" href="sasha.html">Sasha →</a>
-    </div>
-  </header>
+  </div>
 
-  <section class="hero">
-    <div class="hero-inner">
+  <main class="shell">
+    <section class="hero">
       <div class="hero-card">
-        <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos" />
+        <div class="hero-media">
+          <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" />
+        </div>
+        <div class="hero-body">
+          <div class="eyebrow">Galería de apoyo</div>
+          <h1>Aliados</h1>
+          <p class="lead">La ayuda adopta muchas formas. A veces llega con sabiduría, otras con fuerza, otras con humor o con rareza, pero cada uno de estos aliados deja huella en el camino de Sasha.</p>
+        </div>
       </div>
+    </section>
 
-      <div>
-        <div class="eyebrow">Galería de amenaza</div>
-        <h1>Enemigos</h1>
-        <p class="hero-copy">
-          Cada enemigo deja algo tras de sí: miedo, cicatrices o aprendizaje. Porque a veces sobrevivir no te hace más fuerte, sino más lista. Aquí se reúnen sus imágenes en una sola página.
-        </p>
-      </div>
-    </div>
-  </section>
+    <section class="section">
+      <h2>Imágenes</h2>
+      <p>Personajes, apoyos y presencias que enriquecen el universo de la saga y acompañan el recorrido de Sasha desde distintos ángulos.</p>
 
-  <main class="page">
-    <section class="panel" id="galeria">
-      <div class="ornament"></div>
-      <h2 class="section-title">Imágenes</h2>
-      <p class="section-lead">Criaturas, amenazas y presencias hostiles que ponen a prueba el avance de Sasha.</p>
-
-      <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-src="assets/galerias/enemigos/enemigos.png" data-title="Enemigos" data-role="Grupo" data-text="Imagen principal del bloque de enemigos.">
-          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos grupo">
-          <div class="caption"><h3>Enemigos</h3><p>Grupo</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-media" data-title="Aliados" data-img="assets/galerias/aliados/aliados.jpeg">
+            <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados grupo" />
+          </div>
+          <div class="card-body">
+            <h3>Aliados</h3>
+            <p>Grupo</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/enemigos/Akalys.png" data-title="Akalys" data-role="Enemigo" data-text="Presencia hostil dentro del universo de Sasha.">
-          <img src="assets/galerias/enemigos/Akalys.png" alt="Akalys">
-          <div class="caption"><h3>Akalys</h3><p>Enemigo</p></div>
+        <article class="card">
+          <div class="card-media" data-title="Asterisco" data-img="assets/galerias/aliados/asterisco.png">
+            <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco" />
+          </div>
+          <div class="card-body">
+            <h3>Asterisco</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/enemigos/Arpia.png" data-title="Arpia" data-role="Enemigo" data-text="Criatura enemiga dentro del universo de Sasha.">
-          <img src="assets/galerias/enemigos/Arpia.png" alt="Arpia">
-          <div class="caption"><h3>Arpia</h3><p>Enemigo</p></div>
+        <article class="card">
+          <div class="card-media" data-title="Garreth" data-img="assets/galerias/aliados/garreth.png">
+            <img src="assets/galerias/aliados/garreth.png" alt="Garreth" />
+          </div>
+          <div class="card-body">
+            <h3>Garreth</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/enemigos/Croide.png" data-title="Croide" data-role="Enemigo" data-text="Amenaza del bloque de enemigos.">
-          <img src="assets/galerias/enemigos/Croide.png" alt="Croide">
-          <div class="caption"><h3>Croide</h3><p>Enemigo</p></div>
+        <article class="card">
+          <div class="card-media" data-title="Mapaches" data-img="assets/galerias/aliados/mapaches.png">
+            <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches" />
+          </div>
+          <div class="card-body">
+            <h3>Mapaches</h3>
+            <p>Aliados</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/enemigos/Cucaracho.png" data-title="Cucaracho" data-role="Enemigo" data-text="Figura hostil dentro del recorrido de Sasha.">
-          <img src="assets/galerias/enemigos/Cucaracho.png" alt="Cucaracho">
-          <div class="caption"><h3>Cucaracho</h3><p>Enemigo</p></div>
+        <article class="card">
+          <div class="card-media" data-title="Mar Tabanne Tabanne" data-img="assets/galerias/aliados/mar-tabanne-tabanne.png">
+            <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar Tabanne Tabanne" />
+          </div>
+          <div class="card-body">
+            <h3>Mar Tabanne Tabanne</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/enemigos/Furia.png" data-title="Furia" data-role="Enemigo" data-text="Otra amenaza dentro del bloque de enemigos.">
-          <img src="assets/galerias/enemigos/Furia.png" alt="Furia">
-          <div class="caption"><h3>Furia</h3><p>Enemigo</p></div>
+        <article class="card">
+          <div class="card-media" data-title="Señora de Inverse" data-img="assets/galerias/aliados/senora-de-inverse.png">
+            <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse" />
+          </div>
+          <div class="card-body">
+            <h3>Señora de Inverse</h3>
+            <p>Aliada</p>
+          </div>
         </article>
       </div>
     </section>
   </main>
 
-  <div class="footer">
-    Enemigos
-  </div>
-
   <div class="lightbox" id="lightbox">
-    <div class="lightbox-card">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
-
+    <div class="lightbox-inner">
+      <div class="lightbox-top">
+        <div class="lightbox-title" id="lightboxTitle">Imagen</div>
+        <button class="lightbox-close" id="lightboxClose">×</button>
+      </div>
       <div class="lightbox-media">
-        <img id="lightboxImage" alt="Enemigos ampliada" />
+        <img id="lightboxImg" src="" alt="" />
       </div>
-
-      <aside class="lightbox-info">
-        <div class="tag" id="lightboxRole">Enemigos</div>
-        <h="Enemigos ampliada" />
-      </div>
-
-      <aside class="lightbox-info">
-        <div class="tag" id="lightboxRole">Enemigos</div>
-        <h3 id="lightboxTitle">Enemigos</h3>
-        <h4>Ficha</h4>
-        <p id="lightboxText"></p>
-      </aside>
     </div>
   </div>
 
   <script>
-    const galleryCards = document.querySelectorAll('.gallery-card');
     const lightbox = document.getElementById('lightbox');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxRole = document.getElementById('lightboxRole');
+    const lightboxImg = document.getElementById('lightboxImg');
     const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxText = document.getElementById('lightboxText');
+    const lightboxClose = document.getElementById('lightboxClose');
 
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-    }
-
-    galleryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        lightboxImage.src = card.dataset.src;
-        lightboxRole.textContent = card.dataset.role;
-        lightboxTitle.textContent = card.dataset.title;
-        lightboxText.textContent = card.dataset.text;
+    document.querySelectorAll('.card-media').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.dataset.img;
+        const title = item.dataset.title || 'Imagen';
+        lightboxImg.src = img;
+        lightboxImg.alt = title;
+        lightboxTitle.textContent = title;
         lightbox.classList.add('open');
       });
     });
 
-    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-        closeLightbox();
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
       }
     });
   </script>

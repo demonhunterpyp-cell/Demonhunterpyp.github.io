@@ -138,10 +138,19 @@
 
     .panel-left::before{
       background-image:
-        linear-gradient(180deg, rgba(20,11,7,.22) 0%, rgba(20,11,7,.44) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.30) 0%, rgba(7,11,19,.08) 100%),
+        linear-gradient(180deg, rgba(20,11,7,.20) 0%, rgba(20,11,7,.42) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.26) 0%, rgba(7,11,19,.08) 100%),
         url("assets/portal/portal-sasha.jpg");
-      background-position:center center;
+      background-repeat:no-repeat, no-repeat, no-repeat;
+      background-size:cover, cover, 78%;
+      background-position:center center, center center, left 4% bottom 8%;
+      transform:scale(1);
+    }
+
+    .panel-left:hover::before,
+    .panel-left:focus-visible::before{
+      transform:scale(1.02);
+      filter:brightness(1.08);
     }
 
     .panel-right{

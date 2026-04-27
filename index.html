@@ -119,7 +119,7 @@
 
     .panel:hover,
     .panel:focus-visible{
-      filter:brightness(1.06);
+      filter:brightness(1.13) saturate(1.06);
     }
 
     .panel::before{
@@ -127,12 +127,12 @@
       position:absolute;
       inset:0;
       background-repeat:no-repeat;
-      transition:transform .25s ease;
+      transition:transform .25s ease, opacity .25s ease;
     }
 
     .panel:hover::before,
     .panel:focus-visible::before{
-      transform:scale(1.01);
+      transform:scale(1.012);
     }
 
     .panel-top{
@@ -141,6 +141,20 @@
       background:
         radial-gradient(circle at 50% 26%, rgba(216,177,96,.08), transparent 22%),
         linear-gradient(180deg, #040506 0%, #090b11 100%);
+    }
+
+    .panel-top::before{
+      background:
+        radial-gradient(circle at 50% 43%, rgba(240,200,111,.22), transparent 27%),
+        radial-gradient(circle at 50% 67%, rgba(216,177,96,.14), transparent 25%),
+        linear-gradient(180deg, rgba(255,227,150,.08), rgba(255,227,150,.02) 48%, rgba(0,0,0,0) 100%);
+      opacity:0;
+      z-index:1;
+    }
+
+    .panel-top:hover::before,
+    .panel-top:focus-visible::before{
+      opacity:1;
     }
 
     .panel-left{
@@ -156,16 +170,16 @@
     /* IZQUIERDA */
     .panel-left::before{
       background-image:
-        linear-gradient(180deg, rgba(20,11,7,.015) 0%, rgba(20,11,7,.09) 100%),
+        linear-gradient(180deg, rgba(20,11,7,.01) 0%, rgba(20,11,7,.08) 100%),
         url("assets/portal/portal-sasha.png");
 
       background-size:
         cover,
-        auto 115%;
+        auto 122%;
 
       background-position:
         center center,
-        0% 60%;
+        -7% 59%;
     }
 
     .panel-left::after{
@@ -173,10 +187,19 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.07)),
-        linear-gradient(90deg, rgba(0,0,0,.015), rgba(0,0,0,.012) 42%, rgba(0,0,0,.06) 100%);
+        linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.06)),
+        linear-gradient(90deg, rgba(0,0,0,.008), rgba(0,0,0,.01) 42%, rgba(0,0,0,.055) 100%);
       pointer-events:none;
       z-index:2;
+      transition:background .25s ease, opacity .25s ease;
+    }
+
+    .panel-left:hover::after,
+    .panel-left:focus-visible::after{
+      background:
+        radial-gradient(circle at 28% 68%, rgba(240,200,111,.16), transparent 34%),
+        linear-gradient(180deg, rgba(255,230,170,.035), rgba(0,0,0,.035)),
+        linear-gradient(90deg, rgba(0,0,0,.004), rgba(0,0,0,.006) 42%, rgba(0,0,0,.035) 100%);
     }
 
     /* DERECHA */
@@ -197,6 +220,15 @@
         linear-gradient(90deg, rgba(0,0,0,.03), rgba(0,0,0,.14));
       pointer-events:none;
       z-index:2;
+      transition:background .25s ease, opacity .25s ease;
+    }
+
+    .panel-right:hover::after,
+    .panel-right:focus-visible::after{
+      background:
+        radial-gradient(circle at 70% 68%, rgba(240,200,111,.15), transparent 34%),
+        linear-gradient(180deg, rgba(255,230,170,.035), rgba(0,0,0,.08)),
+        linear-gradient(90deg, rgba(0,0,0,.015), rgba(0,0,0,.08));
     }
 
     /* LOGO SUPERIOR */
@@ -208,6 +240,7 @@
       width:min(640px, 46vw);
       z-index:15;
       pointer-events:none;
+      transition:filter .25s ease, transform .25s ease;
     }
 
     .system-logo img{
@@ -216,6 +249,12 @@
       height:auto;
       object-fit:contain;
       filter:drop-shadow(0 14px 28px rgba(0,0,0,.34));
+    }
+
+    .panel-top:hover ~ .system-logo,
+    .panel-top:focus-visible ~ .system-logo{
+      transform:translate(-50%, -50%) scale(1.012);
+      filter:brightness(1.12) drop-shadow(0 0 24px rgba(240,200,111,.22));
     }
 
     /* ETIQUETAS MÍNIMAS */
@@ -238,14 +277,17 @@
       font-size:.8rem;
       font-weight:700;
       line-height:1;
-      transition:transform .22s ease, border-color .22s ease, background .22s ease;
+      transition:transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
     }
 
     .panel:hover .section-label,
     .panel:focus-visible .section-label{
       transform:translateY(-2px);
-      border-color:rgba(216,177,96,.42);
-      background:rgba(8,12,22,.62);
+      border-color:rgba(216,177,96,.5);
+      background:rgba(8,12,22,.68);
+      box-shadow:
+        0 10px 24px rgba(0,0,0,.24),
+        0 0 18px rgba(240,200,111,.18);
     }
 
     .label-top{
@@ -277,11 +319,11 @@
       .panel-left::before{
         background-size:
           cover,
-          auto 112%;
+          auto 118%;
 
         background-position:
           center center,
-          2% 60%;
+          -4% 59%;
       }
 
       .label-left{
@@ -334,6 +376,11 @@
         transform:none !important;
         width:min(520px, 84vw);
         margin:70px auto 20px;
+      }
+
+      .panel-top:hover ~ .system-logo,
+      .panel-top:focus-visible ~ .system-logo{
+        transform:none !important;
       }
 
       .section-label{

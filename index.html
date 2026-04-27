@@ -132,7 +132,7 @@
       clip-path:polygon(0 0, 100% 0, 50% 58%);
       z-index:2;
       background:
-        radial-gradient(circle at 50% 30%, rgba(216,177,96,.08), transparent 22%),
+        radial-gradient(circle at 50% 25%, rgba(216,177,96,.08), transparent 22%),
         linear-gradient(180deg, #040506 0%, #090b11 100%);
     }
 
@@ -146,17 +146,17 @@
       z-index:3;
     }
 
-    /* IZQUIERDA: Sasha más baja */
+    /* IZQUIERDA: Sasha recolocada */
     .panel-left::before{
       background-image:
         linear-gradient(180deg, rgba(20,11,7,.03) 0%, rgba(20,11,7,.12) 100%),
         url("assets/portal/portal-sasha.jpg");
       background-size:
         cover,
-        auto 124%;
+        auto 108%;
       background-position:
         center center,
-        18% 88%;
+        14% 62%;
     }
 
     .panel-left::after{
@@ -190,14 +190,14 @@
       z-index:2;
     }
 
-    /* LOGO SUPERIOR: más alto y más grande */
+    /* LOGO SUPERIOR: más alto */
     .system-logo{
       position:absolute;
       z-index:10;
       left:50%;
-      top:33%;
+      top:27%;
       transform:translate(-50%, -50%);
-      width:min(780px, 58vw);
+      width:min(660px, 48vw);
       display:flex;
       justify-content:center;
       align-items:center;
@@ -263,16 +263,16 @@
 
     @media (max-width: 1180px){
       .system-logo{
-        width:min(660px, 56vw);
+        width:min(600px, 50vw);
       }
 
       .panel-left::before{
         background-size:
           cover,
-          auto 118%;
+          auto 104%;
         background-position:
           center center,
-          16% 86%;
+          12% 60%;
       }
     }
 
@@ -345,7 +345,6 @@
       </svg>
     </div>
 
-    <!-- SUPERIOR -->
     <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
       <div class="mini-tag tag-top">Rol</div>
       <div class="system-logo">
@@ -353,12 +352,10 @@
       </div>
     </a>
 
-    <!-- IZQUIERDA -->
     <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
       <div class="mini-tag tag-left">Novela</div>
     </a>
 
-    <!-- DERECHA -->
     <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
       <div class="mini-tag tag-right">Lore</div>
     </a>

@@ -235,7 +235,7 @@
     .system-logo{
       position:absolute;
       left:50%;
-      top:31%;
+      top:28%;
       transform:translate(-50%, -50%);
       width:min(640px, 46vw);
       z-index:15;
@@ -292,7 +292,7 @@
 
     .label-top{
       left:50%;
-      top:82px;
+      top:48.5%;
       transform:translateX(-50%);
     }
 
@@ -302,13 +302,15 @@
     }
 
     .label-left{
-      left:42px;
-      bottom:86px;
+      left:42.5%;
+      top:62.5%;
+      bottom:auto;
     }
 
     .label-right{
-      right:72px;
-      bottom:86px;
+      right:42.5%;
+      top:62.5%;
+      bottom:auto;
     }
 
     @media (max-width: 1180px){
@@ -326,14 +328,18 @@
           -4% 59%;
       }
 
+      .label-top{
+        top:49%;
+      }
+
       .label-left{
-        left:36px;
-        bottom:74px;
+        left:41.5%;
+        top:63%;
       }
 
       .label-right{
-        right:54px;
-        bottom:74px;
+        right:41.5%;
+        top:63%;
       }
     }
 

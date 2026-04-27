@@ -16,8 +16,8 @@
       --text:#f7eedc;
       --text-soft:#e7d9b8;
       --line:rgba(240,200,111,.34);
-      --label-bg:rgba(8,12,22,.48);
-      --label-border:rgba(216,177,96,.26);
+      --label-bg:rgba(8,12,22,.52);
+      --label-border:rgba(216,177,96,.28);
       --shadow:0 16px 34px rgba(0,0,0,.28);
     }
 
@@ -239,7 +239,7 @@
     .panel:focus-visible .section-label{
       transform:translateY(-2px);
       border-color:rgba(216,177,96,.42);
-      background:rgba(8,12,22,.58);
+      background:rgba(8,12,22,.62);
     }
 
     .label-top{
@@ -254,13 +254,13 @@
     }
 
     .label-left{
-      left:34px;
-      bottom:34px;
+      left:42px;
+      bottom:86px;
     }
 
     .label-right{
-      right:34px;
-      bottom:34px;
+      right:72px;
+      bottom:86px;
     }
 
     @media (max-width: 1180px){
@@ -276,6 +276,16 @@
         background-position:
           center center,
           14% 60%;
+      }
+
+      .label-left{
+        left:36px;
+        bottom:74px;
+      }
+
+      .label-right{
+        right:54px;
+        bottom:74px;
       }
     }
 

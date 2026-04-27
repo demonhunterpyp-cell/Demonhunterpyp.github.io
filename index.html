@@ -126,30 +126,31 @@
     /* ARRIBA: SISTEMA */
     .panel-top{
       background:
-        radial-gradient(circle at 50% 32%, rgba(255,214,130,.08), transparent 14%),
+        radial-gradient(circle at 50% 28%, rgba(255,214,130,.07), transparent 15%),
         linear-gradient(180deg, #050506 0%, #090909 100%);
     }
 
     .panel-top::before{
       background-image:
-        radial-gradient(circle at 50% 33%, rgba(255,214,130,.16) 0%, rgba(255,214,130,.07) 12%, rgba(255,214,130,0) 24%),
-        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.24) 100%),
+        radial-gradient(circle at 50% 38%, rgba(255,214,130,.14) 0%, rgba(255,214,130,.06) 12%, rgba(255,214,130,0) 24%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.22) 100%),
         url("assets/portal/portal-payplay.png");
       background-repeat:no-repeat,no-repeat,no-repeat;
-      background-size:cover,cover,21%;
-      background-position:center center,center center,50% 33%;
+      background-size:cover,cover,15%;
+      background-position:center center,center center,50% 41%;
       transform:scale(1);
     }
 
     /* IZQUIERDA: CRÓNICAS */
     .panel-left::before{
       background-image:
+        radial-gradient(circle at 6% 10%, rgba(92,48,26,.75) 0%, rgba(92,48,26,.40) 20%, rgba(7,11,19,.10) 44%, rgba(7,11,19,0) 60%),
         linear-gradient(180deg, rgba(20,11,7,.08) 0%, rgba(20,11,7,.24) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.14) 0%, rgba(7,11,19,.05) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.12) 0%, rgba(7,11,19,.05) 100%),
         url("assets/portal/portal-sasha.jpg");
-      background-repeat:no-repeat,no-repeat,no-repeat;
-      background-size:cover,cover,78%;
-      background-position:center center,center center,left -3% bottom -10%;
+      background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+      background-size:cover,cover,cover,76%;
+      background-position:center center,center center,center center,left -2% bottom -12%;
       filter:brightness(1.04) saturate(1.02);
       transform:scale(1);
     }
@@ -190,12 +191,13 @@
     }
 
     .panel-top .panel-content{
-      top:6.6vh;
+      top:5.4vh;
       left:50%;
       transform:translateX(-50%);
       text-align:center;
-      width:min(760px, 90vw);
-      max-width:760px;
+      width:min(690px, 86vw);
+      max-width:690px;
+      padding:22px 26px 20px;
     }
 
     .panel-top:hover .panel-content,
@@ -204,16 +206,16 @@
     }
 
     .panel-left .panel-content{
-      left:4.5vw;
-      bottom:9vh;
-      width:min(420px, 36vw);
+      left:4.3vw;
+      bottom:8.8vh;
+      width:min(410px, 35vw);
       text-align:left;
     }
 
     .panel-right .panel-content{
       right:4.3vw;
       bottom:8.5vh;
-      width:min(360px, 31vw);
+      width:min(355px, 31vw);
       text-align:right;
     }
 
@@ -240,7 +242,7 @@
     }
 
     .panel-top h1{
-      font-size:clamp(2.6rem, 5.8vw, 4.8rem);
+      font-size:clamp(2.35rem, 5.2vw, 4.2rem);
     }
 
     .panel-left h2,

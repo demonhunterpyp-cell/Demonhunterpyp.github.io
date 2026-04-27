@@ -119,9 +119,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background-size:cover;
       background-repeat:no-repeat;
-      background-position:center center;
       transition:transform .28s ease;
     }
 
@@ -134,7 +132,7 @@
       clip-path:polygon(0 0, 100% 0, 50% 58%);
       z-index:2;
       background:
-        radial-gradient(circle at 50% 34%, rgba(216,177,96,.08), transparent 22%),
+        radial-gradient(circle at 50% 30%, rgba(216,177,96,.08), transparent 22%),
         linear-gradient(180deg, #040506 0%, #090b11 100%);
     }
 
@@ -148,12 +146,17 @@
       z-index:3;
     }
 
-    /* IZQUIERDA */
+    /* IZQUIERDA: Sasha más baja */
     .panel-left::before{
       background-image:
         linear-gradient(180deg, rgba(20,11,7,.03) 0%, rgba(20,11,7,.12) 100%),
         url("assets/portal/portal-sasha.jpg");
-      background-position:22% center;
+      background-size:
+        cover,
+        auto 124%;
+      background-position:
+        center center,
+        18% 88%;
     }
 
     .panel-left::after{
@@ -172,7 +175,8 @@
       background-image:
         linear-gradient(180deg, rgba(6,10,18,.08) 0%, rgba(6,10,18,.18) 100%),
         url("assets/portal/portal-lore.jpg");
-      background-position:center center;
+      background-size:cover,cover;
+      background-position:center center,center center;
     }
 
     .panel-right::after{
@@ -186,14 +190,14 @@
       z-index:2;
     }
 
-    /* LOGO SUPERIOR */
+    /* LOGO SUPERIOR: más alto y más grande */
     .system-logo{
       position:absolute;
       z-index:10;
       left:50%;
-      top:40%;
+      top:33%;
       transform:translate(-50%, -50%);
-      width:min(660px, 52vw);
+      width:min(780px, 58vw);
       display:flex;
       justify-content:center;
       align-items:center;
@@ -208,7 +212,7 @@
       filter:drop-shadow(0 14px 28px rgba(0,0,0,.34));
     }
 
-    /* ETIQUETAS MÍNIMAS */
+    /* ETIQUETAS */
     .mini-tag{
       position:absolute;
       z-index:11;
@@ -259,7 +263,16 @@
 
     @media (max-width: 1180px){
       .system-logo{
-        width:min(560px, 50vw);
+        width:min(660px, 56vw);
+      }
+
+      .panel-left::before{
+        background-size:
+          cover,
+          auto 118%;
+        background-position:
+          center center,
+          16% 86%;
       }
     }
 
@@ -286,8 +299,13 @@
       }
 
       .panel::before{
-        background-position:center center !important;
         transform:none !important;
+      }
+
+      .panel-left::before,
+      .panel-right::before{
+        background-size:cover,cover !important;
+        background-position:center center,center center !important;
       }
 
       .system-logo,
@@ -304,7 +322,7 @@
       }
 
       .system-logo{
-        width:min(460px, 84vw);
+        width:min(520px, 84vw);
       }
 
       .mini-tag{

@@ -10,17 +10,22 @@
       --bg:#050912;
       --bg2:#0b1322;
       --gold:#d8b160;
+      --gold-2:#b78537;
+      --text:#f7eedc;
+      --text-soft:#e7d9b8;
       --line:rgba(240,200,111,.34);
-      --pill-bg:rgba(8,12,22,.42);
-      --pill-border:rgba(216,177,96,.22);
-      --shadow:0 14px 30px rgba(0,0,0,.28);
+      --card-bg:rgba(8,12,22,.42);
+      --card-border:rgba(216,177,96,.18);
+      --shadow:0 16px 34px rgba(0,0,0,.28);
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+
     body{
       min-height:100vh;
       font-family:Georgia, "Times New Roman", serif;
+      color:var(--text);
       background:
         radial-gradient(circle at 20% 20%, rgba(216,177,96,.05), transparent 18%),
         radial-gradient(circle at 80% 15%, rgba(216,177,96,.05), transparent 20%),
@@ -73,7 +78,7 @@
     .portal-lines{
       position:absolute;
       inset:0;
-      z-index:11;
+      z-index:10;
       pointer-events:none;
     }
 
@@ -100,10 +105,9 @@
     .panel{
       position:absolute;
       inset:0;
-      overflow:hidden;
       display:block;
+      overflow:hidden;
       cursor:pointer;
-      z-index:3;
     }
 
     .panel::before{
@@ -111,9 +115,7 @@
       position:absolute;
       inset:0;
       background-repeat:no-repeat;
-      background-size:cover;
-      background-position:center center;
-      transition:transform .28s ease;
+      transition:transform .25s ease;
     }
 
     .panel:hover::before,
@@ -139,13 +141,17 @@
       z-index:4;
     }
 
-    /* IZQUIERDA: Sasha */
+    /* IZQUIERDA */
     .panel-left::before{
       background-image:
-        linear-gradient(180deg, rgba(20,11,7,.02) 0%, rgba(20,11,7,.10) 100%),
-        url("fondo-sasha-panorama.png");
-      background-size:cover, cover;
-      background-position:center center, 24% 56%;
+        linear-gradient(180deg, rgba(20,11,7,.03) 0%, rgba(20,11,7,.12) 100%),
+        url("portal/portal-sasha.png");
+      background-size:
+        cover,
+        auto 112%;
+      background-position:
+        center center,
+        20% 62%;
     }
 
     .panel-left::after{
@@ -153,13 +159,13 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.08)),
-        linear-gradient(90deg, rgba(0,0,0,.08), rgba(0,0,0,.01) 42%, rgba(0,0,0,.06) 100%);
+        linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.08)),
+        linear-gradient(90deg, rgba(0,0,0,.10), rgba(0,0,0,.02) 42%, rgba(0,0,0,.07) 100%);
       pointer-events:none;
       z-index:2;
     }
 
-    /* DERECHA: Lore */
+    /* DERECHA */
     .panel-right::before{
       background-image:
         linear-gradient(180deg, rgba(6,10,18,.08) 0%, rgba(6,10,18,.18) 100%),
@@ -179,33 +185,14 @@
       z-index:2;
     }
 
-    /* Libro */
-    .book-hero{
-      position:absolute;
-      left:37.5%;
-      bottom:-1.5%;
-      width:min(23vw, 360px);
-      z-index:13;
-      pointer-events:none;
-      transform:translateX(-50%);
-    }
-
-    .book-hero img{
-      display:block;
-      width:100%;
-      height:auto;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 24px rgba(0,0,0,.28));
-    }
-
-    /* Logo superior */
+    /* LOGO SUPERIOR */
     .system-logo{
       position:absolute;
-      z-index:15;
       left:50%;
-      top:27%;
+      top:31%;
       transform:translate(-50%, -50%);
-      width:min(660px, 48vw);
+      width:min(640px, 46vw);
+      z-index:15;
       pointer-events:none;
     }
 
@@ -217,67 +204,119 @@
       filter:drop-shadow(0 14px 28px rgba(0,0,0,.34));
     }
 
-    .mini-tag{
+    /* CAJAS PEQUEÑAS */
+    .card{
       position:absolute;
       z-index:16;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:108px;
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid var(--pill-border);
-      background:var(--pill-bg);
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.9rem;
-      font-weight:700;
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius:22px;
       box-shadow:var(--shadow);
+      padding:16px 18px 15px;
       transition:transform .22s ease, border-color .22s ease, background .22s ease;
-      line-height:1;
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
     }
 
-    .panel:hover .mini-tag,
-    .panel:focus-visible .mini-tag{
+    .panel:hover .card,
+    .panel:focus-visible .card{
       transform:translateY(-2px);
-      border-color:rgba(216,177,96,.30);
+      border-color:rgba(216,177,96,.28);
       background:rgba(8,12,22,.48);
     }
 
-    .tag-top{
-      left:50%;
-      top:62px;
-      transform:translateX(-50%);
+    .card .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:86px;
+      margin-bottom:10px;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.22);
+      background:rgba(255,255,255,.03);
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.78rem;
+      font-weight:700;
+      line-height:1;
     }
 
-    .panel-top:hover .tag-top,
-    .panel-top:focus-visible .tag-top{
+    .card h2{
+      margin:0 0 8px;
+      color:#f0c86f;
+      line-height:.95;
+      font-weight:700;
+      text-shadow:0 3px 14px rgba(0,0,0,.22);
+    }
+
+    .card p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.45;
+      font-size:.95rem;
+    }
+
+    .card-top{
+      left:50%;
+      top:82px;
+      transform:translateX(-50%);
+      width:min(330px, 30vw);
+      text-align:center;
+    }
+
+    .panel-top:hover .card-top,
+    .panel-top:focus-visible .card-top{
       transform:translateX(-50%) translateY(-2px);
     }
 
-    .tag-left{
-      left:36px;
-      bottom:34px;
+    .card-top h2{
+      font-size:1.75rem;
     }
 
-    .tag-right{
-      right:36px;
-      bottom:34px;
+    .card-left{
+      left:34px;
+      bottom:30px;
+      width:min(310px, 24vw);
+      text-align:left;
+    }
+
+    .card-left h2{
+      font-size:2rem;
+    }
+
+    .card-right{
+      right:34px;
+      bottom:30px;
+      width:min(290px, 22vw);
+      text-align:right;
+    }
+
+    .card-right h2{
+      font-size:1.9rem;
     }
 
     @media (max-width: 1180px){
       .system-logo{
-        width:min(600px, 50vw);
-      }
-
-      .book-hero{
-        width:min(24vw, 330px);
-        left:38%;
+        width:min(580px, 48vw);
       }
 
       .panel-left::before{
-        background-position:center center, 22% 58%;
+        background-size:
+          cover,
+          auto 108%;
+        background-position:
+          center center,
+          18% 60%;
+      }
+
+      .card-left{
+        width:min(290px, 27vw);
+      }
+
+      .card-right{
+        width:min(270px, 25vw);
       }
     }
 
@@ -314,10 +353,9 @@
       }
 
       .system-logo,
-      .book-hero,
-      .tag-top,
-      .tag-left,
-      .tag-right{
+      .card-top,
+      .card-left,
+      .card-right{
         position:relative;
         left:auto;
         right:auto;
@@ -331,12 +369,17 @@
         width:min(520px, 84vw);
       }
 
-      .book-hero{
-        width:min(260px, 54vw);
+      .card-top,
+      .card-left,
+      .card-right{
+        width:min(92vw, 520px);
+        text-align:left;
       }
 
-      .mini-tag{
-        min-width:120px;
+      .card-top h2,
+      .card-left h2,
+      .card-right h2{
+        font-size:2rem;
       }
     }
   </style>
@@ -356,23 +399,31 @@
     </div>
 
     <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
-      <div class="mini-tag tag-top">Rol</div>
+      <div class="card card-top">
+        <div class="eyebrow">Rol</div>
+        <h2>Pay &amp; Play</h2>
+        <p>Sistema, reglas y juego.</p>
+      </div>
     </a>
 
     <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
-      <div class="mini-tag tag-left">Novela</div>
+      <div class="card card-left">
+        <div class="eyebrow">Novela</div>
+        <h2>Las Crónicas<br>de Sasha</h2>
+        <p>Libros, personajes y saga.</p>
+      </div>
     </a>
 
     <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
-      <div class="mini-tag tag-right">Lore</div>
+      <div class="card card-right">
+        <div class="eyebrow">Lore</div>
+        <h2>Descubre el mundo</h2>
+        <p>Facciones, lugares e historia.</p>
+      </div>
     </a>
 
-    <div class="system-logo">
-      <img src="portal/portal-payplay.png" alt="Logo de Pay and Play Rol System">
-    </div>
-
-    <div class="book-hero" aria-hidden="true">
-      <img src="libro-sasha-3d.png" alt="">
+    <div class="system-logo" aria-hidden="true">
+      <img src="portal/portal-payplay.png" alt="">
     </div>
   </main>
 

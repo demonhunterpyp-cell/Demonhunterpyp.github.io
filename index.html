@@ -16,8 +16,8 @@
       --text:#f7eedc;
       --text-soft:#e7d9b8;
       --line:rgba(240,200,111,.34);
-      --card-bg:rgba(8,12,22,.42);
-      --card-border:rgba(216,177,96,.18);
+      --label-bg:rgba(8,12,22,.48);
+      --label-border:rgba(216,177,96,.26);
       --shadow:0 16px 34px rgba(0,0,0,.28);
     }
 
@@ -212,97 +212,55 @@
       filter:drop-shadow(0 14px 28px rgba(0,0,0,.34));
     }
 
-    /* CAJAS PEQUEÑAS */
-    .card{
+    /* ETIQUETAS MÍNIMAS */
+    .section-label{
       position:absolute;
       z-index:16;
-      background:var(--card-bg);
-      border:1px solid var(--card-border);
-      border-radius:22px;
-      box-shadow:var(--shadow);
-      padding:16px 18px 15px;
-      transition:transform .22s ease, border-color .22s ease, background .22s ease;
-      backdrop-filter:blur(4px);
-      -webkit-backdrop-filter:blur(4px);
-    }
-
-    .panel:hover .card,
-    .panel:focus-visible .card{
-      transform:translateY(-2px);
-      border-color:rgba(216,177,96,.28);
-      background:rgba(8,12,22,.48);
-    }
-
-    .card .eyebrow{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:86px;
-      margin-bottom:10px;
-      padding:7px 12px;
+      padding:8px 16px;
       border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.03);
+      background:var(--label-bg);
+      border:1px solid var(--label-border);
       color:var(--gold);
+      box-shadow:0 10px 24px rgba(0,0,0,.24);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
       text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.78rem;
+      letter-spacing:.09em;
+      font-size:.8rem;
       font-weight:700;
       line-height:1;
+      transition:transform .22s ease, border-color .22s ease, background .22s ease;
     }
 
-    .card h2{
-      margin:0 0 8px;
-      color:#f0c86f;
-      line-height:.95;
-      font-weight:700;
-      text-shadow:0 3px 14px rgba(0,0,0,.22);
+    .panel:hover .section-label,
+    .panel:focus-visible .section-label{
+      transform:translateY(-2px);
+      border-color:rgba(216,177,96,.42);
+      background:rgba(8,12,22,.58);
     }
 
-    .card p{
-      margin:0;
-      color:var(--text-soft);
-      line-height:1.45;
-      font-size:.95rem;
-    }
-
-    .card-top{
+    .label-top{
       left:50%;
       top:82px;
       transform:translateX(-50%);
-      width:min(330px, 30vw);
-      text-align:center;
     }
 
-    .panel-top:hover .card-top,
-    .panel-top:focus-visible .card-top{
+    .panel-top:hover .label-top,
+    .panel-top:focus-visible .label-top{
       transform:translateX(-50%) translateY(-2px);
     }
 
-    .card-top h2{
-      font-size:1.75rem;
-    }
-
-    .card-left{
+    .label-left{
       left:34px;
-      bottom:30px;
-      width:min(310px, 24vw);
-      text-align:left;
+      bottom:34px;
     }
 
-    .card-left h2{
-      font-size:2rem;
-    }
-
-    .card-right{
+    .label-right{
       right:34px;
-      bottom:30px;
-      width:min(290px, 22vw);
-      text-align:right;
-    }
-
-    .card-right h2{
-      font-size:1.9rem;
+      bottom:34px;
     }
 
     @media (max-width: 1180px){
@@ -318,14 +276,6 @@
         background-position:
           center center,
           14% 60%;
-      }
-
-      .card-left{
-        width:min(290px, 27vw);
-      }
-
-      .card-right{
-        width:min(270px, 25vw);
       }
     }
 
@@ -361,34 +311,28 @@
         background-position:center center,center center !important;
       }
 
-      .system-logo,
-      .card-top,
-      .card-left,
-      .card-right{
+      .system-logo{
         position:relative;
         left:auto;
-        right:auto;
         top:auto;
-        bottom:auto;
         transform:none !important;
-        margin:22px auto;
-      }
-
-      .system-logo{
         width:min(520px, 84vw);
+        margin:70px auto 20px;
       }
 
-      .card-top,
-      .card-left,
-      .card-right{
-        width:min(92vw, 520px);
-        text-align:left;
+      .section-label{
+        position:absolute;
+        left:24px;
+        right:auto;
+        bottom:24px;
+        top:auto;
+        transform:none !important;
       }
 
-      .card-top h2,
-      .card-left h2,
-      .card-right h2{
-        font-size:2rem;
+      .label-top{
+        left:24px;
+        top:24px;
+        bottom:auto;
       }
     }
   </style>
@@ -409,27 +353,15 @@
     </div>
 
     <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
-      <div class="card card-top">
-        <div class="eyebrow">Rol</div>
-        <h2>Pay &amp; Play</h2>
-        <p>Sistema, reglas y juego.</p>
-      </div>
+      <span class="section-label label-top">Rol</span>
     </a>
 
     <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
-      <div class="card card-left">
-        <div class="eyebrow">Novela</div>
-        <h2>Las Crónicas<br>de Sasha</h2>
-        <p>Libros, personajes y saga.</p>
-      </div>
+      <span class="section-label label-left">Novelas</span>
     </a>
 
     <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
-      <div class="card card-right">
-        <div class="eyebrow">Lore</div>
-        <h2>Descubre el mundo</h2>
-        <p>Facciones, lugares e historia.</p>
-      </div>
+      <span class="section-label label-right">Lore</span>
     </a>
 
     <div class="system-logo" aria-hidden="true">

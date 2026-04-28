@@ -1,60 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pay &amp; Play System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pay & Play System | En construcción</title>
+  <meta name="description" content="Página temporal de Pay & Play System. El sistema de juego está actualmente en construcción." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/systempyp/index.html" />
+
   <style>
     :root{
-      --bg-1:#0f1728;
-      --bg-2:#1a2337;
-      --bg-3:#24304a;
+      --bg:#070a11;
       --gold:#d8b160;
+      --gold-2:#b78537;
       --text:#f7eedc;
-      --text-soft:#ddd2b7;
-      --shadow:0 22px 50px rgba(0,0,0,.33);
+      --soft:#ddd2b7;
+      --panel:rgba(9,13,24,.78);
+      --line:rgba(216,177,96,.22);
+      --shadow:0 24px 60px rgba(0,0,0,.42);
+      --maxw:1180px;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
+    html,
     body{
       margin:0;
-      color:var(--text);
-      font-family:Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
-        radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
-        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+      min-height:100%;
     }
 
-    a{color:inherit;text-decoration:none}
+    body{
+      min-height:100vh;
+      font-family:Georgia, "Times New Roman", serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% 12%, rgba(216,177,96,.14), transparent 24%),
+        radial-gradient(circle at 12% 88%, rgba(216,177,96,.08), transparent 22%),
+        linear-gradient(180deg, #070a11 0%, #101725 52%, #070a11 100%);
+      overflow-x:hidden;
+    }
 
-    .interworld-bar{
-      position:relative;
-      z-index:40;
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
       background:rgba(9,13,24,.86);
       border-bottom:1px solid rgba(216,177,96,.16);
-      backdrop-filter:blur(10px);
     }
 
-    .interworld-inner{
-      width:min(1180px, 92%);
+    .topbar-inner{
+      width:min(var(--maxw), 92%);
       margin:0 auto;
       display:flex;
-      flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
       gap:12px;
       padding:12px 0;
     }
 
-    .interworld-group{
+    .nav-group{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
     }
 
-    .interworld-link{
+    .nav-link{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -65,95 +90,261 @@
       color:#f2e2c3;
       font-size:.95rem;
       line-height:1;
-      text-decoration:none;
       transition:.22s ease;
     }
 
-    .interworld-link:hover{
+    .nav-link:hover,
+    .nav-link:focus-visible{
       transform:translateY(-1px);
       background:rgba(255,255,255,.07);
       border-color:rgba(216,177,96,.32);
       color:#fff2d2;
+      outline:none;
     }
 
-    .interworld-link.primary{
+    .nav-link.primary{
       color:#4a2f12;
-      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      background:linear-gradient(180deg, var(--gold) 0%, var(--gold-2) 100%);
       border-color:#8b6327;
       box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
     }
 
-    .shell{
-      width:min(980px, 92%);
-      margin:34px auto;
+    .page{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:34px 0 52px;
     }
 
-    .card{
-      border:1px solid rgba(216,177,96,.18);
-      border-radius:28px;
-      padding:34px 28px;
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid var(--line);
       background:
-        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+        radial-gradient(circle at 72% 18%, rgba(216,177,96,.16), transparent 24%),
+        linear-gradient(180deg, rgba(28,34,53,.96), rgba(12,18,31,.98));
       box-shadow:var(--shadow);
     }
 
-    .eyebrow{
-      color:#e5c787;
+    .image-wrap{
+      position:relative;
+      min-height:520px;
+      background:#05070c;
+    }
+
+    .image-wrap::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(7,10,17,.88) 0%, rgba(7,10,17,.46) 34%, rgba(7,10,17,.10) 68%, rgba(7,10,17,.32) 100%),
+        linear-gradient(180deg, rgba(7,10,17,.10) 0%, rgba(7,10,17,.24) 68%, rgba(7,10,17,.86) 100%);
+    }
+
+    .image-wrap img{
+      width:100%;
+      height:100%;
+      min-height:520px;
+      object-fit:cover;
+      object-position:center center;
+    }
+
+    .content{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:2;
+      padding:34px;
+    }
+
+    .content-box{
+      width:min(620px, 100%);
+      padding:24px 24px 22px;
+      border-radius:24px;
+      border:1px solid rgba(216,177,96,.22);
+      background:rgba(9,13,24,.72);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      box-shadow:0 18px 40px rgba(0,0,0,.32);
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 12px;
+      margin-bottom:14px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      background:rgba(216,177,96,.08);
+      color:var(--gold);
       text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.82rem;
-      margin-bottom:10px;
+      letter-spacing:.09em;
+      font-size:.78rem;
+      font-weight:700;
     }
 
     h1{
       margin:0 0 12px;
-      color:#f0dbaf;
-      font-size:clamp(2rem, 4vw, 3rem);
+      color:#f0c86f;
+      font-size:clamp(2.3rem, 5vw, 4.6rem);
+      line-height:.92;
+      letter-spacing:.01em;
+      text-shadow:0 4px 22px rgba(0,0,0,.28);
     }
 
-    p{
+    .lead{
       margin:0;
-      color:var(--text-soft);
-      line-height:1.8;
-      font-size:1rem;
+      max-width:560px;
+      color:var(--soft);
+      line-height:1.72;
+      font-size:1.03rem;
     }
 
-    @media (max-width: 760px){
-      .interworld-inner{
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.22s ease;
+      border:1px solid transparent;
+      text-align:center;
+    }
+
+    .btn:hover,
+    .btn:focus-visible{
+      transform:translateY(-2px);
+      outline:none;
+    }
+
+    .btn.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, var(--gold) 0%, var(--gold-2) 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .btn.secondary{
+      color:#f2e2c3;
+      background:rgba(255,255,255,.05);
+      border-color:rgba(216,177,96,.24);
+    }
+
+    .notice{
+      margin-top:24px;
+      padding:18px 20px;
+      border-radius:20px;
+      border:1px solid rgba(216,177,96,.14);
+      background:rgba(255,255,255,.035);
+      color:#d7c6a4;
+      line-height:1.65;
+      text-align:center;
+    }
+
+    @media (max-width:760px){
+      .topbar-inner{
         align-items:flex-start;
+        flex-direction:column;
       }
 
-      .interworld-group{
+      .nav-group{
         width:100%;
       }
 
-      .interworld-link{
+      .nav-link{
         flex:1 1 calc(50% - 10px);
         text-align:center;
+      }
+
+      .page{
+        width:min(100% - 24px, var(--maxw));
+        padding:24px 0 40px;
+      }
+
+      .hero{
+        border-radius:24px;
+      }
+
+      .image-wrap,
+      .image-wrap img{
+        min-height:680px;
+      }
+
+      .image-wrap img{
+        object-position:center top;
+      }
+
+      .content{
+        padding:18px;
+      }
+
+      .content-box{
+        padding:20px 18px;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
       }
     }
   </style>
 </head>
+
 <body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav-group" aria-label="Navegación principal">
+        <a class="nav-link primary" href="../index.html">Portal principal</a>
+        <a class="nav-link" href="../cronicas/index.html">Las Crónicas de Sasha</a>
+        <a class="nav-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+      </nav>
 
-  <div class="interworld-bar">
-    <div class="interworld-inner">
-      <div class="interworld-group">
-        <a class="interworld-link primary" href="../index.html">Portal principal</a>
-        <a class="interworld-link" href="../cronicas/index.html">Inicio Crónicas</a>
-        <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
-      </div>
+      <nav class="nav-group" aria-label="Navegación del sistema">
+        <a class="nav-link" href="../cronicas/tienda.html">Tienda</a>
+        <a class="nav-link" href="../cronicas/sasha.html">Sasha</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <main class="shell">
-    <section class="card">
-      <div class="eyebrow">Sistema de juego</div>
-      <h1>Pay &amp; Play System</h1>
-      <p>Próximamente. Esta será la entrada al reglamento, fichas, hechizos, enemigos y campañas del sistema.</p>
+  <main class="page">
+    <section class="hero" aria-label="Pay and Play System en construcción">
+      <div class="image-wrap">
+        <img src="assets/system-en-construccion.jpg" alt="Mapache programando la página de Pay and Play System en un escritorio de trabajo">
+
+        <div class="content">
+          <div class="content-box">
+            <span class="kicker">Work in progress</span>
+            <h1>Pay &amp; Play System</h1>
+            <p class="lead">
+              El sistema está en construcción. Mientras preparamos la página definitiva, este espacio queda abierto como puerta temporal al proyecto.
+            </p>
+
+            <div class="actions">
+              <a class="btn primary" href="../index.html">Volver al portal</a>
+              <a class="btn secondary" href="../cronicas/index.html">Ir a Las Crónicas</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </main>
 
+    <div class="notice">
+      Página temporal. Cuando la versión real del sistema esté lista, bastará con sustituir este mismo archivo.
+    </div>
+  </main>
 </body>
 </html>

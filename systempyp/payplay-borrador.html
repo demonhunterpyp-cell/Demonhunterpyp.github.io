@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Pay & Play System | Borrador hexagonal</title>
-  <meta name="description" content="Borrador visual de Pay & Play System con diseño hexagonal futurista en azul eléctrico." />
+  <title>Pay & Play System | Borrador hexagonal eléctrico</title>
+  <meta name="description" content="Borrador visual de Pay & Play System con diseño hexagonal compacto, futurista y azul eléctrico." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/systempyp/payplay-borrador.html" />
 
@@ -24,10 +24,10 @@
       --text:#eafcff;
       --soft:#a9dce9;
       --muted:#6f91a1;
-      --hex-w:330px;
-      --hex-h:286px;
-      --core-w:390px;
-      --core-h:338px;
+      --hex-w:350px;
+      --hex-h:303px;
+      --core-w:410px;
+      --core-h:355px;
       --maxw:1400px;
     }
 
@@ -102,21 +102,21 @@
       left:0;
       right:0;
       z-index:50;
-      border-bottom:1px solid rgba(22,217,255,.16);
-      background:linear-gradient(180deg, rgba(2,7,17,.82), rgba(2,7,17,.54));
+      border-bottom:1px solid rgba(22,217,255,.11);
+      background:linear-gradient(180deg, rgba(2,7,17,.62), rgba(2,7,17,.34));
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
     }
 
     .topbar-inner{
       width:min(var(--maxw), calc(100% - 36px));
-      min-height:62px;
+      min-height:48px;
       margin:0 auto;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:10px 0;
+      padding:7px 0;
     }
 
     .brand{
@@ -127,8 +127,8 @@
     }
 
     .brand-mark{
-      width:42px;
-      height:36px;
+      width:36px;
+      height:31px;
       display:grid;
       place-items:center;
       clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
@@ -151,7 +151,7 @@
 
     .brand strong{
       color:#eaffff;
-      font-size:1rem;
+      font-size:.80rem;
       letter-spacing:.04em;
       text-transform:uppercase;
     }
@@ -160,7 +160,7 @@
       display:block;
       margin-top:5px;
       color:var(--muted);
-      font-size:.75rem;
+      font-size:.66rem;
       letter-spacing:.10em;
       text-transform:uppercase;
     }
@@ -176,13 +176,13 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:34px;
-      padding:8px 12px;
+      min-height:30px;
+      padding:7px 11px;
       border-radius:999px;
       border:1px solid rgba(22,217,255,.20);
       background:rgba(255,255,255,.035);
       color:#cbf8ff;
-      font-size:.86rem;
+      font-size:.80rem;
       transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease;
     }
 
@@ -207,7 +207,7 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding:88px 24px 38px;
+      padding:64px 20px 24px;
       position:relative;
       overflow:hidden;
     }
@@ -257,8 +257,8 @@
       position:relative;
       z-index:2;
       width:min(1120px, 96vw);
-      height:min(820px, calc(100vh - 126px));
-      min-height:680px;
+      height:min(900px, calc(100vh - 88px));
+      min-height:760px;
     }
 
     .hex-lines{
@@ -276,6 +276,38 @@
       stroke:rgba(22,217,255,.34);
       stroke-width:2;
       stroke-linecap:round;
+    }
+
+
+    .hex-lines .connection{
+      stroke:rgba(125,243,255,.16);
+      stroke-width:5;
+      stroke-linecap:round;
+      opacity:0;
+      filter:drop-shadow(0 0 12px rgba(22,217,255,.46));
+      transition:opacity .22s ease, stroke .22s ease;
+    }
+
+    .hex-stage:has(.hex-objetos:hover) .c-objetos,
+    .hex-stage:has(.hex-objetos:focus-visible) .c-objetos,
+    .hex-stage:has(.hex-cartas:hover) .c-cartas,
+    .hex-stage:has(.hex-cartas:focus-visible) .c-cartas,
+    .hex-stage:has(.hex-personajes:hover) .c-personajes,
+    .hex-stage:has(.hex-personajes:focus-visible) .c-personajes,
+    .hex-stage:has(.hex-lugares:hover) .c-lugares,
+    .hex-stage:has(.hex-lugares:focus-visible) .c-lugares,
+    .hex-stage:has(.hex-modulos:hover) .c-modulos,
+    .hex-stage:has(.hex-modulos:focus-visible) .c-modulos,
+    .hex-stage:has(.hex-enemigos:hover) .c-enemigos,
+    .hex-stage:has(.hex-enemigos:focus-visible) .c-enemigos{
+      opacity:1;
+      stroke:rgba(125,243,255,.80);
+    }
+
+    .hex-stage:has(.hex-core:hover) .connection,
+    .hex-stage:has(.hex-core:focus-visible) .connection{
+      opacity:.72;
+      stroke:rgba(125,243,255,.54);
     }
 
     .hex-lines .pulse{
@@ -456,73 +488,72 @@
       Los hexágonos periféricos están pegados al central por sus lados.
     */
     .hex-objetos{
-      transform:translate(-50%, calc(-50% - 338px));
+      transform:translate(-50%, calc(-50% - 329px));
     }
 
     .hex-lugares{
-      transform:translate(-50%, calc(-50% + 338px));
+      transform:translate(-50%, calc(-50% + 329px));
     }
 
     .hex-cartas{
-      transform:translate(calc(-50% + 292px), calc(-50% - 169px));
+      transform:translate(calc(-50% + 285px), calc(-50% - 165px));
     }
 
     .hex-personajes{
-      transform:translate(calc(-50% + 292px), calc(-50% + 169px));
+      transform:translate(calc(-50% + 285px), calc(-50% + 165px));
     }
 
     .hex-enemigos{
-      transform:translate(calc(-50% - 292px), calc(-50% - 169px));
+      transform:translate(calc(-50% - 285px), calc(-50% - 165px));
     }
 
     .hex-modulos{
-      transform:translate(calc(-50% - 292px), calc(-50% + 169px));
+      transform:translate(calc(-50% - 285px), calc(-50% + 165px));
     }
 
     .hex-objetos:hover,
     .hex-objetos:focus-visible{
-      transform:translate(-50%, calc(-50% - 338px)) scale(1.055);
+      transform:translate(-50%, calc(-50% - 329px)) scale(1.055);
     }
 
     .hex-lugares:hover,
     .hex-lugares:focus-visible{
-      transform:translate(-50%, calc(-50% + 338px)) scale(1.055);
+      transform:translate(-50%, calc(-50% + 329px)) scale(1.055);
     }
 
     .hex-cartas:hover,
     .hex-cartas:focus-visible{
-      transform:translate(calc(-50% + 292px), calc(-50% - 169px)) scale(1.055);
+      transform:translate(calc(-50% + 285px), calc(-50% - 165px)) scale(1.055);
     }
 
     .hex-personajes:hover,
     .hex-personajes:focus-visible{
-      transform:translate(calc(-50% + 292px), calc(-50% + 169px)) scale(1.055);
+      transform:translate(calc(-50% + 285px), calc(-50% + 165px)) scale(1.055);
     }
 
     .hex-enemigos:hover,
     .hex-enemigos:focus-visible{
-      transform:translate(calc(-50% - 292px), calc(-50% - 169px)) scale(1.055);
+      transform:translate(calc(-50% - 285px), calc(-50% - 165px)) scale(1.055);
     }
 
     .hex-modulos:hover,
     .hex-modulos:focus-visible{
-      transform:translate(calc(-50% - 292px), calc(-50% + 169px)) scale(1.055);
+      transform:translate(calc(-50% - 285px), calc(-50% + 165px)) scale(1.055);
     }
 
     .corner-note{
       position:absolute;
-      left:50%;
-      bottom:12px;
+      right:8px;
+      bottom:8px;
       z-index:4;
-      transform:translateX(-50%);
       width:max-content;
       max-width:calc(100% - 32px);
-      padding:10px 16px;
+      padding:7px 11px;
       border-radius:999px;
-      border:1px solid rgba(22,217,255,.18);
-      background:rgba(2,7,17,.62);
-      color:var(--muted);
-      font-size:.82rem;
+      border:1px solid rgba(22,217,255,.12);
+      background:rgba(2,7,17,.38);
+      color:rgba(169,220,233,.58);
+      font-size:.72rem;
       text-align:center;
       backdrop-filter:blur(8px);
       -webkit-backdrop-filter:blur(8px);
@@ -530,69 +561,69 @@
 
     @media (max-width:1180px){
       :root{
-        --hex-w:286px;
-        --hex-h:248px;
-        --core-w:338px;
-        --core-h:293px;
+        --hex-w:304px;
+        --hex-h:263px;
+        --core-w:356px;
+        --core-h:308px;
       }
 
       .hex-stage{
-        height:min(760px, calc(100vh - 126px));
-        min-height:620px;
+        height:min(820px, calc(100vh - 88px));
+        min-height:690px;
       }
 
       .hex-objetos{
-        transform:translate(-50%, calc(-50% - 293px));
+        transform:translate(-50%, calc(-50% - 286px));
       }
 
       .hex-lugares{
-        transform:translate(-50%, calc(-50% + 293px));
+        transform:translate(-50%, calc(-50% + 286px));
       }
 
       .hex-cartas{
-        transform:translate(calc(-50% + 253px), calc(-50% - 146px));
+        transform:translate(calc(-50% + 247px), calc(-50% - 143px));
       }
 
       .hex-personajes{
-        transform:translate(calc(-50% + 253px), calc(-50% + 146px));
+        transform:translate(calc(-50% + 247px), calc(-50% + 143px));
       }
 
       .hex-enemigos{
-        transform:translate(calc(-50% - 253px), calc(-50% - 146px));
+        transform:translate(calc(-50% - 247px), calc(-50% - 143px));
       }
 
       .hex-modulos{
-        transform:translate(calc(-50% - 253px), calc(-50% + 146px));
+        transform:translate(calc(-50% - 247px), calc(-50% + 143px));
       }
 
       .hex-objetos:hover,
       .hex-objetos:focus-visible{
-        transform:translate(-50%, calc(-50% - 293px)) scale(1.055);
+        transform:translate(-50%, calc(-50% - 286px)) scale(1.055);
       }
 
       .hex-lugares:hover,
       .hex-lugares:focus-visible{
-        transform:translate(-50%, calc(-50% + 293px)) scale(1.055);
+        transform:translate(-50%, calc(-50% + 286px)) scale(1.055);
       }
 
       .hex-cartas:hover,
       .hex-cartas:focus-visible{
-        transform:translate(calc(-50% + 253px), calc(-50% - 146px)) scale(1.055);
+        transform:translate(calc(-50% + 247px), calc(-50% - 143px)) scale(1.055);
       }
 
       .hex-personajes:hover,
       .hex-personajes:focus-visible{
-        transform:translate(calc(-50% + 253px), calc(-50% + 146px)) scale(1.055);
+        transform:translate(calc(-50% + 247px), calc(-50% + 143px)) scale(1.055);
       }
 
       .hex-enemigos:hover,
       .hex-enemigos:focus-visible{
-        transform:translate(calc(-50% - 253px), calc(-50% - 146px)) scale(1.055);
+        transform:translate(calc(-50% - 247px), calc(-50% - 143px)) scale(1.055);
       }
 
       .hex-modulos:hover,
       .hex-modulos:focus-visible{
-        transform:translate(calc(-50% - 253px), calc(-50% + 146px)) scale(1.055);
+        transform:translate(calc(-50% - 247px), calc(-50% + 143px)) scale(1.055);
       }
     }
 
@@ -715,6 +746,13 @@
     <main class="hero" aria-label="Mapa principal de Pay and Play System">
       <section class="hex-stage">
         <svg class="hex-lines" viewBox="0 0 1120 820" preserveAspectRatio="none" aria-hidden="true">
+          <line class="connection c-objetos" x1="560" y1="410" x2="560" y2="72"></line>
+          <line class="connection c-cartas" x1="560" y1="410" x2="852" y2="241"></line>
+          <line class="connection c-personajes" x1="560" y1="410" x2="852" y2="579"></line>
+          <line class="connection c-lugares" x1="560" y1="410" x2="560" y2="748"></line>
+          <line class="connection c-modulos" x1="560" y1="410" x2="268" y2="579"></line>
+          <line class="connection c-enemigos" x1="560" y1="410" x2="268" y2="241"></line>
+
           <line x1="560" y1="410" x2="560" y2="72"></line>
           <line x1="560" y1="410" x2="852" y2="241"></line>
           <line x1="560" y1="410" x2="852" y2="579"></line>
@@ -788,7 +826,7 @@
         </a>
 
         <div class="corner-note">
-          Exploración visual · Página real en desarrollo · <strong>systempyp/index.html</strong> sigue siendo la página temporal
+Borrador visual · index.html sigue temporal
         </div>
       </section>
     </main>

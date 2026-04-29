@@ -104,7 +104,7 @@
       top:0;
       left:0;
       right:0;
-      z-index:50;
+      z-index:120;
       border-bottom:1px solid rgba(22,217,255,.11);
       background:linear-gradient(180deg, rgba(2,7,17,.58), rgba(2,7,17,.30));
       backdrop-filter:blur(14px);
@@ -213,7 +213,7 @@
       place-items:center;
       padding:54px 18px 18px;
       position:relative;
-      overflow:hidden;
+      overflow:visible;
     }
 
     .hero::before{
@@ -342,17 +342,45 @@
       box-shadow:
         0 0 0 1px rgba(125,243,255,.95),
         0 0 0 4px rgba(22,217,255,.25),
-        0 0 62px rgba(22,217,255,.70),
-        0 0 140px rgba(22,217,255,.32),
-        0 42px 72px rgba(0,0,0,.64),
+        0 0 78px rgba(22,217,255,.82),
+        0 0 180px rgba(22,217,255,.42),
+        0 54px 92px rgba(0,0,0,.74),
         inset 0 0 58px rgba(22,217,255,.26);
       outline:none;
-      z-index:50;
+      z-index:120;
     }
 
     .hex:hover::after,
     .hex:focus-visible::after{
       opacity:.80;
+    }
+
+
+    .hex-stage:has(.hex:hover) .hex:not(:hover),
+    .hex-stage:has(.hex:focus-visible) .hex:not(:focus-visible){
+      filter:brightness(.52) saturate(.70) blur(.7px);
+      opacity:.54;
+      transition:filter .24s ease, opacity .24s ease;
+    }
+
+    .hex-stage:has(.hex:hover) .corner-note,
+    .hex-stage:has(.hex:focus-visible) .corner-note{
+      opacity:.22;
+    }
+
+    .hex:hover::before,
+    .hex:focus-visible::before{
+      box-shadow:
+        inset 0 0 0 1px rgba(125,243,255,.56),
+        inset 0 0 32px rgba(22,217,255,.18),
+        0 0 34px rgba(125,243,255,.30);
+    }
+
+    .hex:hover .hex-copy,
+    .hex:focus-visible .hex-copy,
+    .hex:hover .hex-visual,
+    .hex:focus-visible .hex-visual{
+      transform:translateZ(0);
     }
 
     .hex-core{
@@ -376,7 +404,7 @@
 
     .hex-core:hover,
     .hex-core:focus-visible{
-      transform:translate(-50%, -50%) scale(1.36);
+      transform:translate(-50%, -50%) scale(1.58);
     }
 
     .core-logo{
@@ -667,12 +695,12 @@
     .hex-enemigos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))); }
     .hex-modulos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))); }
 
-    .hex-objetos:hover, .hex-objetos:focus-visible{ transform:translate(-50%, calc(-50% - var(--v-step))) scale(1.36); }
-    .hex-lugares:hover, .hex-lugares:focus-visible{ transform:translate(-50%, calc(-50% + var(--v-step))) scale(1.36); }
-    .hex-cartas:hover, .hex-cartas:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))) scale(1.36); }
-    .hex-personajes:hover, .hex-personajes:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.36); }
-    .hex-enemigos:hover, .hex-enemigos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.36); }
-    .hex-modulos:hover, .hex-modulos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.36); }
+    .hex-objetos:hover, .hex-objetos:focus-visible{ transform:translate(-50%, calc(-50% - var(--v-step))) scale(1.68); }
+    .hex-lugares:hover, .hex-lugares:focus-visible{ transform:translate(-50%, calc(-50% + var(--v-step))) scale(1.68); }
+    .hex-cartas:hover, .hex-cartas:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))) scale(1.68); }
+    .hex-personajes:hover, .hex-personajes:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
+    .hex-enemigos:hover, .hex-enemigos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.68); }
+    .hex-modulos:hover, .hex-modulos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
 
     .corner-note{
       position:absolute;
@@ -847,7 +875,7 @@
       .hex:focus-visible,
       .hex-core:hover,
       .hex-core:focus-visible{
-        transform:translateY(-3px) scale(1.04) !important;
+        transform:translateY(-3px) scale(1.06) !important;
       }
 
       .hex-core{

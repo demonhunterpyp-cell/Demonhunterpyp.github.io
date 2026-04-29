@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Pay & Play System | Borrador panal eléctrico</title>
-  <meta name="description" content="Borrador visual de Pay & Play System con panal hexagonal regular, hexágonos del mismo tamaño y estética azul eléctrico futurista." />
+  <meta name="description" content="Borrador visual de Pay & Play System con panal hexagonal regular, división texto/imagen en hexágonos periféricos y estética azul eléctrico futurista." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/systempyp/payplay-borrador.html" />
 
@@ -23,13 +23,7 @@
 
       /*
         Panal regular.
-        No usamos multiplicaciones CSS tipo calc(var(--hex-w) * .866)
-        porque pueden fallar o renderizar distinto. Medidas cerradas:
-        hexágono flat-top regular aproximado:
-        W 340 · H 294
-        vecinos diagonales: X 254 · Y 146
-        vecinos verticales: V 293
-        Hay 1px de solape intencional para eliminar grietas por antialiasing.
+        Medidas cerradas para que encajen bien lado con lado.
       */
       --hex-w:340px;
       --hex-h:294px;
@@ -299,17 +293,14 @@
       height:var(--hex-h);
       transform:translate(-50%, -50%);
       clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding:18px 22px;
       color:var(--text);
       isolation:isolate;
+      border:0;
+      overflow:hidden;
       background:
         radial-gradient(circle at 50% 20%, rgba(125,243,255,.24), transparent 38%),
         radial-gradient(circle at 50% 82%, rgba(127,92,255,.12), transparent 40%),
         linear-gradient(180deg, rgba(16,42,65,.96), rgba(3,12,25,.98));
-      border:0;
       box-shadow:
         0 0 0 1px rgba(125,243,255,.62),
         0 0 0 2px rgba(22,217,255,.11),
@@ -317,10 +308,10 @@
         0 28px 50px rgba(0,0,0,.46),
         inset 0 0 38px rgba(22,217,255,.13);
       transition:
-        transform .24s ease,
-        filter .24s ease,
-        box-shadow .24s ease,
-        background .24s ease;
+        transform .26s ease,
+        filter .26s ease,
+        box-shadow .26s ease,
+        background .26s ease;
     }
 
     .hex::before{
@@ -332,7 +323,7 @@
         inset 0 0 0 1px rgba(125,243,255,.30),
         inset 0 0 22px rgba(22,217,255,.09);
       pointer-events:none;
-      z-index:-1;
+      z-index:3;
     }
 
     .hex::after{
@@ -341,7 +332,7 @@
       inset:0;
       opacity:.34;
       pointer-events:none;
-      z-index:-2;
+      z-index:0;
       background:
         linear-gradient(120deg, transparent 0 38%, rgba(255,255,255,.16) 48%, transparent 58%),
         radial-gradient(circle at 50% 50%, transparent 0 54%, rgba(22,217,255,.20) 86%);
@@ -350,25 +341,28 @@
 
     .hex:hover,
     .hex:focus-visible{
-      filter:brightness(1.18) saturate(1.18);
+      filter:brightness(1.22) saturate(1.22);
       box-shadow:
-        0 0 0 1px rgba(125,243,255,.86),
-        0 0 0 3px rgba(22,217,255,.18),
-        0 0 38px rgba(22,217,255,.48),
-        0 0 80px rgba(22,217,255,.20),
-        0 34px 58px rgba(0,0,0,.52),
-        inset 0 0 48px rgba(22,217,255,.20);
+        0 0 0 1px rgba(125,243,255,.92),
+        0 0 0 3px rgba(22,217,255,.24),
+        0 0 54px rgba(22,217,255,.62),
+        0 0 120px rgba(22,217,255,.28),
+        0 36px 66px rgba(0,0,0,.58),
+        inset 0 0 52px rgba(22,217,255,.24);
       outline:none;
-      z-index:20;
+      z-index:30;
     }
 
     .hex:hover::after,
     .hex:focus-visible::after{
-      opacity:.72;
+      opacity:.76;
     }
 
     .hex-core{
       z-index:3;
+      display:grid;
+      place-items:center;
+      padding:18px 22px;
       background:
         radial-gradient(circle at 28% 18%, rgba(255,61,42,.18), transparent 28%),
         radial-gradient(circle at 72% 18%, rgba(22,217,255,.34), transparent 32%),
@@ -383,6 +377,10 @@
         inset 0 0 54px rgba(22,217,255,.20);
     }
 
+    .hex-core:hover,
+    .hex-core:focus-visible{
+      transform:translate(-50%, -50%) scale(1.26);
+    }
 
     .core-logo{
       width:min(258px, 86%);
@@ -397,27 +395,16 @@
     .hex-core:hover .core-logo,
     .hex-core:focus-visible .core-logo{
       filter:
-        drop-shadow(0 0 18px rgba(125,243,255,.62))
-        drop-shadow(0 0 38px rgba(22,217,255,.26))
-        drop-shadow(0 12px 22px rgba(0,0,0,.42));
+        drop-shadow(0 0 18px rgba(125,243,255,.70))
+        drop-shadow(0 0 42px rgba(22,217,255,.30))
+        drop-shadow(0 12px 24px rgba(0,0,0,.42));
     }
 
     .hex-content{
       position:relative;
       z-index:2;
       display:block;
-    }
-
-    .hex-mark{
-      display:block;
-      color:#ffffff;
-      font-weight:700;
-      font-size:clamp(2.6rem, 4vw, 4.05rem);
-      line-height:.82;
-      letter-spacing:-.12em;
-      text-shadow:
-        0 0 10px rgba(22,217,255,.75),
-        0 0 26px rgba(22,217,255,.34);
+      text-align:center;
     }
 
     .hex-title{
@@ -427,7 +414,7 @@
       font-weight:700;
       text-transform:uppercase;
       letter-spacing:.11em;
-      font-size:clamp(1.18rem, 1.85vw, 1.78rem);
+      font-size:clamp(1.22rem, 1.95vw, 1.95rem);
       text-shadow:0 0 16px rgba(22,217,255,.38);
     }
 
@@ -442,8 +429,8 @@
       max-width:270px;
       margin:8px auto 0;
       color:var(--soft);
-      line-height:1.32;
-      font-size:clamp(.88rem, 1.22vw, 1rem);
+      line-height:1.30;
+      font-size:clamp(.92rem, 1.24vw, 1.04rem);
     }
 
     .hex-chip{
@@ -457,95 +444,124 @@
       border:1px solid rgba(125,243,255,.28);
       background:rgba(22,217,255,.08);
       color:#95f5ff;
-      font-size:.70rem;
+      font-size:.72rem;
       letter-spacing:.14em;
       text-transform:uppercase;
       box-shadow:0 0 14px rgba(22,217,255,.12);
+      transition:border-color .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
     }
-
-    .hex-core{
-      transform:translate(-50%, -50%);
-    }
-
-    .hex-objetos{
-      transform:translate(-50%, calc(-50% - var(--v-step)));
-    }
-
-    .hex-lugares{
-      transform:translate(-50%, calc(-50% + var(--v-step)));
-    }
-
-    .hex-cartas{
-      transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step)));
-    }
-
-    .hex-personajes{
-      transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step)));
-    }
-
-    .hex-enemigos{
-      transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step)));
-    }
-
-    .hex-modulos{
-      transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step)));
-    }
-
-    .hex-core:hover,
-    .hex-core:focus-visible{
-      transform:translate(-50%, -50%) scale(1.17);
-    }
-
-    .hex-objetos:hover,
-    .hex-objetos:focus-visible{
-      transform:translate(-50%, calc(-50% - var(--v-step))) scale(1.17);
-    }
-
-    .hex-lugares:hover,
-    .hex-lugares:focus-visible{
-      transform:translate(-50%, calc(-50% + var(--v-step))) scale(1.17);
-    }
-
-    .hex-cartas:hover,
-    .hex-cartas:focus-visible{
-      transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))) scale(1.17);
-    }
-
-    .hex-personajes:hover,
-    .hex-personajes:focus-visible{
-      transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.17);
-    }
-
-    .hex-enemigos:hover,
-    .hex-enemigos:focus-visible{
-      transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.17);
-    }
-
-    .hex-modulos:hover,
-    .hex-modulos:focus-visible{
-      transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.17);
-    }
-
 
     .hex:hover .hex-title,
     .hex:focus-visible .hex-title{
       text-shadow:
-        0 0 12px rgba(125,243,255,.70),
-        0 0 28px rgba(22,217,255,.38);
+        0 0 14px rgba(125,243,255,.74),
+        0 0 30px rgba(22,217,255,.42);
     }
 
     .hex:hover .hex-sub,
     .hex:focus-visible .hex-sub{
-      color:#d6fbff;
+      color:#dafcff;
     }
 
     .hex:hover .hex-chip,
     .hex:focus-visible .hex-chip{
-      border-color:rgba(125,243,255,.55);
-      background:rgba(22,217,255,.15);
-      color:#eaffff;
+      border-color:rgba(125,243,255,.58);
+      background:rgba(22,217,255,.16);
+      color:#f3ffff;
       box-shadow:0 0 18px rgba(22,217,255,.22);
     }
+
+    /* Periféricos partidos en dos zonas */
+    .hex-peripheral{
+      display:grid;
+      grid-template-rows: 1fr 1.08fr;
+    }
+
+    .hex-copy{
+      position:relative;
+      z-index:2;
+      padding:16px 18px 10px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:center;
+      text-align:center;
+    }
+
+    .hex-visual{
+      position:relative;
+      z-index:2;
+      margin:0 14px 14px;
+      border-radius:18px;
+      border:1px solid rgba(125,243,255,.26);
+      background:
+        radial-gradient(circle at 50% 24%, rgba(125,243,255,.12), transparent 42%),
+        linear-gradient(180deg, rgba(12,22,38,.78), rgba(5,12,22,.92));
+      overflow:hidden;
+      box-shadow:
+        inset 0 0 20px rgba(22,217,255,.08),
+        0 12px 22px rgba(0,0,0,.22);
+    }
+
+    .hex-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent 38%),
+        radial-gradient(circle at 50% 100%, rgba(22,217,255,.10), transparent 52%);
+      pointer-events:none;
+    }
+
+    .hex-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.88;
+      filter:saturate(1.08) brightness(.84) contrast(1.02);
+      transition:transform .28s ease, filter .28s ease, opacity .28s ease;
+    }
+
+    .hex:hover .hex-visual img,
+    .hex:focus-visible .hex-visual img{
+      transform:scale(1.10);
+      opacity:1;
+      filter:saturate(1.16) brightness(.96) contrast(1.06);
+    }
+
+    .hex-divider{
+      position:absolute;
+      left:24px;
+      right:24px;
+      top:50%;
+      transform:translateY(-2px);
+      height:1px;
+      z-index:4;
+      background:linear-gradient(90deg, transparent, rgba(125,243,255,.40), transparent);
+      box-shadow:0 0 10px rgba(22,217,255,.18);
+      pointer-events:none;
+    }
+
+    .hex:hover .hex-divider,
+    .hex:focus-visible .hex-divider{
+      background:linear-gradient(90deg, transparent, rgba(125,243,255,.72), transparent);
+      box-shadow:0 0 14px rgba(22,217,255,.28);
+    }
+
+    .hex-core{ transform:translate(-50%, -50%); }
+    .hex-objetos{ transform:translate(-50%, calc(-50% - var(--v-step))); }
+    .hex-lugares{ transform:translate(-50%, calc(-50% + var(--v-step))); }
+    .hex-cartas{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))); }
+    .hex-personajes{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))); }
+    .hex-enemigos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))); }
+    .hex-modulos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))); }
+
+    .hex-objetos:hover, .hex-objetos:focus-visible{ transform:translate(-50%, calc(-50% - var(--v-step))) scale(1.28); }
+    .hex-lugares:hover, .hex-lugares:focus-visible{ transform:translate(-50%, calc(-50% + var(--v-step))) scale(1.28); }
+    .hex-cartas:hover, .hex-cartas:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))) scale(1.28); }
+    .hex-personajes:hover, .hex-personajes:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.28); }
+    .hex-enemigos:hover, .hex-enemigos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.28); }
+    .hex-modulos:hover, .hex-modulos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.28); }
 
     .corner-note{
       position:absolute;
@@ -587,6 +603,18 @@
         --cluster-w:760px;
         --cluster-h:786px;
       }
+
+      .hex-copy{
+        padding:12px 14px 8px;
+      }
+
+      .hex-visual{
+        margin:0 12px 12px;
+      }
+
+      .core-logo{
+        width:min(232px, 84%);
+      }
     }
 
     @media (max-width:960px), (max-height:780px){
@@ -600,12 +628,25 @@
         --cluster-h:672px;
       }
 
-      .hex{
-        padding:18px 22px;
+      .hex-core{
+        padding:16px 18px;
+      }
+
+      .hex-copy{
+        padding:10px 12px 8px;
       }
 
       .hex-chip{
         display:none;
+      }
+
+      .hex-visual{
+        margin:0 10px 10px;
+        border-radius:14px;
+      }
+
+      .core-logo{
+        width:min(205px, 82%);
       }
     }
 
@@ -657,7 +698,7 @@
         top:auto;
         width:100%;
         height:auto;
-        min-height:132px;
+        min-height:148px;
         transform:none !important;
         clip-path:polygon(9% 0%, 91% 0%, 100% 50%, 91% 100%, 9% 100%, 0% 50%);
       }
@@ -666,46 +707,23 @@
       .hex:focus-visible,
       .hex-core:hover,
       .hex-core:focus-visible{
-        transform:translateY(-3px) scale(1.02) !important;
+        transform:translateY(-3px) scale(1.03) !important;
       }
 
       .hex-core{
-        min-height:168px;
+        min-height:172px;
         order:-1;
       }
 
-      .hex-mark{
-        font-size:3.4rem;
+      .hex-visual{
+        min-height:94px;
       }
-
 
       .core-logo{
         width:min(270px, 84%);
       }
 
-
-  
-    .hex:hover .hex-title,
-    .hex:focus-visible .hex-title{
-      text-shadow:
-        0 0 12px rgba(125,243,255,.70),
-        0 0 28px rgba(22,217,255,.38);
-    }
-
-    .hex:hover .hex-sub,
-    .hex:focus-visible .hex-sub{
-      color:#d6fbff;
-    }
-
-    .hex:hover .hex-chip,
-    .hex:focus-visible .hex-chip{
-      border-color:rgba(125,243,255,.55);
-      background:rgba(22,217,255,.15);
-      color:#eaffff;
-      box-shadow:0 0 18px rgba(22,217,255,.22);
-    }
-
-    .corner-note{
+      .corner-note{
         position:relative;
         right:auto;
         bottom:auto;
@@ -722,12 +740,12 @@
         flex:1 1 100%;
       }
 
-      .hex{
-        padding:22px 20px;
+      .hex-title{
+        font-size:1.18rem;
       }
 
       .hex-sub{
-        font-size:.86rem;
+        font-size:.88rem;
       }
     }
   </style>
@@ -765,52 +783,76 @@
           </span>
         </a>
 
-        <a class="hex hex-objetos" href="#" aria-label="Objetos">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-objetos" href="#" aria-label="Objetos">
+          <div class="hex-copy">
             <span class="hex-chip">inventario</span>
             <span class="hex-title">Objetos</span>
             <span class="hex-sub">Equipo, reliquias, consumibles y recursos.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-mundo.jpg" alt="Imagen representativa para Objetos">
+          </div>
         </a>
 
-        <a class="hex hex-cartas" href="#" aria-label="Cartas">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-cartas" href="#" aria-label="Cartas">
+          <div class="hex-copy">
             <span class="hex-chip">mecánica</span>
             <span class="hex-title">Cartas</span>
             <span class="hex-sub">Efectos, acciones, eventos y apoyo de mesa.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-payplay.png" alt="Imagen representativa para Cartas">
+          </div>
         </a>
 
-        <a class="hex hex-personajes" href="#" aria-label="Personajes">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-personajes" href="#" aria-label="Personajes">
+          <div class="hex-copy">
             <span class="hex-chip">jugador</span>
             <span class="hex-title">Personajes</span>
             <span class="hex-sub">Creación, roles, progreso y evolución.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-sasha.png" alt="Imagen representativa para Personajes">
+          </div>
         </a>
 
-        <a class="hex hex-lugares" href="#" aria-label="Lugares">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-lugares" href="#" aria-label="Lugares">
+          <div class="hex-copy">
             <span class="hex-chip">mapa</span>
             <span class="hex-title">Lugares</span>
             <span class="hex-sub">Zonas, regiones, escenarios y puntos clave.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-mundo.jpg" alt="Imagen representativa para Lugares">
+          </div>
         </a>
 
-        <a class="hex hex-modulos" href="#" aria-label="Módulos">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-modulos" href="#" aria-label="Módulos">
+          <div class="hex-copy">
             <span class="hex-chip">aventura</span>
             <span class="hex-title">Módulos</span>
             <span class="hex-sub">Misiones, campañas y bloques jugables.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-payplay.png" alt="Imagen representativa para Módulos">
+          </div>
         </a>
 
-        <a class="hex hex-enemigos" href="#" aria-label="Enemigos">
-          <span class="hex-content">
+        <a class="hex hex-peripheral hex-enemigos" href="#" aria-label="Enemigos">
+          <div class="hex-copy">
             <span class="hex-chip">amenaza</span>
             <span class="hex-title">Enemigos</span>
             <span class="hex-sub">Bestiario, jefes, encuentros y peligros.</span>
-          </span>
+          </div>
+          <div class="hex-divider"></div>
+          <div class="hex-visual">
+            <img src="../portal/portal-sasha.png" alt="Imagen representativa para Enemigos">
+          </div>
         </a>
 
         <div class="corner-note">

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Pay & Play System | Borrador panal eléctrico · Orden horario</title>
+  <title>Pay & Play System | Borrador panal arcano · Orden horario</title>
   <meta name="description" content="Borrador visual de Pay & Play System con panal hexagonal regular, hexágonos divididos en texto e imagen y estética azul eléctrico futurista." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/systempyp/payplay-borrador.html" />
@@ -949,6 +949,273 @@
         font-size:.88rem;
       }
     }
+  
+    /* TEMA HÍBRIDO · moderno actual + mundo medieval */
+    :root{
+      --blue:#4fd3e6;
+      --blue-2:#278ea1;
+      --blue-3:#b8f5ff;
+      --violet:#6c5b9a;
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --iron:#182131;
+      --iron-2:#0b111c;
+      --ember:#b44835;
+      --text:#f7eedc;
+      --soft:#d7c6a4;
+      --muted:#9f9277;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 50% 46%, rgba(216,177,96,.16), transparent 28%),
+        radial-gradient(circle at 16% 18%, rgba(79,211,230,.10), transparent 22%),
+        radial-gradient(circle at 86% 22%, rgba(180,72,53,.10), transparent 24%),
+        radial-gradient(circle at 50% 98%, rgba(216,177,96,.08), transparent 28%),
+        linear-gradient(180deg, #05070d 0%, #101827 48%, #080b12 100%);
+    }
+
+    body::before{
+      background:
+        linear-gradient(90deg, rgba(216,177,96,.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(216,177,96,.032) 1px, transparent 1px);
+      background-size:52px 52px;
+      opacity:.60;
+      mask-image:radial-gradient(circle at 50% 46%, rgba(0,0,0,.78), transparent 76%);
+    }
+
+    body::after{
+      background:
+        radial-gradient(circle at 50% 54%, transparent 0 36%, rgba(0,0,0,.36) 80%),
+        linear-gradient(115deg, transparent 0 46%, rgba(79,211,230,.035) 48%, transparent 51%),
+        linear-gradient(65deg, transparent 0 46%, rgba(216,177,96,.045) 49%, transparent 52%);
+      mix-blend-mode:normal;
+      opacity:.95;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(216,177,96,.16);
+      background:linear-gradient(180deg, rgba(5,7,13,.78), rgba(5,7,13,.42));
+    }
+
+    .brand-mark{
+      border-color:rgba(216,177,96,.52);
+      background:
+        radial-gradient(circle at 50% 40%, rgba(216,177,96,.28), transparent 52%),
+        linear-gradient(180deg, rgba(79,211,230,.10), rgba(183,133,55,.12));
+      color:#f7d889;
+      box-shadow:
+        0 0 18px rgba(216,177,96,.18),
+        inset 0 0 18px rgba(79,211,230,.08);
+    }
+
+    .brand strong{
+      color:#f7eedc;
+    }
+
+    .brand small{
+      color:#bda978;
+    }
+
+    .nav a{
+      border-color:rgba(216,177,96,.20);
+      background:rgba(255,255,255,.035);
+      color:#e9d7b4;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible{
+      border-color:rgba(216,177,96,.52);
+      background:rgba(216,177,96,.08);
+      box-shadow:
+        0 0 18px rgba(216,177,96,.18),
+        0 0 22px rgba(79,211,230,.08);
+      color:#fff2d2;
+    }
+
+    .nav a.current{
+      border-color:rgba(216,177,96,.58);
+      background:linear-gradient(180deg, rgba(216,177,96,.18), rgba(183,133,55,.12));
+      box-shadow:0 0 18px rgba(216,177,96,.16);
+      color:#fff2d2;
+    }
+
+    .hero::before{
+      background:
+        radial-gradient(circle, rgba(216,177,96,.10), transparent 54%),
+        conic-gradient(from 0deg, transparent 0deg, rgba(216,177,96,.16) 28deg, transparent 54deg, rgba(79,211,230,.09) 116deg, transparent 145deg, rgba(183,133,55,.12) 210deg, transparent 250deg, rgba(180,72,53,.10) 314deg, transparent 360deg);
+      opacity:.72;
+    }
+
+    .hero::after{
+      border-color:rgba(216,177,96,.12);
+      box-shadow:
+        0 0 0 18px rgba(216,177,96,.016),
+        0 0 0 54px rgba(79,211,230,.010),
+        0 0 0 96px rgba(183,133,55,.010),
+        0 0 80px rgba(216,177,96,.08);
+    }
+
+    .hex-stage::before{
+      background:
+        radial-gradient(circle at 50% 50%, rgba(216,177,96,.10), transparent 57%),
+        radial-gradient(circle at 50% 50%, transparent 0 46%, rgba(79,211,230,.08) 47%, transparent 49%);
+      filter:drop-shadow(0 0 22px rgba(216,177,96,.16));
+    }
+
+    .hex{
+      background:
+        radial-gradient(circle at 50% 16%, rgba(216,177,96,.20), transparent 34%),
+        radial-gradient(circle at 50% 88%, rgba(79,211,230,.09), transparent 42%),
+        linear-gradient(180deg, rgba(31,41,60,.98), rgba(7,11,20,.99));
+      box-shadow:
+        0 0 0 1px rgba(216,177,96,.52),
+        0 0 0 2px rgba(79,211,230,.08),
+        0 0 24px rgba(216,177,96,.12),
+        0 28px 50px rgba(0,0,0,.48),
+        inset 0 0 38px rgba(79,211,230,.08);
+    }
+
+    .hex::before{
+      box-shadow:
+        inset 0 0 0 1px rgba(216,177,96,.26),
+        inset 0 0 22px rgba(79,211,230,.07);
+    }
+
+    .hex::after{
+      background:
+        linear-gradient(120deg, transparent 0 38%, rgba(255,244,210,.12) 48%, transparent 58%),
+        radial-gradient(circle at 50% 50%, transparent 0 54%, rgba(216,177,96,.14) 86%);
+    }
+
+    .hex:hover,
+    .hex:focus-visible{
+      filter:brightness(1.18) saturate(1.10);
+      box-shadow:
+        0 0 0 1px rgba(216,177,96,.92),
+        0 0 0 4px rgba(79,211,230,.18),
+        0 0 54px rgba(216,177,96,.44),
+        0 0 120px rgba(79,211,230,.20),
+        0 42px 76px rgba(0,0,0,.66),
+        inset 0 0 58px rgba(79,211,230,.16);
+    }
+
+    .hex-core{
+      background:
+        radial-gradient(circle at 28% 18%, rgba(180,72,53,.18), transparent 28%),
+        radial-gradient(circle at 72% 18%, rgba(79,211,230,.22), transparent 32%),
+        radial-gradient(circle at 50% 72%, rgba(216,177,96,.18), transparent 36%),
+        linear-gradient(180deg, rgba(30,42,60,.98), rgba(5,8,15,.99));
+      box-shadow:
+        0 0 0 1px rgba(216,177,96,.76),
+        0 0 0 3px rgba(79,211,230,.08),
+        0 0 44px rgba(216,177,96,.28),
+        0 0 100px rgba(79,211,230,.10),
+        0 34px 70px rgba(0,0,0,.56),
+        inset 0 0 54px rgba(79,211,230,.14);
+    }
+
+    .hex-title{
+      color:#f7eedc;
+      text-shadow:0 0 16px rgba(79,211,230,.24);
+    }
+
+    .hex-core .hex-title{
+      color:#f7d889;
+      text-shadow:0 0 16px rgba(216,177,96,.30);
+    }
+
+    .hex-sub{
+      color:#d7c6a4;
+    }
+
+    .hex-chip{
+      border-color:rgba(216,177,96,.28);
+      background:rgba(216,177,96,.075);
+      color:#e6c779;
+      box-shadow:0 0 14px rgba(216,177,96,.09);
+    }
+
+    .hex:hover .hex-title,
+    .hex:focus-visible .hex-title{
+      text-shadow:
+        0 0 14px rgba(216,177,96,.52),
+        0 0 30px rgba(79,211,230,.22);
+    }
+
+    .hex:hover .hex-sub,
+    .hex:focus-visible .hex-sub{
+      color:#f3e4c4;
+    }
+
+    .hex:hover .hex-chip,
+    .hex:focus-visible .hex-chip{
+      border-color:rgba(216,177,96,.58);
+      background:rgba(216,177,96,.16);
+      color:#fff2d2;
+      box-shadow:0 0 18px rgba(216,177,96,.20);
+    }
+
+    .hex-visual{
+      border-color:rgba(216,177,96,.26);
+      background:
+        radial-gradient(circle at 50% 24%, rgba(216,177,96,.12), transparent 42%),
+        linear-gradient(180deg, rgba(18,25,38,.80), rgba(6,9,16,.94));
+      box-shadow:
+        inset 0 0 20px rgba(79,211,230,.06),
+        0 12px 22px rgba(0,0,0,.24);
+    }
+
+    .hex-visual::after{
+      background:
+        linear-gradient(90deg, rgba(216,177,96,.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(79,211,230,.034) 1px, transparent 1px);
+    }
+
+    .visual-icon{
+      border-color:rgba(216,177,96,.34);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(216,177,96,.22), transparent 56%),
+        rgba(5,8,15,.66);
+      color:#f7d889;
+      box-shadow:
+        0 0 24px rgba(216,177,96,.15),
+        inset 0 0 18px rgba(79,211,230,.08);
+    }
+
+    .hex:hover .visual-icon,
+    .hex:focus-visible .visual-icon{
+      box-shadow:
+        0 0 30px rgba(216,177,96,.30),
+        0 0 22px rgba(79,211,230,.14),
+        inset 0 0 22px rgba(79,211,230,.14);
+    }
+
+    .hex-divider{
+      background:linear-gradient(90deg, transparent, rgba(216,177,96,.42), transparent);
+      box-shadow:0 0 10px rgba(216,177,96,.14);
+    }
+
+    .hex:hover .hex-divider,
+    .hex:focus-visible .hex-divider{
+      background:linear-gradient(90deg, transparent, rgba(216,177,96,.72), transparent);
+      box-shadow:0 0 14px rgba(216,177,96,.24);
+    }
+
+    .art-enemigos::before{
+      border-color:rgba(180,72,53,.46);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(180,72,53,.55) 0 8px, rgba(180,72,53,.12) 9px 30px, transparent 32px),
+        radial-gradient(circle, rgba(180,72,53,.16), transparent 64%);
+      box-shadow:0 0 30px rgba(180,72,53,.24);
+    }
+
+    .corner-note{
+      border-color:rgba(216,177,96,.12);
+      background:rgba(5,7,13,.38);
+      color:rgba(215,198,164,.58);
+    }
+
   </style>
 </head>
 
@@ -960,7 +1227,7 @@
           <span class="brand-mark">P&amp;P</span>
           <span>
             <strong>Pay &amp; Play System</strong>
-            <small>Borrador panal</small>
+            <small>Borrador arcano</small>
           </span>
         </a>
 

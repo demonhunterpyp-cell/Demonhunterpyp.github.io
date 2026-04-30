@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Pay & Play System | Borrador panal eléctrico · Hover corregido</title>
+  <title>Pay & Play System | Borrador panal eléctrico · Orden horario</title>
   <meta name="description" content="Borrador visual de Pay & Play System con panal hexagonal regular, hexágonos divididos en texto e imagen y estética azul eléctrico futurista." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/systempyp/payplay-borrador.html" />
@@ -689,19 +689,22 @@
     }
 
     .hex-core{ transform:translate(-50%, -50%); }
-    .hex-objetos{ transform:translate(-50%, calc(-50% - var(--v-step))); }
-    .hex-lugares{ transform:translate(-50%, calc(-50% + var(--v-step))); }
-    .hex-cartas{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))); }
-    .hex-personajes{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))); }
-    .hex-enemigos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))); }
-    .hex-modulos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))); }
 
-    .hex-objetos:hover, .hex-objetos:focus-visible{ transform:translate(-50%, calc(-50% - var(--v-step) + 92px)) scale(1.68); }
-    .hex-lugares:hover, .hex-lugares:focus-visible{ transform:translate(-50%, calc(-50% + var(--v-step) - 92px)) scale(1.68); }
+    /* Orden horario:
+       arriba: Personajes → Cartas → Objetos → Lugares → Enemigos → Módulos */
+    .hex-personajes{ transform:translate(-50%, calc(-50% - var(--v-step))); }
+    .hex-cartas{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))); }
+    .hex-objetos{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))); }
+    .hex-lugares{ transform:translate(-50%, calc(-50% + var(--v-step))); }
+    .hex-enemigos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))); }
+    .hex-modulos{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))); }
+
+    .hex-personajes:hover, .hex-personajes:focus-visible{ transform:translate(-50%, calc(-50% - var(--v-step) + 92px)) scale(1.68); }
     .hex-cartas:hover, .hex-cartas:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% - var(--y-step))) scale(1.68); }
-    .hex-personajes:hover, .hex-personajes:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
-    .hex-enemigos:hover, .hex-enemigos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.68); }
-    .hex-modulos:hover, .hex-modulos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
+    .hex-objetos:hover, .hex-objetos:focus-visible{ transform:translate(calc(-50% + var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
+    .hex-lugares:hover, .hex-lugares:focus-visible{ transform:translate(-50%, calc(-50% + var(--v-step) - 92px)) scale(1.68); }
+    .hex-enemigos:hover, .hex-enemigos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% + var(--y-step))) scale(1.68); }
+    .hex-modulos:hover, .hex-modulos:focus-visible{ transform:translate(calc(-50% - var(--x-step)), calc(-50% - var(--y-step))) scale(1.68); }
 
     .corner-note{
       position:absolute;
@@ -821,7 +824,7 @@
 
 
     @media (max-width:1150px), (max-height:900px){
-      .hex-objetos:hover, .hex-objetos:focus-visible{
+      .hex-personajes:hover, .hex-personajes:focus-visible{
         transform:translate(-50%, calc(-50% - var(--v-step) + 74px)) scale(1.68);
       }
 
@@ -831,7 +834,7 @@
     }
 
     @media (max-width:960px), (max-height:780px){
-      .hex-objetos:hover, .hex-objetos:focus-visible{
+      .hex-personajes:hover, .hex-personajes:focus-visible{
         transform:translate(-50%, calc(-50% - var(--v-step) + 58px)) scale(1.62);
       }
 

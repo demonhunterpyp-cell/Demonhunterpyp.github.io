@@ -1500,6 +1500,119 @@
       }
     }
 
+  
+    /* AJUSTE LIBROS · Jerarquía principal/secundario visible */
+    #libros .books-lead strong{
+      color:#fff1cb;
+      font-weight:700;
+      text-shadow:0 0 12px rgba(216,177,96,.16);
+    }
+
+    #libros .tabs{
+      gap:18px;
+    }
+
+    #libros .tab{
+      min-width:300px;
+      max-width:340px;
+      padding:18px 26px 16px;
+      border-radius:24px;
+    }
+
+    #libros .tab strong{
+      font-size:1.12rem;
+      line-height:1.2;
+      margin-bottom:6px;
+    }
+
+    #libros .tab small{
+      font-size:.92rem;
+      line-height:1.3;
+    }
+
+    #libros .tab-primary.active{
+      background:linear-gradient(180deg, #e1bb6a 0%, #cf9c46 100%);
+      border-color:rgba(216,177,96,.72);
+      color:#4d3414;
+      box-shadow:
+        0 0 0 1px rgba(255,240,200,.12) inset,
+        0 12px 28px rgba(181,130,48,.24),
+        0 16px 34px rgba(0,0,0,.18);
+    }
+
+    #libros .tab-primary.active small{
+      color:rgba(77,52,20,.84);
+    }
+
+    #libros .tab-annexes{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.08), transparent 32%),
+        linear-gradient(180deg, rgba(40,50,82,.92) 0%, rgba(25,34,62,.92) 100%);
+      border-color:rgba(216,177,96,.30);
+      color:#f2e3bf;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.025),
+        0 10px 24px rgba(0,0,0,.18),
+        0 0 0 rgba(216,177,96,0);
+    }
+
+    #libros .tab-annexes small{
+      color:rgba(242,227,191,.86);
+    }
+
+    #libros .tab-annexes:hover,
+    #libros .tab-annexes:focus-visible{
+      transform:translateY(-2px);
+      border-color:rgba(216,177,96,.52);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.12), transparent 34%),
+        linear-gradient(180deg, rgba(48,60,95,.96) 0%, rgba(30,40,72,.96) 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 0 18px rgba(216,177,96,.14),
+        0 12px 28px rgba(0,0,0,.20);
+      color:#fff0c9;
+    }
+
+    #libros .tab-annexes.active{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.22), transparent 34%),
+        linear-gradient(180deg, rgba(70,78,104,.98) 0%, rgba(39,48,78,.98) 100%);
+      border-color:rgba(216,177,96,.64);
+      color:#fff0c9;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        0 0 24px rgba(216,177,96,.20),
+        0 16px 34px rgba(0,0,0,.22);
+    }
+
+    #libros .tab-annexes.active small{
+      color:rgba(255,240,201,.90);
+    }
+
+    @media (max-width: 900px){
+      #libros .tabs{
+        gap:14px;
+      }
+
+      #libros .tab{
+        min-width:260px;
+      }
+    }
+
+    @media (max-width: 640px){
+      #libros .tabs{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      #libros .tab{
+        width:100%;
+        max-width:420px;
+        min-width:0;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1606,14 +1719,14 @@
     <section class="panel" id="libros">
       <div class="ornament"></div>
       <h2 class="section-title">Libros</h2>
-      <p class="section-lead">La saga principal marca el eje del viaje. Los anexos amplían el mundo desde sus márgenes, añadiendo nuevas capas, nuevas perspectivas y una respiración más amplia al universo de Sasha.</p>
+      <p class="section-lead books-lead">La saga principal marca el eje del viaje. Los <strong>anexos</strong> amplían el mundo desde sus márgenes, añadiendo nuevas capas, nuevas perspectivas y una respiración más amplia al universo de Sasha. Las <strong>expansiones</strong> complementan la experiencia y enriquecen el conjunto.</p>
 
       <div class="tabs">
-        <button class="tab active" data-tab="principal">
+        <button class="tab tab-primary active" data-tab="principal">
           <strong>Saga principal</strong>
           <small>Eje principal de la saga</small>
         </button>
-        <button class="tab" data-tab="annexes">
+        <button class="tab tab-annexes" data-tab="annexes">
           <strong>Anexos y expansiones</strong>
           <small>Expansión del universo</small>
         </button>

@@ -25,7 +25,6 @@
       --soft:#d7c6a4;
       --muted:#9f9277;
       --line:rgba(216,177,96,.26);
-      --line-strong:rgba(216,177,96,.46);
       --blue:#6bd5e9;
       --red:#b44835;
       --shadow:0 28px 70px rgba(0,0,0,.46);
@@ -51,7 +50,7 @@
         radial-gradient(circle at 16% 22%, rgba(180,72,53,.14), transparent 24%),
         radial-gradient(circle at 84% 22%, rgba(107,213,233,.10), transparent 24%),
         linear-gradient(180deg, #05070d 0%, #101827 48%, #070a11 100%);
-      overflow-x:hidden;
+      overflow:hidden;
     }
 
     body::before{
@@ -98,7 +97,8 @@
     .portal-shell{
       position:relative;
       width:min(var(--maxw), 100%);
-      min-height:calc(100vh - 52px);
+      height:calc(100vh - 52px);
+      min-height:620px;
       border-radius:34px;
       overflow:hidden;
       border:1px solid rgba(216,177,96,.20);
@@ -150,7 +150,7 @@
       z-index:0;
       background-size:cover;
       background-repeat:no-repeat;
-      opacity:.90;
+      opacity:.91;
       transform:scale(1.01);
       transition:transform .38s ease, filter .38s ease, opacity .38s ease;
     }
@@ -168,20 +168,20 @@
     .portal-panel:hover,
     .portal-panel:focus-visible{
       z-index:4;
-      filter:brightness(1.08) saturate(1.04);
+      filter:brightness(1.10) saturate(1.05);
       outline:none;
     }
 
     .portal-panel:hover::before,
     .portal-panel:focus-visible::before{
       transform:scale(1.055);
-      filter:brightness(1.13) saturate(1.08);
+      filter:brightness(1.16) saturate(1.08);
       opacity:1;
     }
 
     .portal-panel:hover::after,
     .portal-panel:focus-visible::after{
-      opacity:.72;
+      opacity:.70;
     }
 
     .panel-novelas{
@@ -191,13 +191,13 @@
     .panel-novelas::before{
       background-image:url("portal/portal-sasha.png");
       background-position:left center;
-      background-size:72% auto;
+      background-size:74% auto;
     }
 
     .panel-novelas::after{
       background:
-        linear-gradient(90deg, rgba(4,6,11,.18), rgba(4,6,11,.08) 44%, rgba(4,6,11,.44)),
-        radial-gradient(circle at 20% 52%, rgba(216,177,96,.15), transparent 28%);
+        linear-gradient(90deg, rgba(4,6,11,.14), rgba(4,6,11,.08) 44%, rgba(4,6,11,.46)),
+        radial-gradient(circle at 20% 52%, rgba(216,177,96,.16), transparent 28%);
     }
 
     .panel-rol{
@@ -206,14 +206,14 @@
 
     .panel-rol::before{
       background-image:url("portal/portal-payplay.png");
-      background-position:center 28%;
+      background-position:center 26%;
       background-size:min(34vw, 440px) auto;
     }
 
     .panel-rol::after{
       background:
         radial-gradient(circle at 50% 24%, rgba(107,213,233,.18), transparent 28%),
-        linear-gradient(180deg, rgba(5,8,16,.18), rgba(5,8,16,.42));
+        linear-gradient(180deg, rgba(5,8,16,.14), rgba(5,8,16,.42));
     }
 
     .panel-lore{
@@ -228,7 +228,7 @@
 
     .panel-lore::after{
       background:
-        linear-gradient(270deg, rgba(4,6,11,.10), rgba(4,6,11,.12) 42%, rgba(4,6,11,.48)),
+        linear-gradient(270deg, rgba(4,6,11,.08), rgba(4,6,11,.12) 42%, rgba(4,6,11,.50)),
         radial-gradient(circle at 82% 48%, rgba(107,213,233,.13), transparent 30%);
     }
 
@@ -291,7 +291,6 @@
 
     .portal-panel:hover .portal-label,
     .portal-panel:focus-visible .portal-label{
-      transform:translateY(-3px);
       background:rgba(5,7,13,.70);
       border-color:rgba(216,177,96,.42);
       box-shadow:
@@ -344,15 +343,9 @@
     }
 
     .portal-panel:hover .label-novelas,
-    .portal-panel:focus-visible .label-novelas{
-      transform:translate(-50%, -50%) translateY(-3px);
-    }
-
+    .portal-panel:focus-visible .label-novelas,
     .portal-panel:hover .label-rol,
-    .portal-panel:focus-visible .label-rol{
-      transform:translate(-50%, -50%) translateY(-3px);
-    }
-
+    .portal-panel:focus-visible .label-rol,
     .portal-panel:hover .label-lore,
     .portal-panel:focus-visible .label-lore{
       transform:translate(-50%, -50%) translateY(-3px);
@@ -375,325 +368,104 @@
       font-size:.82rem;
       backdrop-filter:blur(8px);
       -webkit-backdrop-filter:blur(8px);
+      pointer-events:none;
     }
 
-    .mobile-portal{
-      display:none;
-    }
-
-    @media (max-width: 640px){
-      /* Móvil real táctil. En PC se mantiene el portal triangular aunque la ventana sea estrecha. */
+    @media (max-width: 700px){
       body{
-        overflow-x:hidden;
+        overflow:auto;
       }
 
       .page{
+        min-height:100vh;
         display:block;
-        padding:14px;
+        padding:12px;
       }
 
       .portal-shell{
-        min-height:auto;
-        overflow:visible;
-        border-radius:26px;
-        border-color:rgba(216,177,96,.16);
-        background:
-          radial-gradient(circle at 50% 0%, rgba(216,177,96,.12), transparent 30%),
-          linear-gradient(180deg, rgba(21,29,45,.90), rgba(7,10,17,.96));
+        height:auto;
+        min-height:calc(100vh - 24px);
+        border-radius:24px;
+      }
+
+      .portal-stage{
+        position:relative;
+        inset:auto;
+        display:grid;
+        gap:12px;
+        padding:18px 14px;
       }
 
       .portal-shell::before,
       .portal-shell::after,
-      .portal-stage,
       .portal-center,
       .desktop-title{
         display:none;
       }
 
-      .mobile-portal{
-        display:block;
-        padding:16px;
-      }
-
-      .mobile-head{
-        padding:18px 14px 18px;
-        text-align:center;
-      }
-
-      .mobile-head .kicker{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        min-height:28px;
-        padding:7px 11px;
-        border-radius:999px;
-        border:1px solid rgba(216,177,96,.22);
-        background:rgba(216,177,96,.065);
-        color:var(--gold);
-        font-size:.72rem;
-        font-weight:700;
-        letter-spacing:.14em;
-        text-transform:uppercase;
-      }
-
-      .mobile-head h1{
-        margin:14px 0 8px;
-        color:#f7d889;
-        font-size:clamp(2rem, 9vw, 3.35rem);
-        line-height:.92;
-        letter-spacing:-.04em;
-        text-shadow:0 8px 28px rgba(0,0,0,.34);
-      }
-
-      .mobile-head p{
-        max-width:540px;
-        margin:0 auto;
-        color:var(--soft);
-        font-size:.98rem;
-        line-height:1.55;
-      }
-
-      .mobile-grid{
-        display:grid;
-        gap:14px;
-      }
-
-      .mobile-card{
+      .portal-panel{
         position:relative;
-        min-height:210px;
-        overflow:hidden;
-        display:flex;
-        align-items:flex-end;
-        border-radius:24px;
+        inset:auto;
+        min-height:190px;
+        border-radius:22px;
+        clip-path:none !important;
         border:1px solid rgba(216,177,96,.18);
-        background:
-          radial-gradient(circle at 50% 20%, rgba(216,177,96,.10), transparent 30%),
-          linear-gradient(180deg, rgba(31,41,60,.98), rgba(7,11,20,.99));
-        box-shadow:
-          0 18px 40px rgba(0,0,0,.34),
-          inset 0 0 0 1px rgba(255,255,255,.025);
-        -webkit-tap-highlight-color:transparent;
       }
 
-      .mobile-card::before{
-        content:"";
-        position:absolute;
+      .portal-panel::before{
         inset:0;
-        z-index:0;
+        transform:none;
+      }
+
+      .panel-novelas::before{
+        background-position:center 28%;
         background-size:cover;
-        background-repeat:no-repeat;
-        opacity:.82;
-        transition:transform .25s ease, opacity .25s ease, filter .25s ease;
       }
 
-      .mobile-card::after{
-        content:"";
-        position:absolute;
-        inset:0;
-        z-index:1;
+      .panel-rol::before{
+        background-position:center 36%;
+        background-size:min(76vw, 360px) auto;
+      }
+
+      .panel-lore::before{
+        background-position:center center;
+        background-size:cover;
+      }
+
+      .portal-panel::after{
         background:
           linear-gradient(180deg, rgba(5,7,13,.08), rgba(5,7,13,.34) 46%, rgba(5,7,13,.88) 100%),
           radial-gradient(circle at 80% 0%, rgba(216,177,96,.12), transparent 34%);
       }
 
-      .mobile-card:active::before,
-      .mobile-card:hover::before,
-      .mobile-card:focus-visible::before{
-        transform:scale(1.045);
-        opacity:1;
-        filter:brightness(1.10) saturate(1.05);
-      }
-
-      .mobile-card:focus-visible{
-        outline:2px solid rgba(216,177,96,.70);
-        outline-offset:3px;
-      }
-
-      .mobile-card-novelas::before{
-        background-image:url("portal/portal-sasha.png");
-        background-position:center 30%;
-      }
-
-      .mobile-card-rol::before{
-        background-image:url("portal/portal-payplay.png");
-        background-position:center 35%;
-        background-size:min(74vw, 360px) auto;
-        background-color:#05070d;
-      }
-
-      .mobile-card-lore::before{
-        background-image:url("portal/portal-mundo.jpg");
-        background-position:center center;
-      }
-
-      .mobile-card-content{
-        position:relative;
-        z-index:2;
-        width:100%;
-        padding:22px 20px 20px;
-      }
-
-      .mobile-card-content small{
-        display:inline-flex;
-        align-items:center;
-        min-height:25px;
-        margin-bottom:9px;
-        padding:5px 9px;
-        border-radius:999px;
-        border:1px solid rgba(216,177,96,.24);
-        background:rgba(5,7,13,.42);
-        color:var(--gold-3);
-        font-size:.68rem;
-        letter-spacing:.13em;
-        text-transform:uppercase;
-        font-weight:700;
-      }
-
-      .mobile-card-content h2{
-        margin:0;
-        color:#f7eedc;
-        font-size:clamp(1.65rem, 7.5vw, 2.4rem);
-        line-height:.96;
-        text-shadow:0 6px 22px rgba(0,0,0,.48);
-      }
-
-      .mobile-card-content p{
-        margin:8px 0 0;
-        color:rgba(247,238,220,.86);
-        line-height:1.45;
-        font-size:.94rem;
-      }
-
-      .mobile-card-content .cta{
-        display:inline-flex;
-        margin-top:14px;
-        align-items:center;
-        justify-content:center;
-        min-height:36px;
-        padding:8px 12px;
-        border-radius:999px;
-        border:1px solid rgba(216,177,96,.28);
-        background:rgba(216,177,96,.10);
-        color:#fff2d2;
-        font-weight:700;
-        font-size:.86rem;
-      }
-
-      .mobile-note{
-        margin:16px auto 4px;
-        color:rgba(215,198,164,.62);
-        font-size:.82rem;
-        line-height:1.5;
-        text-align:center;
-      }
-    }
-
-    @media (max-width: 460px){
-      .page{
-        padding:10px;
-      }
-
-      .mobile-portal{
-        padding:12px;
-      }
-
-      .mobile-head{
-        padding:15px 8px 16px;
-      }
-
-      .mobile-card{
-        min-height:188px;
-        border-radius:21px;
-      }
-
-      .mobile-card-content{
-        padding:18px 16px 17px;
-      }
-    }
-
-    @media (orientation: landscape) and (max-width: 640px){
-      .mobile-grid{
-        grid-template-columns:repeat(3, minmax(0, 1fr));
-      }
-
-      .mobile-card{
-        min-height:260px;
-      }
-
-      .mobile-card-content h2{
-        font-size:1.55rem;
-      }
-
-      .mobile-card-content p{
-        font-size:.84rem;
-      }
-
-      .mobile-card-content .cta{
-        font-size:.78rem;
-      }
-    }
-  
-    /* BLOQUEO DE ESCRITORIO
-       A partir de 641px se fuerza siempre el portal triangular.
-       Esto evita que un PC táctil, zoom raro o navegador caprichoso active la versión móvil. */
-    @media (min-width: 641px){
-      .page{
-        min-height:100vh;
-        display:grid;
-        place-items:center;
-        padding:26px;
-      }
-
-      .portal-shell{
-        position:relative;
-        width:min(var(--maxw), 100%);
-        min-height:calc(100vh - 52px);
-        overflow:hidden;
-      }
-
-      .portal-stage{
+      .portal-label{
         position:absolute;
-        inset:0;
-        display:block !important;
+        left:18px !important;
+        right:18px;
+        bottom:18px;
+        top:auto !important;
+        max-width:none;
+        transform:none !important;
+        align-items:flex-start;
+        text-align:left;
+        background:rgba(5,7,13,.62);
       }
 
-      .portal-shell::before,
-      .portal-shell::after,
-      .portal-center,
-      .desktop-title{
-        display:block !important;
+      .portal-label strong{
+        font-size:clamp(1.45rem, 7vw, 2.2rem);
       }
 
-      .mobile-portal{
-        display:none !important;
-      }
-
-      .portal-panel{
-        position:absolute;
-        inset:0;
-        display:block;
-      }
-
-      .panel-novelas{
-        clip-path:polygon(0 0, 50% 50%, 0 100%);
-      }
-
-      .panel-rol{
-        clip-path:polygon(0 0, 100% 0, 50% 50%);
-      }
-
-      .panel-lore{
-        clip-path:polygon(100% 0, 50% 50%, 100% 100%);
+      .portal-label span{
+        font-size:.9rem;
       }
     }
-
   </style>
 </head>
 
 <body>
   <main class="page">
     <section class="portal-shell" aria-label="Portal principal de Demon Hunter">
-      <div class="portal-stage" aria-hidden="false">
+      <div class="portal-stage">
         <a class="portal-panel panel-novelas" href="cronicas/index.html" aria-label="Entrar en Las Crónicas de Sasha">
           <span class="portal-label label-novelas">
             <small>Novelas</small>
@@ -725,49 +497,6 @@
         <div class="desktop-title" aria-hidden="true">
           Portal de acceso · Novelas · Rol · Lore
         </div>
-      </div>
-
-      <div class="mobile-portal">
-        <header class="mobile-head">
-          <span class="kicker">Portal de acceso</span>
-          <h1>Demon Hunter</h1>
-          <p>
-            Elige tu entrada al universo: saga narrativa, sistema de juego o lore expandido.
-          </p>
-        </header>
-
-        <div class="mobile-grid">
-          <a class="mobile-card mobile-card-novelas" href="cronicas/index.html" aria-label="Entrar en Las Crónicas de Sasha">
-            <span class="mobile-card-content">
-              <small>Novelas</small>
-              <h2>Las Crónicas de Sasha</h2>
-              <p>La puerta narrativa al universo: libros, personajes, galerías y novedades.</p>
-              <span class="cta">Entrar en la saga →</span>
-            </span>
-          </a>
-
-          <a class="mobile-card mobile-card-rol" href="systempyp/index.html" aria-label="Entrar en Pay and Play System">
-            <span class="mobile-card-content">
-              <small>Rol</small>
-              <h2>Pay &amp; Play System</h2>
-              <p>Reglas, fichas, módulos, enemigos, cartas y estructura jugable del sistema.</p>
-              <span class="cta">Entrar en el sistema →</span>
-            </span>
-          </a>
-
-          <a class="mobile-card mobile-card-lore" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Abrir el lore expandido en World Anvil">
-            <span class="mobile-card-content">
-              <small>Lore</small>
-              <h2>Demon Hunter</h2>
-              <p>Explora artículos, facciones, lugares e historia viva del universo.</p>
-              <span class="cta">Abrir World Anvil →</span>
-            </span>
-          </a>
-        </div>
-
-        <p class="mobile-note">
-          Versión móvil optimizada: navegación directa, tarjetas grandes y zonas táctiles amplias.
-        </p>
       </div>
     </section>
   </main>

@@ -110,7 +110,7 @@
       border-bottom:1px solid rgba(216,177,96,.20);
       background:
         linear-gradient(90deg, rgba(8,12,20,.86) 0%, rgba(8,12,20,.60) 50%, rgba(8,12,20,.22) 100%),
-        url("assets/galerias/enemigos/enemigos.jpeg") center center / cover no-repeat;
+        url("assets/galerias/enemigos/enemigos.png") center center / cover no-repeat;
     }
 
     .hero::after{
@@ -672,95 +672,25 @@
     }
   
   
-    /* NAVEGACIÓN CLARA EN PÁGINAS DE PERSONAJE
-       Separación visual entre accesos generales y personajes. */
-    .nav-layout{
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:center;
-      gap:8px;
-      padding:10px 0;
+
+  
+    /* Navegación igual que en cronicas/index.html */
+    .interworld-inner{
+      justify-content:space-between;
     }
 
-    .nav-row{
-      display:flex;
+    .interworld-group{
       align-items:center;
-      gap:12px;
-      padding:8px 10px;
-      border-radius:18px;
-      border:1px solid rgba(216,177,96,.11);
-      background:rgba(255,255,255,.025);
     }
 
-    .nav-row-general{
-      background:rgba(255,255,255,.022);
+  
+    /* Navegación de personajes igual que en cronicas/index.html */
+    .interworld-inner{
+      justify-content:space-between;
     }
 
-    .nav-row-characters{
-      background:
-        radial-gradient(circle at 50% 0%, rgba(216,177,96,.07), transparent 34%),
-        rgba(216,177,96,.035);
-      border-color:rgba(216,177,96,.17);
-    }
-
-    .nav-row-label{
-      flex:0 0 92px;
-      color:#d8b160;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.13em;
-      text-transform:uppercase;
-      opacity:.88;
-      text-align:right;
-    }
-
-    .nav-row .interworld-group{
-      flex:1;
-      justify-content:flex-start;
-      gap:9px;
-    }
-
-    .nav-row-general .interworld-link{
-      color:#dccbad;
-      background:rgba(255,255,255,.028);
-      border-color:rgba(216,177,96,.14);
-    }
-
-    .nav-row-characters .interworld-link{
-      min-width:108px;
-    }
-
-    .nav-row-characters .interworld-link.primary{
-      color:#4a2f12;
-      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border-color:#8b6327;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.34),
-        0 0 18px rgba(216,177,96,.16);
-    }
-
-    @media (max-width: 760px){
-      .nav-row{
-        align-items:stretch;
-        flex-direction:column;
-        gap:8px;
-      }
-
-      .nav-row-label{
-        flex:0 0 auto;
-        text-align:center;
-      }
-
-      .nav-row .interworld-group{
-        justify-content:center;
-      }
-
-      .nav-row .interworld-link{
-        flex:1 1 calc(50% - 8px);
-        min-width:0;
-        text-align:center;
-      }
+    .interworld-group{
+      align-items:center;
     }
 
   </style>
@@ -769,25 +699,18 @@
 <body>
   <div class="nav-stack">
     <div class="interworld-bar">
-      <div class="interworld-inner nav-layout">
-        <div class="nav-row nav-row-general">
-          <span class="nav-row-label">Accesos</span>
-          <div class="interworld-group">
-            <a class="interworld-link" href="../index.html">Portal principal</a>
-            <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-            <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-            <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
-          </div>
+      <div class="interworld-inner">
+        <div class="interworld-group">
+          <a class="interworld-link primary" href="../index.html">Portal principal</a>
+          <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+          <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
         </div>
 
-        <div class="nav-row nav-row-characters">
-          <span class="nav-row-label">Personajes</span>
-          <div class="interworld-group">
-            <a class="interworld-link" href="sasha.html">Sasha</a>
-            <a class="interworld-link" href="party-girls.html">Party Girls</a>
-            <a class="interworld-link" href="aliados.html">Aliados</a>
-            <a class="interworld-link primary" href="enemigos.html">Enemigos</a>
-          </div>
+        <div class="interworld-group">
+          <a class="interworld-link" href="sasha.html">Sasha</a>
+          <a class="interworld-link" href="party-girls.html">Party Girls</a>
+          <a class="interworld-link" href="aliados.html">Aliados</a>
+          <a class="interworld-link primary" href="enemigos.html">Enemigos</a>
         </div>
       </div>
     </div>
@@ -796,7 +719,7 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos">
+        <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos">
       </div>
 
       <div>
@@ -836,8 +759,8 @@
           data-desc="Los enemigos dan forma al peligro. Cada criatura, rival o presencia hostil mide algo distinto: fuerza, miedo, adaptación o coste."
           data-note="Un buen enemigo no solo ataca. Revela reglas del mundo, obliga a tomar decisiones y deja claro que sobrevivir no es gratis."
           data-facts="Rol narrativo|Amenaza y prueba;Función|Generar tensión y aprendizaje;Tipo|Criaturas, rivales y peligros;Relación con Sasha|Obstáculo y espejo de crecimiento;Clave|Cada amenaza enseña una regla"
-          data-src="assets/galerias/enemigos/enemigos.jpeg">
-          <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos">
+          data-src="assets/galerias/enemigos/enemigos.png">
+          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos">
           <div class="caption">
             <h3>Enemigos</h3>
             <p>Amenaza · Bestiario</p>
@@ -849,8 +772,8 @@
           data-desc="Ficha para criaturas del mundo: amenazas físicas, salvajes o extrañas que convierten el entorno en algo imprevisible."
           data-note="La criatura funciona cuando el lector entiende que el mundo no está decorado: está habitado por cosas que muerden, acechan y aprenden."
           data-facts="Tipo|Criatura hostil;Función|Peligro físico;Rasgos|Instinto, fuerza y amenaza;Uso futuro|Fichas de bestiario;Clave|El entorno también tiene dientes"
-          data-src="assets/galerias/enemigos/enemigos.jpeg">
-          <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos · Criaturas">
+          data-src="assets/galerias/enemigos/enemigos.png">
+          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos · Criaturas">
           <div class="caption">
             <h3>Criaturas</h3>
             <p>Bestiario · Peligro</p>
@@ -862,8 +785,8 @@
           data-desc="Espacio para enemigos de mayor peso: figuras que marcan un punto de inflexión, una prueba mayor o un combate memorable."
           data-note="Un jefe no debe ser solo más grande. Debe significar algo: un miedo, una frontera, una consecuencia o una verdad incómoda."
           data-facts="Tipo|Amenaza principal;Función|Clímax o punto de ruptura;Rasgos|Presencia, dificultad y memoria;Uso futuro|Fases, debilidades y contexto;Clave|El combate debe contar algo"
-          data-src="assets/galerias/enemigos/enemigos.jpeg">
-          <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos · Jefes">
+          data-src="assets/galerias/enemigos/enemigos.png">
+          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos · Jefes">
           <div class="caption">
             <h3>Jefes</h3>
             <p>Rival mayor · Clímax</p>
@@ -875,8 +798,8 @@
           data-desc="No todos los enemigos tienen rostro. El mundo también puede actuar como amenaza: zonas, trampas, condiciones y reglas peligrosas."
           data-note="Cuando el entorno se vuelve enemigo, Sasha no solo pelea: observa, calcula, se equivoca y aprende a sobrevivir con menos margen."
           data-facts="Tipo|Amenaza ambiental;Función|Presión y supervivencia;Rasgos|Riesgo, incertidumbre y coste;Uso futuro|Zonas y encuentros;Clave|El escenario también puede atacar"
-          data-src="assets/galerias/enemigos/enemigos.jpeg">
-          <img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos · Peligros del mundo">
+          data-src="assets/galerias/enemigos/enemigos.png">
+          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos · Peligros del mundo">
           <div class="caption">
             <h3>Peligros</h3>
             <p>Mundo hostil · Riesgo</p>

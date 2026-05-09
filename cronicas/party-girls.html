@@ -110,7 +110,7 @@
       border-bottom:1px solid rgba(216,177,96,.20);
       background:
         linear-gradient(90deg, rgba(8,12,20,.86) 0%, rgba(8,12,20,.60) 50%, rgba(8,12,20,.22) 100%),
-        url("assets/galerias/party-girls/party-girls.jpeg") center center / cover no-repeat;
+        url("assets/galerias/party-girls/party-girls.png") center center / cover no-repeat;
     }
 
     .hero::after{
@@ -672,95 +672,25 @@
     }
   
   
-    /* NAVEGACIÓN CLARA EN PÁGINAS DE PERSONAJE
-       Separación visual entre accesos generales y personajes. */
-    .nav-layout{
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:center;
-      gap:8px;
-      padding:10px 0;
+
+  
+    /* Navegación igual que en cronicas/index.html */
+    .interworld-inner{
+      justify-content:space-between;
     }
 
-    .nav-row{
-      display:flex;
+    .interworld-group{
       align-items:center;
-      gap:12px;
-      padding:8px 10px;
-      border-radius:18px;
-      border:1px solid rgba(216,177,96,.11);
-      background:rgba(255,255,255,.025);
     }
 
-    .nav-row-general{
-      background:rgba(255,255,255,.022);
+  
+    /* Navegación de personajes igual que en cronicas/index.html */
+    .interworld-inner{
+      justify-content:space-between;
     }
 
-    .nav-row-characters{
-      background:
-        radial-gradient(circle at 50% 0%, rgba(216,177,96,.07), transparent 34%),
-        rgba(216,177,96,.035);
-      border-color:rgba(216,177,96,.17);
-    }
-
-    .nav-row-label{
-      flex:0 0 92px;
-      color:#d8b160;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.13em;
-      text-transform:uppercase;
-      opacity:.88;
-      text-align:right;
-    }
-
-    .nav-row .interworld-group{
-      flex:1;
-      justify-content:flex-start;
-      gap:9px;
-    }
-
-    .nav-row-general .interworld-link{
-      color:#dccbad;
-      background:rgba(255,255,255,.028);
-      border-color:rgba(216,177,96,.14);
-    }
-
-    .nav-row-characters .interworld-link{
-      min-width:108px;
-    }
-
-    .nav-row-characters .interworld-link.primary{
-      color:#4a2f12;
-      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border-color:#8b6327;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.34),
-        0 0 18px rgba(216,177,96,.16);
-    }
-
-    @media (max-width: 760px){
-      .nav-row{
-        align-items:stretch;
-        flex-direction:column;
-        gap:8px;
-      }
-
-      .nav-row-label{
-        flex:0 0 auto;
-        text-align:center;
-      }
-
-      .nav-row .interworld-group{
-        justify-content:center;
-      }
-
-      .nav-row .interworld-link{
-        flex:1 1 calc(50% - 8px);
-        min-width:0;
-        text-align:center;
-      }
+    .interworld-group{
+      align-items:center;
     }
 
   </style>
@@ -769,25 +699,18 @@
 <body>
   <div class="nav-stack">
     <div class="interworld-bar">
-      <div class="interworld-inner nav-layout">
-        <div class="nav-row nav-row-general">
-          <span class="nav-row-label">Accesos</span>
-          <div class="interworld-group">
-            <a class="interworld-link" href="../index.html">Portal principal</a>
-            <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-            <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-            <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
-          </div>
+      <div class="interworld-inner">
+        <div class="interworld-group">
+          <a class="interworld-link primary" href="../index.html">Portal principal</a>
+          <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+          <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
         </div>
 
-        <div class="nav-row nav-row-characters">
-          <span class="nav-row-label">Personajes</span>
-          <div class="interworld-group">
-            <a class="interworld-link" href="sasha.html">Sasha</a>
-            <a class="interworld-link primary" href="party-girls.html">Party Girls</a>
-            <a class="interworld-link" href="aliados.html">Aliados</a>
-            <a class="interworld-link" href="enemigos.html">Enemigos</a>
-          </div>
+        <div class="interworld-group">
+          <a class="interworld-link" href="sasha.html">Sasha</a>
+          <a class="interworld-link primary" href="party-girls.html">Party Girls</a>
+          <a class="interworld-link" href="aliados.html">Aliados</a>
+          <a class="interworld-link" href="enemigos.html">Enemigos</a>
         </div>
       </div>
     </div>
@@ -796,7 +719,7 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls">
+        <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls">
       </div>
 
       <div>
@@ -836,8 +759,8 @@
           data-desc="La imagen de grupo funciona como puerta de entrada a las Party Girls: una presencia coral que amplía el tono, la escala y la variedad del universo."
           data-note="Su valor está en la combinación: cada integrante puede aportar una forma distinta de mirar el mundo, de reaccionar al peligro y de acompañar la historia sin diluir su personalidad."
           data-facts="Rol narrativo|Grupo de personajes;Función|Contraste, apoyo y dinamismo;Vínculo|Conexión con el universo de Sasha;Estado|Galería en desarrollo;Clave visual|Grupo reconocible con identidad propia"
-          data-src="assets/galerias/party-girls/party-girls.jpeg">
-          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls">
+          data-src="assets/galerias/party-girls/party-girls.png">
+          <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls">
           <div class="caption">
             <h3>Party Girls</h3>
             <p>Grupo · Energía y contraste</p>
@@ -849,8 +772,8 @@
           data-desc="Una ficha pensada para desarrollar la química entre integrantes: acuerdos, roces, bromas, lealtades y decisiones compartidas."
           data-note="Un grupo no se define solo por estar junto. Se define por cómo responde cuando aparece el problema: quién avanza, quién duda, quién protege y quién rompe el silencio."
           data-facts="Rol narrativo|Relación coral;Arquetipo|Grupo con voces diferenciadas;Rasgos|Complicidad, contraste y reacción;Uso futuro|Fichas individuales o escenas de conjunto;Clave|La personalidad nace de la interacción"
-          data-src="assets/galerias/party-girls/party-girls.jpeg">
-          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls · Dinámica de grupo">
+          data-src="assets/galerias/party-girls/party-girls.png">
+          <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls · Dinámica de grupo">
           <div class="caption">
             <h3>Dinámica de grupo</h3>
             <p>Relaciones · Contraste interno</p>
@@ -862,8 +785,8 @@
           data-desc="Entrada reservada para una escena visual del grupo: pose, ambiente, acción o momento narrativo concreto."
           data-note="Esta ficha queda preparada para cuando exista una imagen específica. El objetivo es que cada ilustración pueda contar algo más que una apariencia."
           data-facts="Tipo|Escena de galería;Estado|Preparada para ampliación;Contenido futuro|Contexto, lugar y momento;Función|Dar lectura narrativa a la imagen;Clave|Una imagen debe abrir una historia"
-          data-src="assets/galerias/party-girls/party-girls.jpeg">
-          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls · Escena visual">
+          data-src="assets/galerias/party-girls/party-girls.png">
+          <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls · Escena visual">
           <div class="caption">
             <h3>Escena visual</h3>
             <p>Estética · Presencia</p>
@@ -875,8 +798,8 @@
           data-desc="Ficha dedicada a la evolución del grupo dentro del universo: cómo cambia su presencia, su peso y su relación con las tramas."
           data-note="La evolución de un grupo funciona mejor cuando no todos avanzan igual. La fricción entre ritmos distintos puede convertirse en oro narrativo."
           data-facts="Rol narrativo|Evolución coral;Arquetipo|Grupo en movimiento;Rasgos|Cambio, ajuste y madurez;Uso futuro|Comparar etapas visuales;Clave|El grupo también tiene arco"
-          data-src="assets/galerias/party-girls/party-girls.jpeg">
-          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls · Evolución">
+          data-src="assets/galerias/party-girls/party-girls.png">
+          <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls · Evolución">
           <div class="caption">
             <h3>Evolución</h3>
             <p>Grupo en desarrollo</p>
@@ -1112,4 +1035,3 @@
   </script>
 </body>
 </html>
- 

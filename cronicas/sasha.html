@@ -729,6 +729,21 @@
       text-shadow:0 1px 5px rgba(0,0,0,.72);
     }
 
+  
+    /* MODAL SIMPLE · solo título y descripción */
+    .lightbox-info-simple{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .lightbox-info-simple .lightbox-desc{
+      margin-top:10px;
+      font-size:1.05rem;
+      line-height:1.85;
+      color:#f1dfbd;
+    }
+
   </style>
 </head>
 
@@ -791,18 +806,13 @@
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">
-        La primera imagen recoge la ficha general de Sasha. El resto sitúa momentos visuales de su recorrido: pequeñas escenas, etapas o estados del viaje, descritos sin revelar más de la cuenta.
+        Cada imagen recoge un momento de Sasha dentro de su recorrido. Solo se muestra un título y una breve descripción para situar la escena sin entrar demasiado en la novela.
       </p>
 
       <div class="gallery-grid">
         <article class="gallery-card"
-          data-kicker="Ficha de personaje"
-          data-section="Ficha"
           data-title="Sasha"
-          data-role="Protagonista · Aprendiz de Tanke"
           data-desc="La imagen base de Sasha: la protagonista en su etapa inicial, todavía aprendiendo a leer un mundo que parece tener reglas de juego, pero consecuencias reales, mientras empieza a preguntarse quién quiere ser de verdad."
-          data-note="Sasha avanza porque no tiene otra opción, pero su viaje no trata solo de sobrevivir. También trata de descubrir su verdadero yo, romper expectativas ajenas y encontrar un propósito que no venga dictado por otros."
-          data-facts="Rol narrativo|Protagonista principal;Arquetipo|Aprendiz de Tanke;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Curiosa, terca, tacaña, cariñosa, leal y, sobre todo, madre;Equipo característico|Armadura, espada y escudo;Conflicto|Descubrir su verdadero yo más allá de lo que la sociedad espera y encontrar un propósito en su vida"
           data-src="assets/galerias/sasha/sasha-01.png">
           <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
           <div class="caption">
@@ -812,13 +822,8 @@
         </article>
 
         <article class="gallery-card"
-          data-kicker="Momento visual"
-          data-section="Lectura de la imagen"
           data-title="Primeros pasos"
-          data-role="Inicio del viaje · Aprendizaje"
-          data-desc="Sasha aparece en una etapa temprana, cuando todo a su alrededor todavía parece demasiado grande. La imagen transmite ese primer pulso de aventura: mirar, dudar, avanzar y aceptar que cada decisión empieza a pesar."
-          data-note="La escena debe leerse como un comienzo, no como una revelación. Importa la sensación de entrada al mundo: curiosidad, torpeza útil y una voluntad que empieza a despertar."
-          data-facts="Momento|Primer contacto con el viaje;Etapa|Inicio de la aventura;Qué transmite|Duda, curiosidad y avance;Lectura visual|Una Sasha que todavía está aprendiendo el tamaño del mundo;Sin spoilers|No revela giros, solo el tono del arranque"
+          data-desc="Sasha acaba de entrar por primera vez en Demon Hunter. La imagen recoge ese instante inicial: los primeros pasos dentro de un mundo nuevo, todavía desconocido, donde cada detalle parece una promesa y una advertencia."
           data-src="assets/galerias/sasha/sasha-02.png">
           <img src="assets/galerias/sasha/sasha-02.png" alt="Sasha · Primeros pasos">
           <div class="caption">
@@ -828,13 +833,8 @@
         </article>
 
         <article class="gallery-card"
-          data-kicker="Momento visual"
-          data-section="Lectura de la imagen"
           data-title="Exploradora"
-          data-role="Descubrimiento · Mundo abierto"
           data-desc="Aquí Sasha se entiende mejor como viajera que como combatiente. La imagen habla de recorrido, de observar antes de actuar y de descubrir un mundo que no se entrega de golpe."
-          data-note="El foco está en la escala: el entorno importa, la distancia pesa y cada lugar parece guardar una regla propia. No hace falta contar qué ocurre después; basta con sugerir que el mapa aún tiene hambre."
-          data-facts="Momento|Exploración del entorno;Etapa|Aprender a moverse por Demon Hunter;Qué transmite|Atención, cautela y curiosidad;Lectura visual|El mundo como algo que se descubre caminando;Sin spoilers|Describe el tono de exploración, no la trama concreta"
           data-src="assets/galerias/sasha/sasha-03.png">
           <img src="assets/galerias/sasha/sasha-03.png" alt="Sasha · Exploradora">
           <div class="caption">
@@ -844,13 +844,8 @@
         </article>
 
         <article class="gallery-card"
-          data-kicker="Momento visual"
-          data-section="Lectura de la imagen"
           data-title="Combate"
-          data-role="Tensión · Espada y escudo"
           data-desc="Esta imagen sitúa a Sasha en una fase de reacción ante el peligro. No se presenta como una guerrera perfecta, sino como alguien que aprende a sostener el golpe y a no retroceder cuando toca plantar los pies."
-          data-note="La lectura debe ser física y emocional: peso de la armadura, escudo como refugio, espada como decisión. No necesitamos explicar el combate; basta con que se sienta el riesgo."
-          data-facts="Momento|Encuentro con el peligro;Etapa|Aprendizaje práctico del combate;Qué transmite|Tensión, resistencia y decisión;Lectura visual|El escudo protege, pero también obliga a quedarse;Sin spoilers|No identifica enemigos ni resultado de la escena"
           data-src="assets/galerias/sasha/sasha-04.png">
           <img src="assets/galerias/sasha/sasha-04.png" alt="Sasha · Combate">
           <div class="caption">
@@ -860,13 +855,8 @@
         </article>
 
         <article class="gallery-card"
-          data-kicker="Momento visual"
-          data-section="Lectura de la imagen"
           data-title="Evolución"
-          data-role="Crecimiento · Cambio sin ruptura"
           data-desc="La imagen apunta a una Sasha que ya no mira el mundo exactamente igual. Hay más peso en su postura, más memoria en su gesto y una sensación de avance sin que desaparezca la persona que empezó el camino."
-          data-note="Esta etapa no debe venderse como transformación absoluta. Lo interesante es que sigue siendo Sasha, solo que con más capas: experiencia, cansancio, afecto, dudas y una voluntad más definida."
-          data-facts="Momento|Cambio progresivo;Etapa|Después de haber aprendido de varios golpes;Qué transmite|Madurez, memoria y determinación;Lectura visual|No se convierte en otra: se vuelve más ella;Sin spoilers|Sugiere evolución sin explicar acontecimientos"
           data-src="assets/galerias/sasha/sasha-05.png">
           <img src="assets/galerias/sasha/sasha-05.png" alt="Sasha · Evolución">
           <div class="caption">
@@ -981,17 +971,10 @@
       <div class="lightbox-image-wrap">
         <img class="lightbox-image" id="lightboxImage" src="" alt="">
       </div>
-
-      <aside class="lightbox-info">
-        <div class="eyebrow" id="lightboxKicker">Ficha de personaje</div>
+      <aside class="lightbox-info lightbox-info-simple">
+        <div class="eyebrow">Imagen de Sasha</div>
         <h3 id="lightboxTitle">Sasha</h3>
-        <p class="lightbox-role" id="lightboxRole">Protagonista</p>
         <p class="lightbox-desc" id="lightboxDesc"></p>
-
-        <h4 id="lightboxSectionTitle">Ficha</h4>
-        <ul class="character-facts" id="lightboxFacts"></ul>
-
-        <div class="character-note" id="lightboxNote"></div>
       </aside>
     </div>
   </div>
@@ -999,46 +982,19 @@
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxKicker = document.getElementById('lightboxKicker');
     const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxRole = document.getElementById('lightboxRole');
     const lightboxDesc = document.getElementById('lightboxDesc');
-    const lightboxFacts = document.getElementById('lightboxFacts');
-    const lightboxNote = document.getElementById('lightboxNote');
-    const lightboxSectionTitle = document.getElementById('lightboxSectionTitle');
     const closeButton = document.querySelector('.lightbox-close');
-
-    function renderFacts(facts){
-      lightboxFacts.innerHTML = '';
-      facts.split(';').forEach(item => {
-        const [label, value] = item.split('|');
-        if(!label || !value) return;
-
-        const li = document.createElement('li');
-        li.innerHTML = '<strong>' + label.trim() + ':</strong> ' + value.trim();
-        lightboxFacts.appendChild(li);
-      });
-    }
 
     function openLightbox(card){
       const title = card.dataset.title || 'Sasha';
-      const role = card.dataset.role || 'Protagonista';
       const desc = card.dataset.desc || '';
       const src = card.dataset.src || '';
-      const note = card.dataset.note || '';
-      const facts = card.dataset.facts || '';
-      const kicker = card.dataset.kicker || 'Momento visual';
-      const section = card.dataset.section || 'Lectura de la imagen';
 
-      lightboxKicker.textContent = kicker;
-      lightboxSectionTitle.textContent = section;
       lightboxImage.src = src;
       lightboxImage.alt = title;
       lightboxTitle.textContent = title;
-      lightboxRole.textContent = role;
       lightboxDesc.textContent = desc;
-      lightboxNote.textContent = note;
-      renderFacts(facts);
 
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');

@@ -939,108 +939,145 @@
     }
 
   
-    /* MODAL PARTY GIRLS · columna de información más ancha y legible */
+
+  
+    /* FICHA TÉCNICA XL · máxima legibilidad */
     .lightbox-inner{
-      width:min(1500px, 96vw);
-      grid-template-columns:minmax(0, 1.18fr) minmax(520px, .82fr);
+      width:min(1820px, 98vw);
+      grid-template-columns:minmax(0, .92fr) minmax(760px, 1.08fr);
+      max-height:94vh;
     }
 
     .lightbox-info{
-      padding:48px 46px;
+      padding:64px 64px;
+    }
+
+    .lightbox-info .eyebrow{
+      font-size:1.14rem;
+      font-weight:900;
+      letter-spacing:.11em;
+      margin-bottom:20px;
+      padding:9px 15px;
+      color:#ffe2a1;
+      background:rgba(7,10,18,.60);
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
     }
 
     .lightbox-info h3{
-      font-size:clamp(2.7rem, 4.2vw, 3.7rem);
-      margin-bottom:8px;
-      line-height:1.02;
+      font-size:clamp(3.65rem, 5.2vw, 5.15rem);
+      line-height:.96;
+      margin:0 0 18px;
+      color:#f0c86f;
+      text-shadow:
+        0 4px 10px rgba(0,0,0,.74),
+        0 0 22px rgba(216,177,96,.18);
     }
 
     .lightbox-role{
-      font-size:1.28rem;
-      line-height:1.42;
-      font-weight:700;
-      margin-bottom:22px;
-      color:#fff1cf;
+      font-size:1.68rem;
+      line-height:1.34;
+      font-weight:900;
+      color:#fff4d2;
+      margin:0 0 30px;
+      text-shadow:0 2px 5px rgba(0,0,0,.66);
     }
 
     .lightbox-desc{
-      max-width:680px;
-      font-size:1.22rem;
-      line-height:1.78;
-      font-weight:650;
-      color:#f5e6c7;
-      margin-bottom:24px;
+      max-width:820px;
+      font-size:1.52rem;
+      line-height:1.68;
+      font-weight:700;
+      color:#f8ebcf;
+      margin:0 0 34px;
+      text-shadow:0 2px 5px rgba(0,0,0,.55);
     }
 
     .lightbox-info h4{
-      font-size:1.24rem;
-      margin-bottom:14px;
+      font-size:1.72rem;
+      line-height:1.1;
+      margin:0 0 20px;
+      color:#f0c86f;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      text-shadow:0 2px 5px rgba(0,0,0,.60);
     }
 
     .character-facts{
-      gap:12px;
-      max-width:680px;
+      display:grid;
+      gap:17px;
+      max-width:820px;
     }
 
     .character-facts li{
-      padding:15px 17px;
-      font-size:1.16rem;
-      line-height:1.56;
-      border-radius:16px;
+      padding:20px 24px;
+      font-size:1.42rem;
+      line-height:1.52;
+      border-radius:20px;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(216,177,96,.28);
+      box-shadow:0 10px 24px rgba(0,0,0,.14);
     }
 
     .character-facts strong{
-      font-weight:800;
+      font-weight:950;
+      color:#fff5d8;
     }
 
     .character-note{
-      max-width:680px;
-      margin-top:22px;
-      padding:18px 18px;
-      font-size:1.12rem;
-      line-height:1.75;
-      border-radius:18px;
-      color:#f6e8c7;
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(216,177,96,.18);
+      display:none !important;
     }
 
-    @media (max-width: 1200px){
+    @media (max-width: 1500px){
       .lightbox-inner{
-        width:min(1180px, 96vw);
-        grid-template-columns:minmax(0, 1fr) minmax(450px, .78fr);
+        width:min(1400px, 98vw);
+        grid-template-columns:minmax(0, .98fr) minmax(610px, .94fr);
       }
 
       .lightbox-info{
-        padding:42px 36px;
+        padding:52px 46px;
+      }
+
+      .lightbox-info h3{
+        font-size:clamp(3rem, 4.4vw, 4.2rem);
       }
 
       .lightbox-role{
-        font-size:1.18rem;
+        font-size:1.42rem;
       }
 
       .lightbox-desc{
-        font-size:1.12rem;
+        font-size:1.28rem;
       }
 
       .character-facts li{
-        font-size:1.08rem;
+        font-size:1.22rem;
+        padding:17px 20px;
       }
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 1100px){
       .lightbox-inner{
         grid-template-columns:1fr;
+        overflow:auto;
       }
 
       .lightbox-info{
-        padding:32px 26px;
+        padding:34px 26px;
       }
 
       .lightbox-desc,
-      .character-facts,
-      .character-note{
+      .character-facts{
         max-width:none;
+      }
+
+      .lightbox-info h3{
+        font-size:2.85rem;
+      }
+
+      .lightbox-role,
+      .lightbox-desc,
+      .character-facts li{
+        font-size:1.12rem;
       }
     }
 
@@ -1074,7 +1111,7 @@
       </div>
 
       <div class="hero-content">
-        <div class="eyebrow">Grupo de personajes</div>
+        <div class="eyebrow">Ficha</div>
         <h1>Party Girls</h1>
         <p class="hero-copy hero-copy-main">
           Las Party Girls no son un adorno alrededor de Sasha: son un grupo con voz propia, magia, fuerza, lealtades cruzadas y choques de carácter que amplían el viaje.
@@ -1112,8 +1149,7 @@
           data-title="Azalea"
           data-role="Party Girl · Maga joven"
           data-desc="Azalea aporta la lectura mágica del grupo: una presencia joven, activa y marcada por el uso de poder arcano. No funciona como figura distante, sino como una integrante con movimiento y personalidad."
-          data-note="Su ficha debe evitar la imagen de maga anciana o estática. Azalea necesita sentirse joven, viva y con capacidad de intervenir en la escena, no como una figura decorativa."
-          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Maga joven;Rasgos|Energía, concentración y potencial mágico;Función visual|Aportar poder arcano al conjunto;Clave|Magia con presencia juvenil y activa"
+          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Maga joven;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Joven, sensible, curiosa y con gran potencial mágico;Equipo característico|Bastón mágico, capa y gemas arcanas;Conflicto|Aprender a confiar en su poder sin esconderse detrás de él"
           data-src="assets/galerias/party-girls/azalea.png">
           <img src="assets/galerias/party-girls/azalea.png" alt="Azalea">
           <div class="caption">
@@ -1125,8 +1161,7 @@
           data-title="Elorzal"
           data-role="Party Girl · Combate disciplinado"
           data-desc="Elorzal introduce una presencia más marcial y disciplinada. Su identidad visual debe apoyarse en el kimono de combate, no en un vestido, y transmitir control, técnica y movimiento."
-          data-note="La clave de Elorzal está en que parezca preparada para actuar. No debe sentirse posando fuera de contexto, sino integrada en una dinámica de exploración, defensa o combate."
-          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Combatiente técnica;Vestuario clave|Kimono de combate;Rasgos|Disciplina, precisión y presencia serena;Clave|Elegancia marcial sin rigidez"
+          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Combatiente técnica;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Disciplinada, precisa, serena y protectora;Equipo característico|Kimono de combate y técnicas marciales;Conflicto|Mantener el control sin encerrarse en la rigidez"
           data-src="assets/galerias/party-girls/elorzal.png">
           <img src="assets/galerias/party-girls/elorzal.png" alt="Elorzal">
           <div class="caption">
@@ -1138,8 +1173,7 @@
           data-title="Ilyanna"
           data-role="Party Girl · Luz y exploración"
           data-desc="Ilyanna queda asociada a la luz, los orbes y la capacidad de iluminar lo desconocido. Su presencia ayuda a que la escena respire exploración y descubrimiento."
-          data-note="El orbe de Ilyanna no es un foco externo ni una lámpara de techo: forma parte de la novela y debe sentirse como una esfera de luz que acompaña al grupo por encima de las cabezas."
-          data-facts="Rol narrativo|Integrante de Party Girls;Elemento clave|Orbes de luz;Función|Iluminar, guiar y revelar el entorno;Rasgos|Calma, atención y poder contenido;Clave|La luz como herramienta narrativa"
+          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Guía luminosa;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Atenta, calmada, intuitiva y conectada con la luz;Equipo característico|Orbes de luz y magia de apoyo;Conflicto|Iluminar el camino sin cargar sola con la responsabilidad del grupo"
           data-src="assets/galerias/party-girls/ilyanna.png">
           <img src="assets/galerias/party-girls/ilyanna.png" alt="Ilyanna">
           <div class="caption">
@@ -1151,8 +1185,7 @@
           data-title="Monet"
           data-role="Party Girl · Presencia y carácter"
           data-desc="Monet funciona como una pieza de carácter dentro del grupo. Su ficha queda preparada para definir mejor su papel conforme se desarrollen escenas, relaciones y rasgos propios."
-          data-note="La ficha de Monet debe servir para separarla del conjunto. A partir de su imagen individual podremos fijar actitud, función y relación con las demás Party Girls sin convertirla en una copia del grupo."
-          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Presencia de contraste;Rasgos|Carácter, actitud y personalidad propia;Función visual|Diferenciar el tono interno del grupo;Clave|Que no sea relleno: debe tener voz propia"
+          data-facts="Rol narrativo|Integrante de Party Girls;Arquetipo|Contrapunto de carácter;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Directa, expresiva, independiente y difícil de ignorar;Equipo característico|Estilo propio, presencia escénica y recursos personales;Conflicto|Encontrar su lugar dentro del grupo sin perder su voz propia"
           data-src="assets/galerias/party-girls/monet.png">
           <img src="assets/galerias/party-girls/monet.png" alt="Monet">
           <div class="caption">
@@ -1242,7 +1275,7 @@
         <p class="lightbox-role" id="lightboxRole"></p>
         <p class="lightbox-desc" id="lightboxDesc"></p>
 
-        <h4>Datos</h4>
+        <h4>Ficha técnica</h4>
         <ul class="character-facts" id="lightboxFacts"></ul>
 
         <div class="character-note" id="lightboxNote"></div>

@@ -1064,6 +1064,91 @@
       }
     }
 
+  
+    /* HERO SASHA · caja de apoyo para legibilidad */
+    .hero::after{
+      background:
+        radial-gradient(circle at 72% 20%, rgba(216,177,96,.12), transparent 18%),
+        linear-gradient(90deg, rgba(3,5,10,.74) 0%, rgba(3,5,10,.58) 46%, rgba(3,5,10,.34) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.34));
+    }
+
+    .hero-content{
+      max-width:900px;
+      padding:24px 26px 22px;
+      border-radius:24px;
+      border:1px solid rgba(216,177,96,.16);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(216,177,96,.08), transparent 34%),
+        rgba(7,10,18,.38);
+      box-shadow:0 18px 42px rgba(0,0,0,.18);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+    }
+
+    .hero-content .eyebrow{
+      margin-bottom:14px;
+      color:#ffe2a1;
+      font-size:.88rem;
+      font-weight:700;
+      background:rgba(7,10,18,.58);
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
+    }
+
+    .hero-content h1{
+      margin-bottom:18px;
+      font-size:clamp(3.1rem, 5.8vw, 5.3rem);
+      text-shadow:
+        0 4px 10px rgba(0,0,0,.75),
+        0 0 22px rgba(216,177,96,.24);
+    }
+
+    .hero-content .hero-copy{
+      max-width:860px;
+      color:#fff1cf;
+      font-size:clamp(1.18rem, 1.42vw, 1.34rem);
+      line-height:1.76;
+      font-weight:700;
+      text-shadow:
+        0 2px 6px rgba(0,0,0,.86),
+        0 0 14px rgba(0,0,0,.48);
+    }
+
+    .hero-content .hero-copy + .hero-copy{
+      margin-top:10px;
+    }
+
+    .hero-content .hero-profile{
+      margin-top:24px;
+      gap:12px;
+    }
+
+    .hero-content .profile-chip{
+      padding:16px 18px;
+      background:rgba(7,10,18,.50);
+      border-color:rgba(216,177,96,.34);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.22),
+        inset 0 0 0 1px rgba(255,255,255,.035);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+
+    .hero-content .profile-chip small{
+      color:#f0c86f;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
+    }
+
+    .hero-content .profile-chip strong{
+      color:#fff4d2;
+      font-size:1.15rem;
+      line-height:1.32;
+      text-shadow:0 1px 5px rgba(0,0,0,.74);
+    }
+
   </style>
 </head>
 
@@ -1093,7 +1178,7 @@
         <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
       </div>
 
-      <div>
+      <div class="hero-content">
         <div class="eyebrow">Galería de personaje</div>
         <h1>Sasha</h1>
         <p class="hero-copy">

@@ -744,6 +744,19 @@
       color:#f1dfbd;
     }
 
+  
+    .technical-block{
+      margin-top:22px;
+    }
+
+    .technical-block h4{
+      margin:0 0 10px;
+      color:#f0c86f;
+      font-size:1.05rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
   </style>
 </head>
 
@@ -806,24 +819,25 @@
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">
-        Cada imagen recoge un momento de Sasha dentro de su recorrido. La imagen de Margareth sitúa su vida en el mundo real; las demás muestran etapas de su viaje en Demon Hunter con una breve descripción, sin entrar demasiado en la novela.
+        La primera imagen mantiene la ficha técnica de Sasha. Margareth sitúa su identidad en el mundo real y el resto de imágenes describen momentos de su recorrido sin entrar demasiado en la novela.
       </p>
 
       <div class="gallery-grid">
         <article class="gallery-card"
           data-title="Sasha"
-          data-desc="La imagen base de Sasha: la protagonista en su etapa inicial, todavía aprendiendo a leer un mundo que parece tener reglas de juego, pero consecuencias reales, mientras empieza a preguntarse quién quiere ser de verdad."
+          data-desc="La imagen base de Sasha dentro de Demon Hunter: la protagonista preparada para empezar a entender un mundo nuevo, con reglas propias y consecuencias reales."
+          data-facts="Rol narrativo|Protagonista principal;Arquetipo|Aprendiz de Tanke;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Curiosa, terca, tacaña, cariñosa, leal y, sobre todo, madre;Equipo característico|Armadura, espada y escudo;Conflicto|Descubrir su verdadero yo más allá de lo que la sociedad espera y encontrar un propósito en su vida"
           data-src="assets/galerias/sasha/sasha-01.png">
           <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista · Aprendiz de Tanke</p>
+            <p>Ficha técnica · Aprendiz de Tanke</p>
           </div>
         </article>
 
         <article class="gallery-card"
           data-title="Margareth"
-          data-desc="Sasha en el mundo real. Su verdadero nombre es Margareth: una madre de 53 años y tres hijos, curiosa, terca, tacaña, cariñosa y leal. Por encima de todo, madre. Una mujer que empieza a buscar quién es más allá de lo que la sociedad espera de ella."
+          data-desc="Sasha en el mundo real. Su verdadero nombre es Margareth: una madre de 53 años y tres hijos, curiosa, terca, tacaña, cariñosa y leal. Por encima de todo, madre."
           data-src="assets/galerias/sasha/margareth.png">
           <img src="assets/galerias/sasha/margareth.png" alt="Margareth, Sasha en el mundo real">
           <div class="caption">
@@ -986,6 +1000,11 @@
         <div class="eyebrow">Imagen de Sasha</div>
         <h3 id="lightboxTitle">Sasha</h3>
         <p class="lightbox-desc" id="lightboxDesc"></p>
+
+        <div class="technical-block" id="technicalBlock" hidden>
+          <h4>Ficha técnica</h4>
+          <ul class="character-facts" id="lightboxFacts"></ul>
+        </div>
       </aside>
     </div>
   </div>
@@ -995,17 +1014,41 @@
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxDesc = document.getElementById('lightboxDesc');
+    const technicalBlock = document.getElementById('technicalBlock');
+    const lightboxFacts = document.getElementById('lightboxFacts');
     const closeButton = document.querySelector('.lightbox-close');
+
+    function renderFacts(facts){
+      lightboxFacts.innerHTML = '';
+
+      if(!facts){
+        technicalBlock.hidden = true;
+        return;
+      }
+
+      facts.split(';').forEach(item => {
+        const [label, value] = item.split('|');
+        if(!label || !value) return;
+
+        const li = document.createElement('li');
+        li.innerHTML = '<strong>' + label.trim() + ':</strong> ' + value.trim();
+        lightboxFacts.appendChild(li);
+      });
+
+      technicalBlock.hidden = lightboxFacts.children.length === 0;
+    }
 
     function openLightbox(card){
       const title = card.dataset.title || 'Sasha';
       const desc = card.dataset.desc || '';
       const src = card.dataset.src || '';
+      const facts = card.dataset.facts || '';
 
       lightboxImage.src = src;
       lightboxImage.alt = title;
       lightboxTitle.textContent = title;
       lightboxDesc.textContent = desc;
+      renderFacts(facts);
 
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -1120,4 +1163,3 @@
   </script>
 </body>
 </html>
-

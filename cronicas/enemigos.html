@@ -693,6 +693,149 @@
       align-items:center;
     }
 
+  
+
+  
+    /* FICHA TÉCNICA XL · máxima legibilidad */
+    .lightbox-inner{
+      width:min(1820px, 98vw);
+      grid-template-columns:minmax(0, .92fr) minmax(760px, 1.08fr);
+      max-height:94vh;
+    }
+
+    .lightbox-info{
+      padding:64px 64px;
+    }
+
+    .lightbox-info .eyebrow{
+      font-size:1.14rem;
+      font-weight:900;
+      letter-spacing:.11em;
+      margin-bottom:20px;
+      padding:9px 15px;
+      color:#ffe2a1;
+      background:rgba(7,10,18,.60);
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
+    }
+
+    .lightbox-info h3{
+      font-size:clamp(3.65rem, 5.2vw, 5.15rem);
+      line-height:.96;
+      margin:0 0 18px;
+      color:#f0c86f;
+      text-shadow:
+        0 4px 10px rgba(0,0,0,.74),
+        0 0 22px rgba(216,177,96,.18);
+    }
+
+    .lightbox-role{
+      font-size:1.68rem;
+      line-height:1.34;
+      font-weight:900;
+      color:#fff4d2;
+      margin:0 0 30px;
+      text-shadow:0 2px 5px rgba(0,0,0,.66);
+    }
+
+    .lightbox-desc{
+      max-width:820px;
+      font-size:1.52rem;
+      line-height:1.68;
+      font-weight:700;
+      color:#f8ebcf;
+      margin:0 0 34px;
+      text-shadow:0 2px 5px rgba(0,0,0,.55);
+    }
+
+    .lightbox-info h4{
+      font-size:1.72rem;
+      line-height:1.1;
+      margin:0 0 20px;
+      color:#f0c86f;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      text-shadow:0 2px 5px rgba(0,0,0,.60);
+    }
+
+    .character-facts{
+      display:grid;
+      gap:17px;
+      max-width:820px;
+    }
+
+    .character-facts li{
+      padding:20px 24px;
+      font-size:1.42rem;
+      line-height:1.52;
+      border-radius:20px;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(216,177,96,.28);
+      box-shadow:0 10px 24px rgba(0,0,0,.14);
+    }
+
+    .character-facts strong{
+      font-weight:950;
+      color:#fff5d8;
+    }
+
+    .character-note{
+      display:none !important;
+    }
+
+    @media (max-width: 1500px){
+      .lightbox-inner{
+        width:min(1400px, 98vw);
+        grid-template-columns:minmax(0, .98fr) minmax(610px, .94fr);
+      }
+
+      .lightbox-info{
+        padding:52px 46px;
+      }
+
+      .lightbox-info h3{
+        font-size:clamp(3rem, 4.4vw, 4.2rem);
+      }
+
+      .lightbox-role{
+        font-size:1.42rem;
+      }
+
+      .lightbox-desc{
+        font-size:1.28rem;
+      }
+
+      .character-facts li{
+        font-size:1.22rem;
+        padding:17px 20px;
+      }
+    }
+
+    @media (max-width: 1100px){
+      .lightbox-inner{
+        grid-template-columns:1fr;
+        overflow:auto;
+      }
+
+      .lightbox-info{
+        padding:34px 26px;
+      }
+
+      .lightbox-desc,
+      .character-facts{
+        max-width:none;
+      }
+
+      .lightbox-info h3{
+        font-size:2.85rem;
+      }
+
+      .lightbox-role,
+      .lightbox-desc,
+      .character-facts li{
+        font-size:1.12rem;
+      }
+    }
+
   </style>
 </head>
 
@@ -723,7 +866,7 @@
       </div>
 
       <div>
-        <div class="eyebrow">Galería de personaje</div>
+        <div class="eyebrow">Ficha</div>
         <h1>Enemigos</h1>
         <p class="hero-copy">Los enemigos no son solo obstáculos: son la forma que adopta el peligro cuando Demon Hunter decide enseñar con dientes, sombra y consecuencias.</p>
         <p class="hero-copy">Esta página organiza amenazas, criaturas, jefes y riesgos del mundo. Queda preparada para fichas más concretas, vídeos y futuras ampliaciones.</p>
@@ -757,8 +900,7 @@
           data-title="Akalys"
           data-role="Enemigo · Amenaza singular"
           data-desc="Akalys representa una amenaza con presencia propia dentro del bestiario. Su ficha queda preparada para concretar origen, comportamiento, debilidades y peso narrativo."
-          data-note="Un enemigo interesante no solo aparece para ser derrotado. Debe obligar a leer el entorno, ajustar la estrategia y recordar que Demon Hunter castiga la confianza excesiva."
-          data-facts="Rol narrativo|Amenaza individual;Tipo|Enemigo del bestiario;Función|Generar tensión y aprendizaje;Rasgos|Presencia, peligro y misterio;Clave|Cada encuentro debe enseñar una regla"
+          data-facts="Rol narrativo|Amenaza singular;Arquetipo|Enemigo del bestiario;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Peligroso, misterioso, resistente y difícil de anticipar;Equipo característico|Instinto, fuerza y recursos propios de su especie;Conflicto|Obligar a Sasha a entender que no todo enemigo se supera con fuerza bruta"
           data-src="assets/galerias/enemigos/Akalys.png">
           <img src="assets/galerias/enemigos/Akalys.png" alt="Akalys">
           <div class="caption">
@@ -770,8 +912,7 @@
           data-title="Arpía"
           data-role="Enemigo · Amenaza aérea"
           data-desc="La Arpía introduce peligro desde otro eje: altura, velocidad y ataque inesperado. No obliga solo a luchar, sino a mirar hacia arriba y pensar el terreno de otra manera."
-          data-note="Cuando el enemigo controla el aire, el suelo deja de ser una zona segura. La escena cambia de ritmo y el personaje debe aprender a defenderse en vertical."
-          data-facts="Rol narrativo|Amenaza móvil;Tipo|Criatura aérea;Función|Romper la seguridad del terreno;Rasgos|Velocidad, acecho y ataque desde altura;Clave|El peligro también puede caer del cielo"
+          data-facts="Rol narrativo|Amenaza aérea;Arquetipo|Depredadora de altura;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Rápida, agresiva, territorial y acechante;Equipo característico|Vuelo, garras, velocidad y ataque desde altura;Conflicto|Convertir el cielo en una zona de peligro y romper la seguridad del terreno"
           data-src="assets/galerias/enemigos/Arpia.png">
           <img src="assets/galerias/enemigos/Arpia.png" alt="Arpía">
           <div class="caption">
@@ -783,8 +924,7 @@
           data-title="Croide"
           data-role="Enemigo · Criatura hostil"
           data-desc="Croide queda planteado como criatura de amenaza directa. Su ficha puede desarrollarse como encuentro físico, obstáculo de zona o enemigo recurrente."
-          data-note="Las criaturas funcionan mejor cuando el lector entiende cómo se mueven, qué las hace peligrosas y por qué no basta con mirarlas como simples monstruos de paso."
-          data-facts="Rol narrativo|Criatura enemiga;Tipo|Amenaza física;Función|Presión directa sobre el grupo;Rasgos|Hostilidad, resistencia y ataque;Clave|El bestiario debe sentirse vivo"
+          data-facts="Rol narrativo|Criatura hostil;Arquetipo|Amenaza física;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Duro, directo, agresivo y difícil de frenar;Equipo característico|Cuerpo resistente, fuerza y presión frontal;Conflicto|Forzar al grupo a medir el coste de cada choque directo"
           data-src="assets/galerias/enemigos/Croide.png">
           <img src="assets/galerias/enemigos/Croide.png" alt="Croide">
           <div class="caption">
@@ -796,8 +936,7 @@
           data-title="Cucaracho"
           data-role="Enemigo · Incomodidad y amenaza"
           data-desc="Cucaracho aporta una clase de amenaza más incómoda, casi desagradable: el tipo de enemigo que no solo ataca, sino que altera la percepción del entorno."
-          data-note="No todos los enemigos tienen que imponer por tamaño. Algunos funcionan por repulsión, insistencia, número o por la sensación de que el lugar está contaminado por su presencia."
-          data-facts="Rol narrativo|Amenaza inquietante;Tipo|Criatura hostil;Función|Crear incomodidad y presión;Rasgos|Persistencia, repulsión y peligro cercano;Clave|Lo desagradable también puede ser narrativo"
+          data-facts="Rol narrativo|Amenaza inquietante;Arquetipo|Criatura de incomodidad;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Persistente, desagradable, rápido y perturbador;Equipo característico|Movilidad, número, insistencia y entorno contaminado;Conflicto|Recordar que el miedo también puede nacer de lo pequeño, lo cercano y lo repulsivo"
           data-src="assets/galerias/enemigos/Cucaracho.png">
           <img src="assets/galerias/enemigos/Cucaracho.png" alt="Cucaracho">
           <div class="caption">
@@ -809,8 +948,7 @@
           data-title="Furia"
           data-role="Enemigo · Violencia desatada"
           data-desc="Furia concentra la idea de agresividad y choque frontal. Su presencia debe sentirse como una advertencia: cuando aparece, el margen de error se reduce."
-          data-note="Un enemigo llamado Furia no debería parecer neutro. Tiene que comunicar impulso, peligro y una violencia que obliga al personaje a decidir rápido."
-          data-facts="Rol narrativo|Amenaza de alto impacto;Tipo|Enemigo agresivo;Función|Forzar reacción inmediata;Rasgos|Ira, fuerza y presión;Clave|La violencia también marca ritmo"
+          data-facts="Rol narrativo|Amenaza de alto impacto;Arquetipo|Violencia desatada;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Ira, fuerza, presión y agresividad inmediata;Equipo característico|Potencia física, embestida y ataque frontal;Conflicto|Reducir el margen de error y obligar a reaccionar antes de pensar demasiado"
           data-src="assets/galerias/enemigos/Furia.png">
           <img src="assets/galerias/enemigos/Furia.png" alt="Furia">
           <div class="caption">
@@ -900,7 +1038,7 @@
         <p class="lightbox-role" id="lightboxRole"></p>
         <p class="lightbox-desc" id="lightboxDesc"></p>
 
-        <h4>Datos</h4>
+        <h4>Ficha técnica</h4>
         <ul class="character-facts" id="lightboxFacts"></ul>
 
         <div class="character-note" id="lightboxNote"></div>

@@ -693,6 +693,149 @@
       align-items:center;
     }
 
+  
+
+  
+    /* FICHA TÉCNICA XL · máxima legibilidad */
+    .lightbox-inner{
+      width:min(1820px, 98vw);
+      grid-template-columns:minmax(0, .92fr) minmax(760px, 1.08fr);
+      max-height:94vh;
+    }
+
+    .lightbox-info{
+      padding:64px 64px;
+    }
+
+    .lightbox-info .eyebrow{
+      font-size:1.14rem;
+      font-weight:900;
+      letter-spacing:.11em;
+      margin-bottom:20px;
+      padding:9px 15px;
+      color:#ffe2a1;
+      background:rgba(7,10,18,.60);
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
+    }
+
+    .lightbox-info h3{
+      font-size:clamp(3.65rem, 5.2vw, 5.15rem);
+      line-height:.96;
+      margin:0 0 18px;
+      color:#f0c86f;
+      text-shadow:
+        0 4px 10px rgba(0,0,0,.74),
+        0 0 22px rgba(216,177,96,.18);
+    }
+
+    .lightbox-role{
+      font-size:1.68rem;
+      line-height:1.34;
+      font-weight:900;
+      color:#fff4d2;
+      margin:0 0 30px;
+      text-shadow:0 2px 5px rgba(0,0,0,.66);
+    }
+
+    .lightbox-desc{
+      max-width:820px;
+      font-size:1.52rem;
+      line-height:1.68;
+      font-weight:700;
+      color:#f8ebcf;
+      margin:0 0 34px;
+      text-shadow:0 2px 5px rgba(0,0,0,.55);
+    }
+
+    .lightbox-info h4{
+      font-size:1.72rem;
+      line-height:1.1;
+      margin:0 0 20px;
+      color:#f0c86f;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      text-shadow:0 2px 5px rgba(0,0,0,.60);
+    }
+
+    .character-facts{
+      display:grid;
+      gap:17px;
+      max-width:820px;
+    }
+
+    .character-facts li{
+      padding:20px 24px;
+      font-size:1.42rem;
+      line-height:1.52;
+      border-radius:20px;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(216,177,96,.28);
+      box-shadow:0 10px 24px rgba(0,0,0,.14);
+    }
+
+    .character-facts strong{
+      font-weight:950;
+      color:#fff5d8;
+    }
+
+    .character-note{
+      display:none !important;
+    }
+
+    @media (max-width: 1500px){
+      .lightbox-inner{
+        width:min(1400px, 98vw);
+        grid-template-columns:minmax(0, .98fr) minmax(610px, .94fr);
+      }
+
+      .lightbox-info{
+        padding:52px 46px;
+      }
+
+      .lightbox-info h3{
+        font-size:clamp(3rem, 4.4vw, 4.2rem);
+      }
+
+      .lightbox-role{
+        font-size:1.42rem;
+      }
+
+      .lightbox-desc{
+        font-size:1.28rem;
+      }
+
+      .character-facts li{
+        font-size:1.22rem;
+        padding:17px 20px;
+      }
+    }
+
+    @media (max-width: 1100px){
+      .lightbox-inner{
+        grid-template-columns:1fr;
+        overflow:auto;
+      }
+
+      .lightbox-info{
+        padding:34px 26px;
+      }
+
+      .lightbox-desc,
+      .character-facts{
+        max-width:none;
+      }
+
+      .lightbox-info h3{
+        font-size:2.85rem;
+      }
+
+      .lightbox-role,
+      .lightbox-desc,
+      .character-facts li{
+        font-size:1.12rem;
+      }
+    }
+
   </style>
 </head>
 
@@ -723,7 +866,7 @@
       </div>
 
       <div>
-        <div class="eyebrow">Galería de apoyo</div>
+        <div class="eyebrow">Ficha</div>
         <h1>Aliados</h1>
         <p class="hero-copy">
           La ayuda adopta muchas formas. A veces llega como guía, otras como fuerza, otras como rareza útil. Aquí se reúnen los rostros y presencias que sostienen, amplían o enriquecen el camino de Sasha.
@@ -763,8 +906,7 @@
           data-title="Asterisco"
           data-role="Aliado · Mercader de recursos"
           data-desc="Asterisco representa esa clase de aliado que no siempre entra por la puerta con una espada, pero puede cambiar una escena con una bolsa, una pista, un trato o un recurso en el momento exacto."
-          data-note="No todos los apoyos son guerreros. Algunos abren caminos desde el intercambio, la información o la capacidad de aparecer con lo necesario justo cuando el grupo aún no sabe que lo necesita."
-          data-facts="Rol narrativo|Aliado de utilidad y oportunidad;Arquetipo|Mercader / facilitador;Rasgos|Astuto, carismático, práctico y difícil de leer;Función|Aportar recursos, información o posibilidades;Relación con Sasha|Apoyo potencial, pero no necesariamente gratuito;Clave|Toda ayuda puede tener precio"
+          data-facts="Rol narrativo|Aliado de recursos y oportunidades;Arquetipo|Mercader / facilitador;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Astuto, práctico, carismático y difícil de leer;Equipo característico|Tratos, información, recursos y contactos;Conflicto|Ayudar sin dejar claro dónde termina el favor y empieza el interés"
           data-src="assets/galerias/aliados/asterisco.png">
           <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco">
           <div class="caption">
@@ -776,8 +918,7 @@
           data-title="Garreth"
           data-role="Aliado · Defensa y combate"
           data-desc="Garreth encarna el apoyo marcial: presencia defensiva, disciplina de combate y la clase de firmeza que puede sostener una línea cuando el peligro empuja de frente."
-          data-note="Su valor no está solo en la fuerza. Está en la capacidad de mantenerse, proteger y obligar al caos a chocar contra algo que no se aparta."
-          data-facts="Rol narrativo|Aliado de combate;Arquetipo|Guardián / defensor;Equipo|Armadura, lanza y gran escudo;Rasgos|Firmeza, disciplina, lealtad y resistencia;Función|Proteger, contener y dar estabilidad;Clave|A veces avanzar exige que alguien aguante el golpe"
+          data-facts="Rol narrativo|Aliado defensivo;Arquetipo|Guardián / defensor;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Firme, leal, disciplinado y resistente;Equipo característico|Armadura, lanza y gran escudo;Conflicto|Proteger al grupo sin convertirse solo en un muro entre los demás y el peligro"
           data-src="assets/galerias/aliados/garreth.png">
           <img src="assets/galerias/aliados/garreth.png" alt="Garreth">
           <div class="caption">
@@ -789,8 +930,7 @@
           data-title="Mapaches"
           data-role="Aliados · Grupo de apoyo peculiar"
           data-desc="Los mapaches aportan una energía diferente al conjunto: pequeños, expresivos, aparentemente cómicos, pero capaces de convertir lo inesperado en ventaja."
-          data-note="Funcionan como una chispa de mundo vivo. Son ternura, caos y utilidad en el mismo bolsillo narrativo. Una pequeña patrulla de rareza organizada."
-          data-facts="Rol narrativo|Aliados de grupo;Arquetipo|Compañía peculiar / apoyo inesperado;Rasgos|Ingenio, simpatía, coordinación y caos controlado;Función|Aportar tono, ayuda práctica y sorpresa;Relación con Sasha|Apoyo amable con potencial narrativo propio;Clave|Lo pequeño también puede alterar una misión"
+          data-facts="Rol narrativo|Aliados de apoyo peculiar;Arquetipo|Compañía inesperada;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Ingeniosos, caóticos, coordinados y sorprendentemente útiles;Equipo característico|Pequeñas herramientas, intuición y trabajo en grupo;Conflicto|Demostrar que lo pequeño también puede cambiar una misión"
           data-src="assets/galerias/aliados/mapaches.png">
           <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches">
           <div class="caption">
@@ -802,8 +942,7 @@
           data-title="Mar Tabanne Tabanne"
           data-role="Aliada · Mar, viaje y presencia luminosa"
           data-desc="Mar Tabanne Tabanne introduce una presencia ligada al viaje, al mar y a una energía abierta, colorida y móvil. Su imagen habla de trayecto, libertad y mundo por descubrir."
-          data-note="Su fuerza visual está en el contraste: frente a la dureza del viaje, aparece como una corriente viva, luminosa, casi imposible de ignorar."
-          data-facts="Rol narrativo|Aliada vinculada al viaje;Arquetipo|Navegante / presencia luminosa;Rasgos|Vitalidad, movimiento, carisma y libertad;Función|Abrir mundo, rutas y horizontes;Relación con Sasha|Aliada potencial en escenarios de exploración;Clave|El viaje también necesita quien sepa leer el horizonte"
+          data-facts="Rol narrativo|Aliada vinculada al viaje;Arquetipo|Navegante / presencia luminosa;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Vital, libre, carismática y orientada al horizonte;Equipo característico|Rutas, mar, intuición viajera y experiencia de mundo;Conflicto|Guiar sin apagar la necesidad de Sasha de elegir su propio rumbo"
           data-src="assets/galerias/aliados/mar-tabanne-tabanne.png">
           <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar Tabanne Tabanne">
           <div class="caption">
@@ -815,8 +954,7 @@
           data-title="Señora de Inverse"
           data-role="Aliada · Poder, jerarquía y misterio"
           data-desc="La Señora de Inverse no funciona como una aliada simple. Su presencia trae poder, autoridad, seducción, amenaza latente y una sensación clara de que sabe mucho más de lo que está dispuesta a decir."
-          data-note="Su alianza puede ser una ventaja enorme o una deuda peligrosa. En ella, la ayuda nunca parece inocente: llega envuelta en elegancia, fuego y dominio."
-          data-facts="Rol narrativo|Aliada poderosa y ambigua;Arquetipo|Señora arcana / figura de autoridad;Rasgos|Dominante, elegante, peligrosa y magnética;Función|Expandir misterio, poder y jerarquías del mundo;Relación con Sasha|Apoyo de alto impacto, no exento de tensión;Clave|La ayuda más poderosa rara vez es neutral"
+          data-facts="Rol narrativo|Aliada poderosa y ambigua;Arquetipo|Señora arcana / figura de autoridad;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Dominante, elegante, peligrosa y magnética;Equipo característico|Magia de alto nivel, presencia aristocrática y control del entorno;Conflicto|Ofrecer ayuda sin que esa ayuda deje de parecer una deuda"
           data-src="assets/galerias/aliados/senora-de-inverse.png">
           <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse">
           <div class="caption">
@@ -908,7 +1046,7 @@
         <p class="lightbox-role" id="lightboxRole"></p>
         <p class="lightbox-desc" id="lightboxDesc"></p>
 
-        <h4>Ficha</h4>
+        <h4>Ficha técnica</h4>
         <ul class="character-facts" id="lightboxFacts"></ul>
 
         <div class="character-note" id="lightboxNote"></div>

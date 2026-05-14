@@ -401,6 +401,84 @@
         bottom:auto;
       }
     }
+  
+    /* MARCA DE TRANSPARENCIA IA · Portal */
+    .ai-disclosure-badge{
+      position:absolute;
+      z-index:18;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      max-width:calc(100% - 24px);
+      padding:7px 12px;
+      border-radius:13px;
+      background:rgba(32,32,36,.72);
+      color:#fff;
+      font-size:.76rem;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:.01em;
+      white-space:nowrap;
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      box-shadow:0 6px 18px rgba(0,0,0,.28);
+      pointer-events:none;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+      opacity:.92;
+    }
+
+    .ai-disclosure-top{
+      left:50%;
+      top:53%;
+      transform:translateX(-50%);
+    }
+
+    .ai-disclosure-left{
+      left:18px;
+      bottom:18px;
+    }
+
+    .ai-disclosure-right{
+      left:calc(50% + 18px);
+      bottom:18px;
+    }
+
+    .panel:hover .ai-disclosure-badge,
+    .panel:focus-visible .ai-disclosure-badge{
+      opacity:1;
+      background:rgba(32,32,36,.82);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,.32),
+        0 0 14px rgba(240,200,111,.14);
+    }
+
+    .label-right small{
+      display:inline-block;
+      margin-left:6px;
+      color:#f3e6cb;
+      font-size:.68rem;
+      letter-spacing:.06em;
+      opacity:.86;
+    }
+
+    @media (max-width: 760px){
+      .ai-disclosure-badge{
+        left:24px !important;
+        right:auto !important;
+        bottom:64px !important;
+        top:auto !important;
+        transform:none !important;
+        padding:6px 10px;
+        border-radius:11px;
+        font-size:.70rem;
+      }
+
+      .label-right small{
+        margin-left:4px;
+        font-size:.62rem;
+      }
+    }
+
   </style>
 </head>
 
@@ -417,20 +495,23 @@
       </svg>
     </div>
 
-    <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
+    <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System" data-ai-generated="true" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
       <span class="section-label label-top">Rol</span>
+      <span class="ai-disclosure-badge ai-disclosure-top" aria-hidden="true">Generado por IA</span>
     </a>
 
-    <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
+    <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha" data-ai-generated="true" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
       <span class="section-label label-left">Novelas</span>
+      <span class="ai-disclosure-badge ai-disclosure-left" aria-hidden="true">Generado por IA</span>
     </a>
 
-    <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
-      <span class="section-label label-right">Lore</span>
+    <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir al lore expandido en desarrollo en World Anvil" data-ai-generated="true" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
+      <span class="section-label label-right">Lore <small>en expansión</small></span>
+      <span class="ai-disclosure-badge ai-disclosure-right" aria-hidden="true">Generado por IA</span>
     </a>
 
     <div class="system-logo" aria-hidden="true">
-      <img src="assets/portal/portal-payplay.png" alt="">
+      <img src="assets/portal/portal-payplay.png" alt="" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial">
     </div>
   </main>
 </body>

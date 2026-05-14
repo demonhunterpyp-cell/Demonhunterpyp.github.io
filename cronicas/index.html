@@ -1664,9 +1664,8 @@
       }
     }
 
-  
 
-    /* MARCA DE TRANSPARENCIA IA · Crónicas */
+    /* MARCA DE TRANSPARENCIA IA · Refuerzo final */
     .ai-badge-wrap{
       position:relative;
       display:block;
@@ -1684,7 +1683,7 @@
       position:absolute;
       left:10px;
       bottom:10px;
-      z-index:20;
+      z-index:30;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -1718,9 +1717,35 @@
       height:100%;
     }
 
+    .hero-banner{
+      position:relative;
+    }
+
     .hero-banner .ai-bg-badge{
       left:18px;
       bottom:18px;
+    }
+
+    .ai-generated-disclosure{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      width:min(1180px, 92%);
+      margin:18px auto 0;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.20);
+      background:rgba(255,255,255,.045);
+      color:#f2e2c3;
+      font-size:.92rem;
+      line-height:1.4;
+      text-align:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.14);
+    }
+
+    .ai-generated-disclosure strong{
+      color:#fff1cb;
     }
 
     @media (max-width:640px){
@@ -1736,6 +1761,12 @@
       .hero-banner .ai-bg-badge{
         left:12px;
         bottom:12px;
+      }
+
+      .ai-generated-disclosure{
+        width:min(100% - 24px, 1180px);
+        border-radius:16px;
+        font-size:.84rem;
       }
     }
 
@@ -1807,7 +1838,7 @@
   </aside>
 
   <header class="hero" id="inicio">
-    <div class="hero-banner" data-ai-generated="true" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
+    <div class="hero-banner" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
       <span class="ai-bg-badge" aria-hidden="true">Generado por IA</span>
       <div class="hero-banner-inner">
         <div class="hero-title-block hero-copy">
@@ -1834,7 +1865,7 @@
 
           <div class="hero-paper-book">
             <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
-              <img src="assets/libro-sasha-3d.png" alt="Las Crónicas de Sasha Volumen 1" />
+              <span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libro-sasha-3d.png" alt="Las Crónicas de Sasha Volumen 1"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span>
             </a>
           </div>
         </div>
@@ -1869,7 +1900,7 @@
           <div class="books-grid">
             <article class="card">
               <div class="card-media">
-                <a href="volumen-1.html"><img src="assets/libro-sasha-3d.png" alt="Las Crónicas de Sasha Volumen 1" /></a>
+                <a href="volumen-1.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libro-sasha-3d.png" alt="Las Crónicas de Sasha Volumen 1"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Volumen 1</div>
@@ -1884,7 +1915,7 @@
 
             <article class="card">
               <div class="card-media">
-                <img src="assets/libros/volumenes/volumen-2.png" alt="Las Crónicas de Sasha Volumen 2" />
+                <span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libros/volumenes/volumen-2.png" alt="Las Crónicas de Sasha Volumen 2"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Las Crónicas de Sasha Volumen 2</div>
@@ -1898,7 +1929,7 @@
 
             <article class="card">
               <div class="card-media">
-                <img src="assets/libros/volumenes/volumen-3.png" alt="Las Crónicas de Sasha Volumen 3" />
+                <span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libros/volumenes/volumen-3.png" alt="Las Crónicas de Sasha Volumen 3"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Las Crónicas de Sasha Volumen 3</div>
@@ -1921,7 +1952,7 @@
           <div class="books-grid">
             <article class="card">
               <div class="card-media">
-                <a href="anexo-entrevista.html"><img src="assets/libros/anexos/Portada-entrevista.png" alt="Entrevista con una diosa" /></a>
+                <a href="anexo-entrevista.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libros/anexos/Portada-entrevista.png" alt="Entrevista con una diosa"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Anexo</div>
@@ -1936,7 +1967,7 @@
 
             <article class="card">
               <div class="card-media">
-                <a href="anexo-dvni.html"><img src="assets/libros/anexos/Portada-DVNI.png" alt="DVNI" /></a>
+                <a href="anexo-dvni.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libros/anexos/Portada-DVNI.png" alt="DVNI"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Anexo</div>
@@ -1951,7 +1982,7 @@
 
             <article class="card">
               <div class="card-media">
-                <a href="anexo-cinco-dones.html"><img src="assets/libros/anexos/Portada-cinco-dones.png" alt="Cinco dones" /></a>
+                <a href="anexo-cinco-dones.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/libros/anexos/Portada-cinco-dones.png" alt="Cinco dones"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
               </div>
               <div class="card-body">
                 <div class="eyebrow">Anexo</div>
@@ -1976,7 +2007,7 @@
       <div class="characters-grid">
         <article class="card">
           <div class="card-media">
-            <a href="sasha.html"><img src="assets/galerias/sasha/sasha-01.png" alt="Sasha" /></a>
+            <a href="sasha.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/galerias/sasha/sasha-01.png" alt="Sasha"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Protagonista</div>
@@ -1991,7 +2022,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="party-girls.html"><img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls" /></a>
+            <a href="party-girls.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Núcleo social</div>
@@ -2006,7 +2037,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="aliados.html"><img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" /></a>
+            <a href="aliados.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Compañeros</div>
@@ -2021,7 +2052,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="enemigos.html"><img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos" /></a>
+            <a href="enemigos.html"><span class="ai-badge-wrap" data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial"><img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos"  data-ai-generated="true" data-ai-disclosure="Imagen generada por inteligencia artificial" /></span></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Amenaza</div>
@@ -2191,8 +2222,5 @@
     });
   </script>
 </body>
-</html>
-
-
 </html>
 

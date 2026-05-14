@@ -486,7 +486,7 @@
       height:min(900px, 94vh);
       max-height:94vh;
       display:grid;
-      grid-template-columns:minmax(0, .88fr) minmax(800px, 1.12fr);
+      grid-template-columns:minmax(620px, 1.18fr) minmax(640px, .82fr);
       overflow:hidden;
       border-radius:26px;
       border:1px solid rgba(216,177,96,.24);
@@ -512,19 +512,36 @@
     }
 
     .lightbox-image-wrap{
-      display:grid;
-      place-items:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       min-height:0;
       height:100%;
-      overflow:hidden;
-      background:rgba(0,0,0,.22);
+      padding:22px;
+      overflow:auto;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(216,177,96,.06), transparent 42%),
+        rgba(0,0,0,.22);
+      scrollbar-width:thin;
+      scrollbar-color:rgba(216,177,96,.45) rgba(255,255,255,.04);
+    }
+
+    .lightbox-image-wrap::-webkit-scrollbar{width:10px;height:10px}
+    .lightbox-image-wrap::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
+    .lightbox-image-wrap::-webkit-scrollbar-thumb{
+      background:rgba(216,177,96,.42);
+      border-radius:999px;
     }
 
     .lightbox-image{
-      width:100%;
-      height:100%;
-      max-height:none;
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:100%;
       object-fit:contain;
+      object-position:center center;
+      border-radius:18px;
+      box-shadow:0 18px 42px rgba(0,0,0,.28);
     }
 
     .lightbox-info{
@@ -649,11 +666,14 @@
       .lightbox-image-wrap{
         min-height:360px;
         height:auto;
-        overflow:visible;
+        padding:12px;
+        overflow:auto;
       }
       .lightbox-image{
+        width:auto;
         height:auto;
-        max-height:58vh;
+        max-width:100%;
+        max-height:70vh;
       }
       .lightbox-info{
         height:auto;
@@ -998,3 +1018,4 @@
   </script>
 </body>
 </html>
+

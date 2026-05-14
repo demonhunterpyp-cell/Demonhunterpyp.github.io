@@ -466,7 +466,20 @@
     }
 
     .character-note{
-      display:none !important;
+      max-width:820px;
+      margin-top:22px;
+      padding:18px 20px;
+      border-left:3px solid rgba(216,177,96,.55);
+      border-radius:16px;
+      background:rgba(216,177,96,.06);
+      color:#f1dfbd;
+      line-height:1.65;
+      font-size:1.18rem;
+      font-weight:700;
+    }
+
+    .character-note:empty{
+      display:none;
     }
 
     @media (max-width: 1500px){
@@ -588,14 +601,15 @@
       <div class="gallery-grid">
         <article class="gallery-card"
           data-title="Akalys"
-          data-role="Enemigo · Amenaza singular"
-          data-desc="Akalys representa una amenaza con presencia propia dentro del bestiario. Su ficha queda preparada para concretar origen, comportamiento, debilidades y peso narrativo."
-          data-facts="Rol narrativo|Amenaza singular;Arquetipo|Enemigo del bestiario;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Peligroso, misterioso, resistente y difícil de anticipar;Equipo característico|Instinto, fuerza y recursos propios de su especie;Conflicto|Obligar a Sasha a entender que no todo enemigo se supera con fuerza bruta"
+          data-role="Demonio · Corrosión"
+          data-desc="Akalys es una de las primeras amenazas serias que Sasha encuentra en Demon Hunter. Su presencia marca un cambio de tono: el mundo deja de sentirse como una simple exploración y empieza a mostrar que cada combate puede tener consecuencias reales.<br><br>Su rasgo más peligroso es la corrosión. No se limita a atacar de frente; desgasta, deteriora y obliga a prestar atención al equipo, a la distancia y a la preparación antes de entrar en combate."
+          data-facts="Tipo de enemigo|Demonio.;Amenaza principal|Corrosión y daño ácido.;Qué representa|El primer aviso de que algunas criaturas no solo buscan derrotar a Sasha, sino obligarla a aprender por las malas.;Cómo condiciona el combate|Exige preparación, atención al entorno y prudencia. No es un enemigo para entrar “a ver qué pasa”.;Rasgo dominante|Corrosivo, agresivo y castigador.;Primera aparición|Volumen 1 · Mis inicios."
+          data-note="Akalys enseña una lección sencilla: en Demon Hunter, incluso una victoria puede dejar marca."
           data-src="assets/galerias/enemigos/Akalys.png">
           <img src="assets/galerias/enemigos/Akalys.png" alt="Akalys">
           <div class="caption">
             <h3>Akalys</h3>
-            <p>Amenaza singular · Peligro</p>
+            <p>Demonio · Corrosión</p>
           </div>
         </article>
 
@@ -691,7 +705,7 @@
       lightboxImage.alt = card.dataset.title;
       lightboxTitle.textContent = card.dataset.title;
       lightboxRole.textContent = card.dataset.role;
-      lightboxDesc.textContent = card.dataset.desc;
+      lightboxDesc.innerHTML = card.dataset.desc;
 
       factsList.innerHTML = "";
       const facts = (card.dataset.facts || "").split(";").filter(Boolean);
